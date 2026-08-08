@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://gyei4cxi4knh"]
+
+[ext_resource type="Texture2D" uid="uid://c4rn53xwq8txl" path="res://assets/visuals/Quill-sheet.png" id="1_xrat6"]
+[ext_resource type="Texture2D" uid="uid://daldma4x7bcqg" path="res://assets/visuals/Quills_Sword.png" id="2_mtoyt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgqta"]
+size = Vector2(5, 12)
+
+[node name="Quill" type="CharacterBody2D" unique_id=591547464]
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1728715139]
+texture = ExtResource("1_xrat6")
+hframes = 7
+
+[node name="Sword" type="Sprite2D" parent="." unique_id=1353438376]
+position = Vector2(3, 4)
+texture = ExtResource("2_mtoyt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=499183358]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_cgqta")
