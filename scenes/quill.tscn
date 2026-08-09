@@ -1,21 +1,166 @@
 [gd_scene format=3 uid="uid://gyei4cxi4knh"]
 
-[ext_resource type="Texture2D" uid="uid://c4rn53xwq8txl" path="res://assets/visuals/Quill-sheet.png" id="1_xrat6"]
-[ext_resource type="Texture2D" uid="uid://daldma4x7bcqg" path="res://assets/visuals/Quills_Sword.png" id="2_mtoyt"]
+[ext_resource type="Script" uid="uid://cnh10ptl6bij0" path="res://scripts/quill.gd" id="1_mtoyt"]
+[ext_resource type="Texture2D" uid="uid://daldma4x7bcqg" path="res://assets/visuals/quill's_sword.png" id="2_mtoyt"]
+[ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="4_34b6c"]
+[ext_resource type="Texture2D" uid="uid://xsxequex5r7d" path="res://assets/visuals/Quill-sheet.png" id="5_34b6c"]
+[ext_resource type="PackedScene" uid="uid://bmfvsuo8g21cg" path="res://scenes/components/input_component.tscn" id="5_iaavo"]
+[ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="5_yh003"]
+[ext_resource type="Texture2D" uid="uid://bhi0qwtdkeemp" path="res://assets/visuals/quill-run.png" id="6_iaavo"]
+[ext_resource type="PackedScene" uid="uid://ba7t6qyncp8sv" path="res://scenes/components/advanced_jump_component.tscn" id="6_xe6gk"]
+[ext_resource type="PackedScene" uid="uid://vqjy0rat2u5d" path="res://scenes/components/gravity_component.tscn" id="6_yh003"]
+[ext_resource type="PackedScene" uid="uid://c17hgniyoisc1" path="res://scenes/components/footsteps_component.tscn" id="7_3yhwj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqne6"]
+atlas = ExtResource("5_34b6c")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaavo"]
+atlas = ExtResource("5_34b6c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh003"]
+atlas = ExtResource("5_34b6c")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xe6gk"]
+atlas = ExtResource("5_34b6c")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yhwj"]
+atlas = ExtResource("5_34b6c")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkik5"]
+atlas = ExtResource("5_34b6c")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s12a5"]
+atlas = ExtResource("5_34b6c")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql8w0"]
+atlas = ExtResource("5_34b6c")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llq8p"]
+atlas = ExtResource("6_iaavo")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0n5i"]
+atlas = ExtResource("6_iaavo")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrdvg"]
+atlas = ExtResource("6_iaavo")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxcj6"]
+atlas = ExtResource("6_iaavo")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cgqta"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqne6")
+}],
+"loop": 1,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iaavo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh003")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xe6gk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yhwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkik5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s12a5")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql8w0")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llq8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0n5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrdvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxcj6")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgqta"]
 size = Vector2(5, 12)
 
-[node name="Quill" type="CharacterBody2D" unique_id=591547464]
+[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component")]
+script = ExtResource("1_mtoyt")
+gravity_component = NodePath("Components/GravityComponent")
+input_component = NodePath("Components/InputComponent")
+movement_component = NodePath("Components/MovementComponent")
+animation_component = NodePath("Components/AnimationComponent")
+jump_component = NodePath("Components/AdvancedJumpComponent")
+footsteps_component = NodePath("Components/FootstepsComponent")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1728715139]
-texture = ExtResource("1_xrat6")
-hframes = 7
+[node name="Components" type="Node" parent="." unique_id=332795451]
+
+[node name="MovementComponent" parent="Components" unique_id=275666189 instance=ExtResource("4_34b6c")]
+
+[node name="InputComponent" parent="Components" unique_id=2036460052 instance=ExtResource("5_iaavo")]
+
+[node name="GravityComponent" parent="Components" unique_id=827299611 instance=ExtResource("6_yh003")]
+
+[node name="AnimationComponent" parent="Components" unique_id=222523302 node_paths=PackedStringArray("sprite") instance=ExtResource("5_yh003")]
+sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="AdvancedJumpComponent" parent="Components" unique_id=2065928452 instance=ExtResource("6_xe6gk")]
+jump_velocity = -250.0
+
+[node name="FootstepsComponent" parent="Components" unique_id=499613779 node_paths=PackedStringArray("sprite") instance=ExtResource("7_3yhwj")]
+sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=632265729]
+sprite_frames = SubResource("SpriteFrames_cgqta")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="Sword" type="Sprite2D" parent="." unique_id=1353438376]
-position = Vector2(3, 4)
+position = Vector2(4, 3)
 texture = ExtResource("2_mtoyt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=499183358]
 position = Vector2(-0.5, 2)
 shape = SubResource("RectangleShape2D_cgqta")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=76354429]
+zoom = Vector2(4, 4)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=76498619]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xsxequex5r7d"
-path="res://.godot/imported/Quill-sheet.png-01bf49d393bce12ba4e6bda32a972084.ctex"
+uid="uid://bhi0qwtdkeemp"
+path="res://.godot/imported/quill-run.png-8c3a7019afc34a0902c6d5ee874fd2da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visuals/Quill-sheet.png"
-dest_files=["res://.godot/imported/Quill-sheet.png-01bf49d393bce12ba4e6bda32a972084.ctex"]
+source_file="res://assets/visuals/quill-run.png"
+dest_files=["res://.godot/imported/quill-run.png-8c3a7019afc34a0902c6d5ee874fd2da.ctex"]
 
 [params]
 
