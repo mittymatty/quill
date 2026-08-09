@@ -1,6 +1,7 @@
 class_name AdvancedJumpComponent extends Node
 
 @export_subgroup("Nodes")
+@export var jump_sound: AudioStreamPlayer2D
 @export var jump_buffer_timer: Timer
 @export var coyote_timer: Timer
 
@@ -27,6 +28,9 @@ func jump(body: CharacterBody2D) -> void:
 	is_jumping = true
 	jump_buffer_timer.stop()
 	coyote_timer.stop()
+	
+	if jump_sound != null:
+		jump_sound.play()
 
 func handle_jump(body: CharacterBody2D, want_to_jump: bool, jump_held: bool, jump_released: bool) -> void:
 	if has_just_landed(body):

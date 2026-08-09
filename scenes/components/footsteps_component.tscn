@@ -1,12 +1,7 @@
 [gd_scene format=3 uid="uid://c17hgniyoisc1"]
 
 [ext_resource type="Script" uid="uid://hw8fn4bca0vv" path="res://scenes/components/footsteps_component.gd" id="1_qt5q2"]
-[ext_resource type="AudioStream" uid="uid://8vs2f80frui6" path="res://resources/alternating_footsteps.tres" id="2_604ug"]
 
 [node name="FootstepsComponent" type="Node" unique_id=499613779 node_paths=PackedStringArray("footsteps_audio")]
 script = ExtResource("1_qt5q2")
-footsteps_audio = NodePath("Footsteps")
-
-[node name="Footsteps" type="AudioStreamPlayer2D" parent="." unique_id=1953994443]
-stream = ExtResource("2_604ug")
-volume_db = 5.0
+footsteps_audio = NodePath("")

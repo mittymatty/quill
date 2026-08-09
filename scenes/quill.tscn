@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://ba7t6qyncp8sv" path="res://scenes/components/advanced_jump_component.tscn" id="6_xe6gk"]
 [ext_resource type="PackedScene" uid="uid://vqjy0rat2u5d" path="res://scenes/components/gravity_component.tscn" id="6_yh003"]
 [ext_resource type="PackedScene" uid="uid://c17hgniyoisc1" path="res://scenes/components/footsteps_component.tscn" id="7_3yhwj"]
+[ext_resource type="AudioStream" uid="uid://8vs2f80frui6" path="res://resources/alternating_footsteps.tres" id="11_rkik5"]
+[ext_resource type="AudioStream" uid="uid://d2c26adid12ej" path="res://assets/audio/footsteps/04-footstep.ogg" id="12_s12a5"]
+[ext_resource type="AudioStream" uid="uid://cpi24holwev0a" path="res://assets/audio/quill-grunt1.ogg" id="13_llq8p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uqne6"]
 atlas = ExtResource("5_34b6c")
@@ -141,10 +144,12 @@ footsteps_component = NodePath("Components/FootstepsComponent")
 [node name="AnimationComponent" parent="Components" unique_id=222523302 node_paths=PackedStringArray("sprite") instance=ExtResource("5_yh003")]
 sprite = NodePath("../../AnimatedSprite2D")
 
-[node name="AdvancedJumpComponent" parent="Components" unique_id=2065928452 instance=ExtResource("6_xe6gk")]
+[node name="AdvancedJumpComponent" parent="Components" unique_id=2065928452 node_paths=PackedStringArray("jump_sound") instance=ExtResource("6_xe6gk")]
+jump_sound = NodePath("../../Sounds/Jump")
 jump_velocity = -250.0
 
-[node name="FootstepsComponent" parent="Components" unique_id=499613779 node_paths=PackedStringArray("sprite") instance=ExtResource("7_3yhwj")]
+[node name="FootstepsComponent" parent="Components" unique_id=499613779 node_paths=PackedStringArray("footsteps_audio", "sprite") instance=ExtResource("7_3yhwj")]
+footsteps_audio = NodePath("../../Sounds/Footsteps")
 sprite = NodePath("../../AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=632265729]
@@ -153,6 +158,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="Sword" type="Sprite2D" parent="." unique_id=1353438376]
+visible = false
 position = Vector2(4, 3)
 texture = ExtResource("2_mtoyt")
 
@@ -164,3 +170,16 @@ shape = SubResource("RectangleShape2D_cgqta")
 zoom = Vector2(4, 4)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=76498619]
+
+[node name="Sounds" type="Node2D" parent="." unique_id=811975392]
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1920806529]
+stream = ExtResource("11_rkik5")
+volume_db = 5.0
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="Sounds" unique_id=447194459]
+stream = ExtResource("12_s12a5")
+volume_db = 3.0
+
+[node name="Voice" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1357491121]
+stream = ExtResource("13_llq8p")
