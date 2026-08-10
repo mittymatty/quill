@@ -7,6 +7,9 @@ class_name MovementComponent extends Node
 @export var air_accel_speed: float = 10.0
 @export var air_decel_speed: float = 3.0
 
+@export_subgroup("Active Modifiers")
+@export var speed_multiplier: float
+
 func handle_horizontal_movement(body: CharacterBody2D, direction: float) -> void:
 	var velocity_change_speed: float
 	
@@ -15,4 +18,4 @@ func handle_horizontal_movement(body: CharacterBody2D, direction: float) -> void
 	else:
 		velocity_change_speed = air_accel_speed if direction != 0 else air_decel_speed
 	
-	body.velocity.x = move_toward(body.velocity.x, direction * speed, velocity_change_speed)
+	body.velocity.x = move_toward(body.velocity.x, direction * speed * speed_multiplier, velocity_change_speed)

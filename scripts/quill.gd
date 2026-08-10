@@ -8,6 +8,7 @@ class_name quill extends CharacterBody2D
 @export var jump_component: AdvancedJumpComponent
 @export var footsteps_component: FootstepsComponent
 
+
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self,delta)
 	movement_component.handle_horizontal_movement(self, input_component.input_horizontal)

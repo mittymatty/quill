@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.7", "Mobile")
 run/max_fps=60
 config/icon="uid://dhnc0cgcvffax"
 
+[autoload]
+
+SignalBus="*uid://b5t4wg6pk5yg"
+
 [display]
 
 window/stretch/mode="viewport"

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://gyei4cxi4knh"]
 
 [ext_resource type="Script" uid="uid://cnh10ptl6bij0" path="res://scripts/quill.gd" id="1_mtoyt"]
-[ext_resource type="Texture2D" uid="uid://daldma4x7bcqg" path="res://assets/visuals/quill's_sword.png" id="2_mtoyt"]
 [ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="4_34b6c"]
 [ext_resource type="Texture2D" uid="uid://xsxequex5r7d" path="res://assets/visuals/Quill-sheet.png" id="5_34b6c"]
 [ext_resource type="PackedScene" uid="uid://bmfvsuo8g21cg" path="res://scenes/components/input_component.tscn" id="5_iaavo"]
@@ -10,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ba7t6qyncp8sv" path="res://scenes/components/advanced_jump_component.tscn" id="6_xe6gk"]
 [ext_resource type="PackedScene" uid="uid://vqjy0rat2u5d" path="res://scenes/components/gravity_component.tscn" id="6_yh003"]
 [ext_resource type="PackedScene" uid="uid://c17hgniyoisc1" path="res://scenes/components/footsteps_component.tscn" id="7_3yhwj"]
+[ext_resource type="Texture2D" uid="uid://dtg2k8c8ei83p" path="res://assets/visuals/quill's_sword_2.png" id="10_llq8p"]
 [ext_resource type="AudioStream" uid="uid://8vs2f80frui6" path="res://resources/alternating_footsteps.tres" id="11_rkik5"]
 [ext_resource type="AudioStream" uid="uid://d2c26adid12ej" path="res://assets/audio/footsteps/04-footstep.ogg" id="12_s12a5"]
 [ext_resource type="AudioStream" uid="uid://cpi24holwev0a" path="res://assets/audio/quill-grunt1.ogg" id="13_llq8p"]
@@ -156,18 +156,20 @@ sprite = NodePath("../../AnimatedSprite2D")
 sprite_frames = SubResource("SpriteFrames_cgqta")
 animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.57761985
 
 [node name="Sword" type="Sprite2D" parent="." unique_id=1353438376]
 visible = false
-position = Vector2(4, 3)
-texture = ExtResource("2_mtoyt")
+position = Vector2(2, 4)
+texture = ExtResource("10_llq8p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=499183358]
 position = Vector2(-0.5, 2)
 shape = SubResource("RectangleShape2D_cgqta")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=76354429]
-zoom = Vector2(4, 4)
+offset = Vector2(0, -15)
+zoom = Vector2(3.5, 3.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=76498619]
 
