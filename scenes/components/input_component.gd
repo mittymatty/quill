@@ -13,3 +13,6 @@ func get_jump_input_released() -> bool:
 
 func get_jump_input_held() -> bool:
 	return Input.is_action_pressed("jump")
+
+func get_attack_input() -> bool:
+	return Input.is_action_just_pressed("attack")

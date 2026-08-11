@@ -1,5 +1,6 @@
 class_name State extends Node
 
+@warning_ignore("unused_signal")
 signal switch_state(state: State)
 
 func enter_state() -> void:

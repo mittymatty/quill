@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://gyei4cxi4knh"]
 
 [ext_resource type="Script" uid="uid://cnh10ptl6bij0" path="res://scripts/quill.gd" id="1_mtoyt"]
+[ext_resource type="Script" uid="uid://bwc2rpjs4hne5" path="res://scripts/state_machine/state_machine.gd" id="2_kxcj6"]
+[ext_resource type="Script" uid="uid://c4th1dyqmrawa" path="res://scripts/states/idle.gd" id="3_uqne6"]
 [ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="4_34b6c"]
+[ext_resource type="Script" uid="uid://cxiups7is4ht3" path="res://scripts/state_machine/state.gd" id="4_ql8w0"]
 [ext_resource type="Texture2D" uid="uid://xsxequex5r7d" path="res://assets/visuals/Quill-sheet.png" id="5_34b6c"]
 [ext_resource type="PackedScene" uid="uid://bmfvsuo8g21cg" path="res://scenes/components/input_component.tscn" id="5_iaavo"]
 [ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="5_yh003"]
@@ -11,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c17hgniyoisc1" path="res://scenes/components/footsteps_component.tscn" id="7_3yhwj"]
 [ext_resource type="Texture2D" uid="uid://dtg2k8c8ei83p" path="res://assets/visuals/quill's_sword_2.png" id="10_llq8p"]
 [ext_resource type="AudioStream" uid="uid://8vs2f80frui6" path="res://resources/alternating_footsteps.tres" id="11_rkik5"]
+[ext_resource type="PackedScene" uid="uid://dnxj761xnjuvc" path="res://scenes/components/weapon_component.tscn" id="11_uqne6"]
 [ext_resource type="AudioStream" uid="uid://d2c26adid12ej" path="res://assets/audio/footsteps/04-footstep.ogg" id="12_s12a5"]
 [ext_resource type="AudioStream" uid="uid://cpi24holwev0a" path="res://assets/audio/quill-grunt1.ogg" id="13_llq8p"]
 
@@ -124,14 +128,91 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgqta"]
 size = Vector2(5, 12)
 
-[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component")]
+[sub_resource type="Animation" id="Animation_uqne6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_kxcj6"]
+resource_name = "jab"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, 2), Vector2(3, -3.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0471975511965976, 0.7853982]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uqne6"]
+_data = {
+&"RESET": SubResource("Animation_uqne6"),
+&"jab": SubResource("Animation_kxcj6")
+}
+
+[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("state_machine", "gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component")]
 script = ExtResource("1_mtoyt")
+state_machine = NodePath("StateMachine")
 gravity_component = NodePath("Components/GravityComponent")
 input_component = NodePath("Components/InputComponent")
 movement_component = NodePath("Components/MovementComponent")
 animation_component = NodePath("Components/AnimationComponent")
 jump_component = NodePath("Components/AdvancedJumpComponent")
 footsteps_component = NodePath("Components/FootstepsComponent")
+weapon_component = NodePath("Components/WeaponComponent")
+
+[node name="StateMachine" type="Node" parent="." unique_id=491062762 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_kxcj6")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://bwc2rpjs4hne5"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=314411883]
+script = ExtResource("3_uqne6")
+metadata/_custom_type_script = "uid://cxiups7is4ht3"
+
+[node name="Run" type="Node" parent="StateMachine" unique_id=505164579]
+script = ExtResource("4_ql8w0")
+metadata/_custom_type_script = "uid://cxiups7is4ht3"
 
 [node name="Components" type="Node" parent="." unique_id=332795451]
 
@@ -141,8 +222,12 @@ footsteps_component = NodePath("Components/FootstepsComponent")
 
 [node name="GravityComponent" parent="Components" unique_id=827299611 instance=ExtResource("6_yh003")]
 
-[node name="AnimationComponent" parent="Components" unique_id=222523302 node_paths=PackedStringArray("sprite") instance=ExtResource("5_yh003")]
+[node name="AnimationComponent" parent="Components" unique_id=222523302 node_paths=PackedStringArray("sprite", "nodes_to_flip") instance=ExtResource("5_yh003")]
 sprite = NodePath("../../AnimatedSprite2D")
+nodes_to_flip = {
+NodePath("../../AnimatedSprite2D"): Vector2(0, 0),
+NodePath("../../Sword"): Vector2(2, 4)
+}
 
 [node name="AdvancedJumpComponent" parent="Components" unique_id=2065928452 node_paths=PackedStringArray("jump_sound") instance=ExtResource("6_xe6gk")]
 jump_sound = NodePath("../../Sounds/Jump")
@@ -152,6 +237,9 @@ jump_velocity = -250.0
 footsteps_audio = NodePath("../../Sounds/Footsteps")
 sprite = NodePath("../../AnimatedSprite2D")
 
+[node name="WeaponComponent" parent="Components" unique_id=1035590107 node_paths=PackedStringArray("anim_player") instance=ExtResource("11_uqne6")]
+anim_player = NodePath("../../AnimationPlayer")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=632265729]
 sprite_frames = SubResource("SpriteFrames_cgqta")
 animation = &"idle"
@@ -159,7 +247,6 @@ autoplay = "idle"
 frame_progress = 0.57761985
 
 [node name="Sword" type="Sprite2D" parent="." unique_id=1353438376]
-visible = false
 position = Vector2(2, 4)
 texture = ExtResource("10_llq8p")
 
@@ -169,9 +256,10 @@ shape = SubResource("RectangleShape2D_cgqta")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=76354429]
 offset = Vector2(0, -15)
-zoom = Vector2(3.5, 3.5)
+zoom = Vector2(5, 5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=76498619]
+libraries/ = SubResource("AnimationLibrary_uqne6")
 
 [node name="Sounds" type="Node2D" parent="." unique_id=811975392]
 

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dnxj761xnjuvc"]
+
+[ext_resource type="Script" uid="uid://ckya7j2dwa2r2" path="res://scenes/components/weapon_component.gd" id="1_eyxp4"]
+
+[node name="WeaponComponent" type="Node" unique_id=1035590107 node_paths=PackedStringArray("cooldown_timer")]
+script = ExtResource("1_eyxp4")
+cooldown_timer = NodePath("AttackCooldownTimer")
+
+[node name="AttackCooldownTimer" type="Timer" parent="." unique_id=1339807466]
+wait_time = 0.15
+one_shot = true

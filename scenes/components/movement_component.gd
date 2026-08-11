@@ -8,7 +8,7 @@ class_name MovementComponent extends Node
 @export var air_decel_speed: float = 3.0
 
 @export_subgroup("Active Modifiers")
-@export var speed_multiplier: float
+@export var speed_multiplier: float = 1.0
 
 func handle_horizontal_movement(body: CharacterBody2D, direction: float) -> void:
 	var velocity_change_speed: float

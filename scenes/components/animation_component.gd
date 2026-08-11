@@ -2,10 +2,14 @@ class_name AnimationComponent extends Node
 
 @export_subgroup("Nodes")
 @export var sprite: AnimatedSprite2D
+@export var nodes_to_flip : Dictionary[Node2D,Vector2] = {}
 
 func handle_horizontal_flip(move_direction: float) -> void:
 	if move_direction == 0: return
-	sprite.flip_h = false if move_direction > 0 else true
+	
+	for child : Node2D in nodes_to_flip:
+		child.flip_h = false if move_direction > 0 else true
+		child.position = nodes_to_flip[child] if move_direction > 0 else nodes_to_flip[child] * Vector2(-1,1)
 
 func handle_move_animation(move_direction: float) -> void:
 	handle_horizontal_flip(move_direction)
