@@ -9,6 +9,7 @@
 [node name="world" type="Node2D" parent="." unique_id=411618213]
 
 [node name="BlackParallax" type="Parallax2D" parent="world" unique_id=1522087032]
+visible = false
 texture_filter = 1
 scroll_scale = Vector2(-1, -1)
 follow_viewport = false

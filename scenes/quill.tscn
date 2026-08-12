@@ -12,11 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://ba7t6qyncp8sv" path="res://scenes/components/advanced_jump_component.tscn" id="6_xe6gk"]
 [ext_resource type="PackedScene" uid="uid://vqjy0rat2u5d" path="res://scenes/components/gravity_component.tscn" id="6_yh003"]
 [ext_resource type="PackedScene" uid="uid://c17hgniyoisc1" path="res://scenes/components/footsteps_component.tscn" id="7_3yhwj"]
-[ext_resource type="Texture2D" uid="uid://dtg2k8c8ei83p" path="res://assets/visuals/quill's_sword_2.png" id="10_llq8p"]
+[ext_resource type="PackedScene" uid="uid://dnxj761xnjuvc" path="res://scenes/components/weapon_component.tscn" id="11_ql8w0"]
 [ext_resource type="AudioStream" uid="uid://8vs2f80frui6" path="res://resources/alternating_footsteps.tres" id="11_rkik5"]
-[ext_resource type="PackedScene" uid="uid://dnxj761xnjuvc" path="res://scenes/components/weapon_component.tscn" id="11_uqne6"]
 [ext_resource type="AudioStream" uid="uid://d2c26adid12ej" path="res://assets/audio/footsteps/04-footstep.ogg" id="12_s12a5"]
 [ext_resource type="AudioStream" uid="uid://cpi24holwev0a" path="res://assets/audio/quill-grunt1.ogg" id="13_llq8p"]
+[ext_resource type="Texture2D" uid="uid://dtg2k8c8ei83p" path="res://assets/visuals/quill's_sword_2.png" id="16_kxcj6"]
+[ext_resource type="AudioStream" uid="uid://dibchowmpkpiu" path="res://assets/audio/02-butter-knife-slash.ogg" id="17_uqne6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uqne6"]
 atlas = ExtResource("5_34b6c")
@@ -125,15 +126,18 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
+size = Vector2(14, 5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgqta"]
-size = Vector2(5, 12)
+size = Vector2(4, 11)
 
 [sub_resource type="Animation" id="Animation_uqne6"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sword:offset")
+tracks/0/path = NodePath("Visuals/Sword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -145,7 +149,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sword:rotation")
+tracks/1/path = NodePath("Visuals/Sword:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -154,34 +158,58 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attackbox/jab:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_kxcj6"]
 resource_name = "jab"
-length = 0.15
-step = 0.05
+length = 0.3
+step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sword:offset")
+tracks/0/path = NodePath("Visuals/Sword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.125, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-2, 2), Vector2(3, -3.5)]
+"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(9, -1.5), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sword:rotation")
-tracks/1/interp = 2
+tracks/1/path = NodePath("Visuals/Sword:rotation")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.215, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7853982, 0.7853982, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attackbox/jab:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.15),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0471975511965976, 0.7853982]
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uqne6"]
@@ -191,6 +219,7 @@ _data = {
 }
 
 [node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("state_machine", "gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component")]
+collision_layer = 2
 script = ExtResource("1_mtoyt")
 state_machine = NodePath("StateMachine")
 gravity_component = NodePath("Components/GravityComponent")
@@ -223,11 +252,8 @@ metadata/_custom_type_script = "uid://cxiups7is4ht3"
 [node name="GravityComponent" parent="Components" unique_id=827299611 instance=ExtResource("6_yh003")]
 
 [node name="AnimationComponent" parent="Components" unique_id=222523302 node_paths=PackedStringArray("sprite", "nodes_to_flip") instance=ExtResource("5_yh003")]
-sprite = NodePath("../../AnimatedSprite2D")
-nodes_to_flip = {
-NodePath("../../AnimatedSprite2D"): Vector2(0, 0),
-NodePath("../../Sword"): Vector2(2, 4)
-}
+sprite = NodePath("../../Visuals/AnimatedSprite2D")
+nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Attackbox")]
 
 [node name="AdvancedJumpComponent" parent="Components" unique_id=2065928452 node_paths=PackedStringArray("jump_sound") instance=ExtResource("6_xe6gk")]
 jump_sound = NodePath("../../Sounds/Jump")
@@ -235,31 +261,24 @@ jump_velocity = -250.0
 
 [node name="FootstepsComponent" parent="Components" unique_id=499613779 node_paths=PackedStringArray("footsteps_audio", "sprite") instance=ExtResource("7_3yhwj")]
 footsteps_audio = NodePath("../../Sounds/Footsteps")
-sprite = NodePath("../../AnimatedSprite2D")
+sprite = NodePath("../../Visuals/AnimatedSprite2D")
 
-[node name="WeaponComponent" parent="Components" unique_id=1035590107 node_paths=PackedStringArray("anim_player") instance=ExtResource("11_uqne6")]
+[node name="WeaponComponent" parent="Components" unique_id=1035590107 node_paths=PackedStringArray("character_body", "anim_player", "attack_sound") instance=ExtResource("11_ql8w0")]
+character_body = NodePath("../..")
 anim_player = NodePath("../../AnimationPlayer")
+attack_sound = NodePath("../../Sounds/Attack")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=632265729]
+[node name="Visuals" type="Node2D" parent="." unique_id=2003763140]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=632265729]
 sprite_frames = SubResource("SpriteFrames_cgqta")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.57761985
 
-[node name="Sword" type="Sprite2D" parent="." unique_id=1353438376]
-position = Vector2(2, 4)
-texture = ExtResource("10_llq8p")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=499183358]
-position = Vector2(-0.5, 2)
-shape = SubResource("RectangleShape2D_cgqta")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=76354429]
-offset = Vector2(0, -15)
-zoom = Vector2(5, 5)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=76498619]
-libraries/ = SubResource("AnimationLibrary_uqne6")
+[node name="Sword" type="Sprite2D" parent="Visuals" unique_id=1298361440]
+texture = ExtResource("16_kxcj6")
+offset = Vector2(3, 3)
 
 [node name="Sounds" type="Node2D" parent="." unique_id=811975392]
 
@@ -273,3 +292,28 @@ volume_db = 3.0
 
 [node name="Voice" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1357491121]
 stream = ExtResource("13_llq8p")
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1227883056]
+stream = ExtResource("17_uqne6")
+volume_db = 10.0
+
+[node name="Attackbox" type="Area2D" parent="." unique_id=331505840]
+collision_layer = 4
+collision_mask = 0
+
+[node name="jab" type="CollisionShape2D" parent="Attackbox" unique_id=819145747]
+position = Vector2(8, 2.5)
+shape = SubResource("RectangleShape2D_xrivr")
+disabled = true
+debug_color = Color(0.99771076, 0.04391218, 0, 0.41960785)
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=499183358]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_cgqta")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=76354429]
+offset = Vector2(0, -15)
+zoom = Vector2(5, 5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=76498619]
+libraries/ = SubResource("AnimationLibrary_uqne6")
