@@ -1,7 +1,7 @@
 class_name WeaponComponent extends Node
 
 @export_subgroup("Nodes")
-@export var character_body: CharacterBody2D
+@export var attack_box: Area2D
 @export var anim_player: AnimationPlayer
 @export var cooldown_timer: Timer
 @export var attack_sound: AudioStreamPlayer2D

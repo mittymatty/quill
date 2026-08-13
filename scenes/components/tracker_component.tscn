@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ddnaujh8g10oe"]
+
+[ext_resource type="Script" uid="uid://dakt4boqwxfb5" path="res://scenes/components/tracker_component.gd" id="1_7j7g3"]
+
+[node name="TrackerComponent" type="Node" unique_id=1220211303 node_paths=PackedStringArray("refresh_timer")]
+script = ExtResource("1_7j7g3")
+refresh_timer = NodePath("RefreshTimer")
+
+[node name="RefreshTimer" type="Timer" parent="." unique_id=1384172074]
+wait_time = 0.1
+autostart = true

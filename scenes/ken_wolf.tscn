@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://ct6m3qj7461m2"]
+
+[ext_resource type="PackedScene" uid="uid://cu0m5demynbe2" path="res://scenes/enemy_base.tscn" id="1_q6ihe"]
+[ext_resource type="Texture2D" uid="uid://cycqu4hk0naql" path="res://assets/visuals/ken_wolf.png" id="2_5hjy8"]
+[ext_resource type="PackedScene" uid="uid://vqjy0rat2u5d" path="res://scenes/components/gravity_component.tscn" id="2_nkl14"]
+[ext_resource type="Script" uid="uid://cud56gf30nnvj" path="res://scripts/ken_wolf.gd" id="2_xr5up"]
+[ext_resource type="PackedScene" uid="uid://cue567yf0jsu4" path="res://scenes/components/hurt_component.tscn" id="3_cn6dl"]
+[ext_resource type="PackedScene" uid="uid://c17hgniyoisc1" path="res://scenes/components/footsteps_component.tscn" id="4_a54c4"]
+[ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="5_xr5up"]
+[ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="6_a54c4"]
+[ext_resource type="PackedScene" uid="uid://ddnaujh8g10oe" path="res://scenes/components/tracker_component.tscn" id="8_sychi"]
+[ext_resource type="AudioStream" uid="uid://vij5mfe42ueg" path="res://assets/05-footstep.ogg" id="8_xr5up"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ka18"]
+atlas = ExtResource("2_5hjy8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1y48"]
+atlas = ExtResource("2_5hjy8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkl14"]
+atlas = ExtResource("2_5hjy8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn6dl"]
+atlas = ExtResource("2_5hjy8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a54c4"]
+atlas = ExtResource("2_5hjy8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr5up"]
+atlas = ExtResource("2_5hjy8")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sychi"]
+atlas = ExtResource("2_5hjy8")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5kcic"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ka18")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1y48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkl14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn6dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a54c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xr5up")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sychi")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sychi"]
+size = Vector2(12, 14)
+
+[node name="ken_wolf" unique_id=729534692 node_paths=PackedStringArray("gravity_component", "movement_component", "animation_component", "footsteps_component", "hurt_component", "tracker_component") instance=ExtResource("1_q6ihe")]
+script = ExtResource("2_xr5up")
+gravity_component = NodePath("Components/GravityComponent")
+movement_component = NodePath("Components/MovementComponent")
+animation_component = NodePath("Components/AnimationComponent")
+footsteps_component = NodePath("Components/FootstepsComponent")
+hurt_component = NodePath("Components/HurtComponent")
+tracker_component = NodePath("Components/TrackerComponent")
+
+[node name="GravityComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=827299611 instance=ExtResource("2_nkl14")]
+
+[node name="HurtComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="1" unique_id=1900266369 node_paths=PackedStringArray("character_body") instance=ExtResource("3_cn6dl")]
+character_body = NodePath("../..")
+
+[node name="FootstepsComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=499613779 node_paths=PackedStringArray("footsteps_audio", "sprite") instance=ExtResource("4_a54c4")]
+footsteps_audio = NodePath("../../Sounds/Footsteps")
+sprite = NodePath("../../Visuals/Sprite")
+frame_interval = 3
+
+[node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="3" unique_id=222523302 node_paths=PackedStringArray("sprite", "nodes_to_flip") instance=ExtResource("5_xr5up")]
+sprite = NodePath("../../Visuals/Sprite")
+nodes_to_flip = [NodePath("../../Visuals")]
+
+[node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=275666189 instance=ExtResource("6_a54c4")]
+speed = 50.0
+
+[node name="TrackerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="5" unique_id=1220211303 node_paths=PackedStringArray("tracker") instance=ExtResource("8_sychi")]
+tracker = NodePath("../..")
+
+[node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
+sprite_frames = SubResource("SpriteFrames_5kcic")
+animation = &"run"
+autoplay = "idle"
+frame = 1
+frame_progress = 0.69631225
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="Sounds" parent_id_path=PackedInt32Array(970708326) index="0" unique_id=1077349891]
+stream = ExtResource("8_xr5up")
+volume_db = 5.0
+
+[node name="Collision" parent="." index="3" unique_id=832957629]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_sychi")

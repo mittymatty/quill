@@ -4,14 +4,13 @@ class_name AnimationComponent extends Node
 @export var sprite: AnimatedSprite2D
 @export var nodes_to_flip : Array[Node2D] = []
 
-func handle_horizontal_flip(move_direction: float) -> void:
-	if move_direction == 0: return
+func handle_horizontal_flip(move_direction: float, direction_locked: bool) -> void:
+	if move_direction == 0 or direction_locked: return
 	
 	for child : Node2D in nodes_to_flip:
 		child.scale.x = 1.0 if move_direction > 0 else -1.0
 
 func handle_move_animation(move_direction: float) -> void:
-	handle_horizontal_flip(move_direction)
 	
 	if move_direction != 0:
 		sprite.play("run")

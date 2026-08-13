@@ -16,3 +16,6 @@ func get_jump_input_held() -> bool:
 
 func get_attack_input() -> bool:
 	return Input.is_action_just_pressed("attack")
+
+func get_direction_lock_held() -> bool:
+	return Input.is_action_pressed("direction_lock")

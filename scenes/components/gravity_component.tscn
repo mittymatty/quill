@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://cwmqry4yemd5i" path="res://scenes/components/gravity_component.gd" id="1_45p7f"]
 
-[node name="gravity_component" type="Node" unique_id=827299611]
+[node name="GravityComponent" type="Node" unique_id=827299611]
 script = ExtResource("1_45p7f")

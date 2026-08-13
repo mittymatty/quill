@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cu0m5demynbe2"]
+
+[node name="enemy_base" type="CharacterBody2D" unique_id=729534692]
+z_index = -1
+collision_layer = 8
+
+[node name="Components" type="Node" parent="." unique_id=1001103590]
+
+[node name="Visuals" type="Node2D" parent="." unique_id=1477317777]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Visuals" unique_id=865435948]
+
+[node name="Sounds" type="Node2D" parent="." unique_id=970708326]
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=832957629]
+debug_color = Color(0.45594096, 0.23858556, 0.0019806765, 0.41960785)

@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c17hgniyoisc1" path="res://scenes/components/footsteps_component.tscn" id="7_3yhwj"]
 [ext_resource type="PackedScene" uid="uid://dnxj761xnjuvc" path="res://scenes/components/weapon_component.tscn" id="11_ql8w0"]
 [ext_resource type="AudioStream" uid="uid://8vs2f80frui6" path="res://resources/alternating_footsteps.tres" id="11_rkik5"]
+[ext_resource type="PackedScene" uid="uid://cue567yf0jsu4" path="res://scenes/components/hurt_component.tscn" id="12_5kcic"]
 [ext_resource type="AudioStream" uid="uid://d2c26adid12ej" path="res://assets/audio/footsteps/04-footstep.ogg" id="12_s12a5"]
 [ext_resource type="AudioStream" uid="uid://cpi24holwev0a" path="res://assets/audio/quill-grunt1.ogg" id="13_llq8p"]
 [ext_resource type="Texture2D" uid="uid://dtg2k8c8ei83p" path="res://assets/visuals/quill's_sword_2.png" id="16_kxcj6"]
@@ -127,7 +128,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
-size = Vector2(14, 5)
+size = Vector2(12, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgqta"]
 size = Vector2(4, 11)
@@ -218,7 +219,7 @@ _data = {
 &"jab": SubResource("Animation_kxcj6")
 }
 
-[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("state_machine", "gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component")]
+[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("state_machine", "gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "hurt_component")]
 collision_layer = 2
 script = ExtResource("1_mtoyt")
 state_machine = NodePath("StateMachine")
@@ -229,6 +230,7 @@ animation_component = NodePath("Components/AnimationComponent")
 jump_component = NodePath("Components/AdvancedJumpComponent")
 footsteps_component = NodePath("Components/FootstepsComponent")
 weapon_component = NodePath("Components/WeaponComponent")
+hurt_component = NodePath("Components/HurtComponent")
 
 [node name="StateMachine" type="Node" parent="." unique_id=491062762 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_kxcj6")
@@ -243,6 +245,14 @@ metadata/_custom_type_script = "uid://cxiups7is4ht3"
 script = ExtResource("4_ql8w0")
 metadata/_custom_type_script = "uid://cxiups7is4ht3"
 
+[node name="Drift" type="Node" parent="StateMachine" unique_id=1314424946]
+script = ExtResource("4_ql8w0")
+metadata/_custom_type_script = "uid://cxiups7is4ht3"
+
+[node name="Jump" type="Node" parent="StateMachine" unique_id=1880626227]
+script = ExtResource("4_ql8w0")
+metadata/_custom_type_script = "uid://cxiups7is4ht3"
+
 [node name="Components" type="Node" parent="." unique_id=332795451]
 
 [node name="MovementComponent" parent="Components" unique_id=275666189 instance=ExtResource("4_34b6c")]
@@ -252,7 +262,7 @@ metadata/_custom_type_script = "uid://cxiups7is4ht3"
 [node name="GravityComponent" parent="Components" unique_id=827299611 instance=ExtResource("6_yh003")]
 
 [node name="AnimationComponent" parent="Components" unique_id=222523302 node_paths=PackedStringArray("sprite", "nodes_to_flip") instance=ExtResource("5_yh003")]
-sprite = NodePath("../../Visuals/AnimatedSprite2D")
+sprite = NodePath("../../Visuals/Sprite")
 nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Attackbox")]
 
 [node name="AdvancedJumpComponent" parent="Components" unique_id=2065928452 node_paths=PackedStringArray("jump_sound") instance=ExtResource("6_xe6gk")]
@@ -261,16 +271,19 @@ jump_velocity = -250.0
 
 [node name="FootstepsComponent" parent="Components" unique_id=499613779 node_paths=PackedStringArray("footsteps_audio", "sprite") instance=ExtResource("7_3yhwj")]
 footsteps_audio = NodePath("../../Sounds/Footsteps")
-sprite = NodePath("../../Visuals/AnimatedSprite2D")
+sprite = NodePath("../../Visuals/Sprite")
 
-[node name="WeaponComponent" parent="Components" unique_id=1035590107 node_paths=PackedStringArray("character_body", "anim_player", "attack_sound") instance=ExtResource("11_ql8w0")]
-character_body = NodePath("../..")
+[node name="WeaponComponent" parent="Components" unique_id=1035590107 node_paths=PackedStringArray("attack_box", "anim_player", "attack_sound") instance=ExtResource("11_ql8w0")]
+attack_box = NodePath("../../Attackbox")
 anim_player = NodePath("../../AnimationPlayer")
 attack_sound = NodePath("../../Sounds/Attack")
 
+[node name="HurtComponent" parent="Components" unique_id=1900266369 node_paths=PackedStringArray("character_body") instance=ExtResource("12_5kcic")]
+character_body = NodePath("../..")
+
 [node name="Visuals" type="Node2D" parent="." unique_id=2003763140]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=632265729]
+[node name="Sprite" type="AnimatedSprite2D" parent="Visuals" unique_id=632265729]
 sprite_frames = SubResource("SpriteFrames_cgqta")
 animation = &"idle"
 autoplay = "idle"
@@ -296,13 +309,14 @@ stream = ExtResource("13_llq8p")
 [node name="Attack" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1227883056]
 stream = ExtResource("17_uqne6")
 volume_db = 10.0
+pitch_scale = 0.8
 
 [node name="Attackbox" type="Area2D" parent="." unique_id=331505840]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 8
 
 [node name="jab" type="CollisionShape2D" parent="Attackbox" unique_id=819145747]
-position = Vector2(8, 2.5)
+position = Vector2(9, 2.5)
 shape = SubResource("RectangleShape2D_xrivr")
 disabled = true
 debug_color = Color(0.99771076, 0.04391218, 0, 0.41960785)
@@ -313,7 +327,10 @@ shape = SubResource("RectangleShape2D_cgqta")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=76354429]
 offset = Vector2(0, -15)
-zoom = Vector2(5, 5)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=76498619]
 libraries/ = SubResource("AnimationLibrary_uqne6")
+
+[connection signal="body_entered" from="Attackbox" to="." method="_on_attackbox_body_entered"]
