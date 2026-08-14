@@ -3,6 +3,7 @@ class_name TrackerComponent extends Node
 @export_subgroup("Nodes")
 @export var tracker_target: Node2D
 @export var tracker: Node2D
+@export var drop_raycast: RayCast2D
 @export var refresh_timer: Timer
 
 @export_subgroup("Configuration")
@@ -20,8 +21,9 @@ func get_axis_to_target () -> void:
 	var self_x: float = tracker.global_position.x
 	var distance: float = tracker.global_position.distance_to(tracker_target.global_position)
 	
-	if distance > start_tracking_distance or distance < stop_tracking_distance:
-		movement_horizontal = 0.0
-		return
+	movement_horizontal = 0.0
+	
+	if drop_raycast and !drop_raycast.is_colliding(): return
+	if distance > start_tracking_distance or distance < stop_tracking_distance: return
 	
 	movement_horizontal = 1.0 if target_x > self_x else -1.0

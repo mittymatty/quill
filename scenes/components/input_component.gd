@@ -19,3 +19,9 @@ func get_attack_input() -> bool:
 
 func get_direction_lock_held() -> bool:
 	return Input.is_action_pressed("direction_lock")
+
+func get_up_input_held() -> bool:
+	return Input.is_action_pressed("look_up")
+
+func get_down_input_held() -> bool:
+	return Input.is_action_pressed("look_down")

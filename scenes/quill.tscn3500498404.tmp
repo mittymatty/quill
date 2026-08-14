@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://cue567yf0jsu4" path="res://scenes/components/hurt_component.tscn" id="12_5kcic"]
 [ext_resource type="AudioStream" uid="uid://d2c26adid12ej" path="res://assets/audio/footsteps/04-footstep.ogg" id="12_s12a5"]
 [ext_resource type="AudioStream" uid="uid://cpi24holwev0a" path="res://assets/audio/quill-grunt1.ogg" id="13_llq8p"]
-[ext_resource type="Texture2D" uid="uid://cx8rjajjksa8h" path="res://assets/visuals/quill's_shield.png" id="16_aeufi"]
 [ext_resource type="Texture2D" uid="uid://dtg2k8c8ei83p" path="res://assets/visuals/quill's_sword_2.png" id="16_kxcj6"]
 [ext_resource type="AudioStream" uid="uid://dibchowmpkpiu" path="res://assets/audio/02-butter-knife-slash.ogg" id="17_uqne6"]
 
@@ -137,9 +136,6 @@ size = Vector2(15, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1lj4"]
 size = Vector2(10, 17)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_njqwk"]
-size = Vector2(22, 10)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgqta"]
 size = Vector2(4, 11)
 
@@ -204,59 +200,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Attackbox/aerial_sweep:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_aeufi"]
-resource_name = "aerial_sweep"
-length = 0.325
-step = 0.025
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/Sword:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10213793, 0.15, 0.2, 0.325),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(5, 4), Vector2(4, 10), Vector2(-6, 12), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/Sword:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.10213793, 0.15, 0.2, 0.325),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.7853981633974483, 2.2689280275926285, 3.839724354387525, 6.283185307179586]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Attackbox/aerial_sweep:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.07762483, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_kxcj6"]
@@ -353,12 +296,40 @@ tracks/3/keys = {
 "values": [true, false, true]
 }
 
+[sub_resource type="Animation" id="Animation_aeufi"]
+resource_name = "sweep"
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.792526803190927]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uqne6"]
 _data = {
 &"RESET": SubResource("Animation_uqne6"),
-&"aerial_sweep": SubResource("Animation_aeufi"),
 &"jab": SubResource("Animation_kxcj6"),
-&"slash": SubResource("Animation_5kcic")
+&"slash": SubResource("Animation_5kcic"),
+&"sweep": SubResource("Animation_aeufi")
 }
 
 [node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("state_machine", "gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "hurt_component")]
@@ -433,19 +404,10 @@ autoplay = "idle"
 frame_progress = 0.57761985
 
 [node name="Sword" type="Sprite2D" parent="Visuals" unique_id=1298361440]
-z_index = -1
 texture = ExtResource("16_kxcj6")
 offset = Vector2(3, 3)
 
-[node name="Shield" type="Sprite2D" parent="Visuals" unique_id=1151397047]
-visible = false
-z_index = 1
-texture = ExtResource("16_aeufi")
-offset = Vector2(1, 4)
-hframes = 2
-
 [node name="Sounds" type="Node2D" parent="." unique_id=811975392]
-visible = false
 
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1920806529]
 stream = ExtResource("11_rkik5")
@@ -464,7 +426,6 @@ volume_db = 10.0
 pitch_scale = 0.8
 
 [node name="Attackbox" type="Area2D" parent="." unique_id=331505840]
-visible = false
 collision_layer = 4
 collision_mask = 8
 
@@ -482,11 +443,6 @@ disabled = true
 [node name="slash_lower" type="CollisionShape2D" parent="Attackbox" unique_id=128652894]
 position = Vector2(7, -0.5)
 shape = SubResource("RectangleShape2D_b1lj4")
-disabled = true
-
-[node name="aerial_sweep" type="CollisionShape2D" parent="Attackbox" unique_id=694525123]
-position = Vector2(0, 11)
-shape = SubResource("RectangleShape2D_njqwk")
 disabled = true
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=499183358]

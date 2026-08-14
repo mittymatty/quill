@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dolv0ui3en5r3"]
+
+[ext_resource type="Script" uid="uid://5vpgc01al51c" path="res://scenes/components/jump_detector_component.gd" id="1_kadj0"]
+
+[node name="JumpDetectorComponent" type="Node" unique_id=1174977127 node_paths=PackedStringArray("cooldown_timer")]
+script = ExtResource("1_kadj0")
+cooldown_timer = NodePath("Cooldown")
+
+[node name="Cooldown" type="Timer" parent="." unique_id=256639743]
+wait_time = 0.5
+one_shot = true

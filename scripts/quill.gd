@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	animation_component.handle_jump_animation(jump_component.is_going_up, gravity_component.is_falling)
 	jump_component.handle_jump(self,input_component.get_jump_input(),input_component.get_jump_input_held(),input_component.get_jump_input_released())
 	footsteps_component.handle_footstep_sound(self)
-	weapon_component.handle_attack(input_component.get_attack_input())
+	weapon_component.handle_attack(input_component.get_attack_input(),input_component.get_up_input_held(),input_component.get_down_input_held())
 	
 	move_and_slide()
 
