@@ -1,11 +1,23 @@
 class_name WeaponComponent extends Node
 
+@export_subgroup("Configuration")
+@export var damage: float = 5.0
+@export var knockback: Vector2 = Vector2(50.0,-50.0)
+
 @export_subgroup("Nodes")
 @export var character_body: CharacterBody2D
 @export var attack_box: Area2D
 @export var anim_player: AnimationPlayer
 @export var cooldown_timer: Timer
 @export var attack_sound: AudioStreamPlayer2D
+
+func _ready() -> void:
+	attack_box.body_entered.connect(on_attack_box_contact)
+
+func on_attack_box_contact(body: Node2D) -> void:
+	if body.health_component:
+		body.health_component.take_knockback(Vector2(knockback.x + abs(character_body.velocity.x)/2 if character_body.global_position.x < body.global_position.x else -knockback.x - abs(character_body.velocity.x)/2,knockback.y))
+		body.health_component.take_damage(damage)
 
 func handle_attack(want_to_attack: bool, looking_up : bool, looking_down : bool) -> void:
 	if !check_can_attack(want_to_attack): return

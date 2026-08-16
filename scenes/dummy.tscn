@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://byi72h1gcjvk7" path="res://assets/visuals/training_dummy.png" id="2_6m2ry"]
 [ext_resource type="Script" uid="uid://163d6v6xxyj4" path="res://scripts/dummy.gd" id="2_w4gkx"]
 [ext_resource type="PackedScene" uid="uid://vqjy0rat2u5d" path="res://scenes/components/gravity_component.tscn" id="3_w4gkx"]
-[ext_resource type="PackedScene" uid="uid://cue567yf0jsu4" path="res://scenes/components/hurt_component.tscn" id="4_fva3d"]
+[ext_resource type="PackedScene" uid="uid://cjro72gvhep3e" path="res://scenes/components/health_component.tscn" id="5_p3fdn"]
 [ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="5_v72lb"]
+[ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/health_bar.tscn" id="7_p3fdn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4gkx"]
 atlas = ExtResource("2_6m2ry")
@@ -25,18 +26,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sw0xa"]
 size = Vector2(7, 11)
 
-[node name="dummy" unique_id=729534692 node_paths=PackedStringArray("gravity_component", "hurt_component", "movement_component") instance=ExtResource("1_k5f3b")]
+[node name="dummy" unique_id=729534692 node_paths=PackedStringArray("gravity_component", "health_component", "movement_component") instance=ExtResource("1_k5f3b")]
+collision_layer = 4
 script = ExtResource("2_w4gkx")
 gravity_component = NodePath("Components/GravityComponent")
-hurt_component = NodePath("Components/HurtComponent")
+health_component = NodePath("Components/HealthComponent")
 movement_component = NodePath("Components/MovementComponent")
 
 [node name="GravityComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=827299611 instance=ExtResource("3_w4gkx")]
 
-[node name="HurtComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="1" unique_id=1900266369 node_paths=PackedStringArray("character_body") instance=ExtResource("4_fva3d")]
-character_body = NodePath("../..")
+[node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="1" unique_id=275666189 instance=ExtResource("5_v72lb")]
 
-[node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=275666189 instance=ExtResource("5_v72lb")]
+[node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=1130167078 node_paths=PackedStringArray("body") instance=ExtResource("5_p3fdn")]
+max_health = 25.0
+knockback_multiplier = 2.0
+body = NodePath("../..")
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
 sprite_frames = SubResource("SpriteFrames_5kcic")
@@ -44,3 +48,6 @@ sprite_frames = SubResource("SpriteFrames_5kcic")
 [node name="Collision" parent="." index="3" unique_id=832957629]
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_sw0xa")
+
+[node name="HealthBar" parent="." index="4" unique_id=1492475502 node_paths=PackedStringArray("body") instance=ExtResource("7_p3fdn")]
+body = NodePath("..")

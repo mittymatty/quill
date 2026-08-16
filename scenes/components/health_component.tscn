@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cjro72gvhep3e"]
+
+[ext_resource type="Script" uid="uid://b14rid250q5v5" path="res://scenes/components/health_component.gd" id="1_2wcl1"]
+
+[node name="HealthComponent" type="Node" unique_id=1130167078 node_paths=PackedStringArray("invincibility_timer")]
+script = ExtResource("1_2wcl1")
+invincibility_timer = NodePath("I_timer")
+
+[node name="I_timer" type="Timer" parent="." unique_id=1350377943]
+wait_time = 0.08
+one_shot = true

@@ -14,12 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://c17hgniyoisc1" path="res://scenes/components/footsteps_component.tscn" id="7_3yhwj"]
 [ext_resource type="PackedScene" uid="uid://dnxj761xnjuvc" path="res://scenes/components/weapon_component.tscn" id="11_ql8w0"]
 [ext_resource type="AudioStream" uid="uid://8vs2f80frui6" path="res://resources/alternating_footsteps.tres" id="11_rkik5"]
-[ext_resource type="PackedScene" uid="uid://cue567yf0jsu4" path="res://scenes/components/hurt_component.tscn" id="12_5kcic"]
+[ext_resource type="PackedScene" uid="uid://cjro72gvhep3e" path="res://scenes/components/health_component.tscn" id="12_aeufi"]
 [ext_resource type="AudioStream" uid="uid://d2c26adid12ej" path="res://assets/audio/footsteps/04-footstep.ogg" id="12_s12a5"]
 [ext_resource type="AudioStream" uid="uid://cpi24holwev0a" path="res://assets/audio/quill-grunt1.ogg" id="13_llq8p"]
 [ext_resource type="Texture2D" uid="uid://cx8rjajjksa8h" path="res://assets/visuals/quill's_shield.png" id="16_aeufi"]
 [ext_resource type="Texture2D" uid="uid://dtg2k8c8ei83p" path="res://assets/visuals/quill's_sword_2.png" id="16_kxcj6"]
 [ext_resource type="AudioStream" uid="uid://dibchowmpkpiu" path="res://assets/audio/02-butter-knife-slash.ogg" id="17_uqne6"]
+[ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/health_bar.tscn" id="21_ihrxj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uqne6"]
 atlas = ExtResource("5_34b6c")
@@ -361,7 +362,7 @@ _data = {
 &"slash": SubResource("Animation_5kcic")
 }
 
-[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("state_machine", "gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "hurt_component")]
+[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("state_machine", "gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component")]
 collision_layer = 2
 script = ExtResource("1_mtoyt")
 state_machine = NodePath("StateMachine")
@@ -372,7 +373,7 @@ animation_component = NodePath("Components/AnimationComponent")
 jump_component = NodePath("Components/AdvancedJumpComponent")
 footsteps_component = NodePath("Components/FootstepsComponent")
 weapon_component = NodePath("Components/WeaponComponent")
-hurt_component = NodePath("Components/HurtComponent")
+health_component = NodePath("Components/HealthComponent")
 
 [node name="StateMachine" type="Node" parent="." unique_id=491062762 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_kxcj6")
@@ -416,13 +417,14 @@ footsteps_audio = NodePath("../../Sounds/Footsteps")
 sprite = NodePath("../../Visuals/Sprite")
 
 [node name="WeaponComponent" parent="Components" unique_id=1035590107 node_paths=PackedStringArray("character_body", "attack_box", "anim_player", "attack_sound") instance=ExtResource("11_ql8w0")]
+knockback = Vector2(75, -25)
 character_body = NodePath("../..")
 attack_box = NodePath("../../Attackbox")
 anim_player = NodePath("../../AnimationPlayer")
 attack_sound = NodePath("../../Sounds/Attack")
 
-[node name="HurtComponent" parent="Components" unique_id=1900266369 node_paths=PackedStringArray("character_body") instance=ExtResource("12_5kcic")]
-character_body = NodePath("../..")
+[node name="HealthComponent" parent="Components" unique_id=1130167078 node_paths=PackedStringArray("body") instance=ExtResource("12_aeufi")]
+body = NodePath("../..")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=2003763140]
 
@@ -433,7 +435,6 @@ autoplay = "idle"
 frame_progress = 0.57761985
 
 [node name="Sword" type="Sprite2D" parent="Visuals" unique_id=1298361440]
-z_index = -1
 texture = ExtResource("16_kxcj6")
 offset = Vector2(3, 3)
 
@@ -445,7 +446,6 @@ offset = Vector2(1, 4)
 hframes = 2
 
 [node name="Sounds" type="Node2D" parent="." unique_id=811975392]
-visible = false
 
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1920806529]
 stream = ExtResource("11_rkik5")
@@ -464,9 +464,8 @@ volume_db = 10.0
 pitch_scale = 0.8
 
 [node name="Attackbox" type="Area2D" parent="." unique_id=331505840]
-visible = false
-collision_layer = 4
-collision_mask = 8
+collision_layer = 0
+collision_mask = 4
 
 [node name="jab" type="CollisionShape2D" parent="Attackbox" unique_id=819145747]
 position = Vector2(10.5, 2)
@@ -501,4 +500,6 @@ position_smoothing_enabled = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=76498619]
 libraries/ = SubResource("AnimationLibrary_uqne6")
 
-[connection signal="body_entered" from="Attackbox" to="." method="_on_attackbox_body_entered"]
+[node name="HealthBar" parent="." unique_id=1492475502 node_paths=PackedStringArray("body") instance=ExtResource("21_ihrxj")]
+visible = false
+body = NodePath("..")

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://doyih0op0kutt"]
+
+[ext_resource type="Script" uid="uid://cxlpr8u8midjr" path="res://scripts/black_parallax.gd" id="1_4gek2"]
+[ext_resource type="Texture2D" uid="uid://o5htt1c16r1w" path="res://assets/visuals/BlackBackground.png" id="2_2pjpr"]
+
+[node name="BlackParallax" type="Parallax2D" unique_id=1438434454]
+z_index = -5
+texture_filter = 1
+scroll_scale = Vector2(-1, -1)
+follow_viewport = false
+script = ExtResource("1_4gek2")
+
+[node name="BlackSprite" type="Sprite2D" parent="." unique_id=1816705102]
+visible = false
+scale = Vector2(100, 100)
+texture = ExtResource("2_2pjpr")
+offset = Vector2(6, 3)

@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://cu0m5demynbe2"]
 
+[ext_resource type="Script" uid="uid://bpw7e005dau1g" path="res://scripts/enemy_base.gd" id="1_fr7lv"]
+
 [node name="enemy_base" type="CharacterBody2D" unique_id=729534692]
 z_index = -1
 collision_layer = 8
+script = ExtResource("1_fr7lv")
 
 [node name="Components" type="Node" parent="." unique_id=1001103590]
 
