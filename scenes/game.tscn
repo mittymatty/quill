@@ -28,5 +28,5 @@ position = Vector2(309, 58)
 collision_mask = 5
 
 [node name="ken_wolf" parent="world" unique_id=1416112845 node_paths=PackedStringArray("player") instance=ExtResource("5_iywne")]
-position = Vector2(38, 82)
+position = Vector2(30, 78)
 player = NodePath("../quill")

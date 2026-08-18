@@ -5,7 +5,7 @@ class_name AnimationComponent extends Node
 @export var nodes_to_flip : Array[Node2D] = []
 
 func handle_horizontal_flip(move_direction: float, direction_locked: bool) -> void:
-	if move_direction == 0 or direction_locked: return
+	if is_zero_approx(move_direction) or direction_locked: return
 	
 	for child : Node2D in nodes_to_flip:
 		child.scale.x = 1.0 if move_direction > 0 else -1.0
