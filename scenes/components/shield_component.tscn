@@ -2,11 +2,20 @@
 
 [ext_resource type="Script" uid="uid://sw6vc5ydeged" path="res://scenes/components/shield_component.gd" id="1_yy3ww"]
 
-[node name="ShieldComponent" type="Node" unique_id=675793755 node_paths=PackedStringArray("cooldown_timer", "deflect_timer")]
+[node name="ShieldComponent" type="Node" unique_id=675793755 node_paths=PackedStringArray("cooldown_timer", "deflect_timer", "deflect_delayer")]
 script = ExtResource("1_yy3ww")
 cooldown_timer = NodePath("CooldownTimer")
 deflect_timer = NodePath("DeflectTimer")
+deflect_delayer = NodePath("DeflectDelayer")
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=1606800018]
+wait_time = 0.5
+one_shot = true
 
 [node name="DeflectTimer" type="Timer" parent="." unique_id=1036570996]
+wait_time = 0.3
+one_shot = true
+
+[node name="DeflectDelayer" type="Timer" parent="." unique_id=1304848287]
+wait_time = 0.1
+one_shot = true

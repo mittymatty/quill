@@ -31,4 +31,3 @@ func flip_node_and_children(node: Node2D, new_flip: float) -> void:
 	for child: Node2D in node.get_children():
 		if !child is Sprite2D and !child is AnimatedSprite2D: continue
 		child.z_index *= -1
-		print(child.name)

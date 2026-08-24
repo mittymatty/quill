@@ -364,7 +364,68 @@ _data = {
 &"slash": SubResource("Animation_5kcic")
 }
 
-[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("state_machine", "gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component")]
+[sub_resource type="Animation" id="Animation_8p8kg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Shield:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Shield:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0upei"]
+resource_name = "raise"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Shield:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.1),
+"transitions": PackedFloat32Array(1, 3.1383357, 2.8284266),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 0.5), Vector2(4, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Shield:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lbqce"]
+_data = {
+&"RESET": SubResource("Animation_8p8kg"),
+&"raise": SubResource("Animation_0upei")
+}
+
+[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("state_machine", "gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component", "shield_component")]
 collision_layer = 2
 script = ExtResource("1_mtoyt")
 state_machine = NodePath("StateMachine")
@@ -376,6 +437,7 @@ jump_component = NodePath("Components/AdvancedJumpComponent")
 footsteps_component = NodePath("Components/FootstepsComponent")
 weapon_component = NodePath("Components/WeaponComponent")
 health_component = NodePath("Components/HealthComponent")
+shield_component = NodePath("Components/ShieldComponent")
 
 [node name="StateMachine" type="Node" parent="." unique_id=491062762 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_kxcj6")
@@ -426,13 +488,15 @@ sprite = NodePath("../../Visuals/Sprite")
 knockback = Vector2(100, -50)
 character_body = NodePath("../..")
 attack_box = NodePath("../../Attackbox")
-anim_player = NodePath("../../AnimationPlayer")
+anim_player = NodePath("../../SwordAnimPlayer")
 attack_sound = NodePath("../../Sounds/Attack")
 
 [node name="HealthComponent" parent="Components" unique_id=1130167078 node_paths=PackedStringArray("body") instance=ExtResource("12_aeufi")]
 body = NodePath("../..")
 
-[node name="ShieldComponent" parent="Components" unique_id=675793755 instance=ExtResource("13_8p8kg")]
+[node name="ShieldComponent" parent="Components" unique_id=675793755 node_paths=PackedStringArray("anim_player", "shield_visuals") instance=ExtResource("13_8p8kg")]
+anim_player = NodePath("../../ShieldAnimPlayer")
+shield_visuals = NodePath("../../Visuals/Shield")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=2003763140]
 
@@ -502,8 +566,11 @@ visible = false
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_cgqta")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=76498619]
+[node name="SwordAnimPlayer" type="AnimationPlayer" parent="." unique_id=76498619]
 libraries/ = SubResource("AnimationLibrary_uqne6")
+
+[node name="ShieldAnimPlayer" type="AnimationPlayer" parent="." unique_id=2047458557]
+libraries/ = SubResource("AnimationLibrary_lbqce")
 
 [node name="HealthBar" parent="." unique_id=1492475502 node_paths=PackedStringArray("body") instance=ExtResource("21_ihrxj")]
 visible = false

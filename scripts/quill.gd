@@ -10,15 +10,17 @@ class_name quill extends CharacterBody2D
 @export var footsteps_component: FootstepsComponent
 @export var weapon_component: WeaponComponent
 @export var health_component: HealthComponent
+@export var shield_component: ShieldComponent
 
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self,delta)
 	movement_component.handle_horizontal_movement(self, input_component.input_horizontal)
-	animation_component.handle_horizontal_flip(input_component.input_horizontal,input_component.get_direction_lock_held())
+	animation_component.handle_horizontal_flip(input_component.input_horizontal,shield_component.is_blocking)
 	animation_component.handle_move_animation(input_component.input_horizontal)
 	animation_component.handle_jump_animation(jump_component.is_going_up, gravity_component.is_falling)
 	jump_component.handle_jump(self,input_component.get_jump_input(),input_component.get_jump_input_held(),input_component.get_jump_input_released())
 	footsteps_component.handle_footstep_sound(self)
+	shield_component.handle_block(input_component.get_block_input_held())
 	weapon_component.handle_attack(input_component.get_attack_input(),input_component.get_up_input_held(),input_component.get_down_input_held())
 	
 	move_and_slide()
