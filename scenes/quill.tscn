@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://8vs2f80frui6" path="res://resources/alternating_footsteps.tres" id="11_rkik5"]
 [ext_resource type="PackedScene" uid="uid://cjro72gvhep3e" path="res://scenes/components/health_component.tscn" id="12_aeufi"]
 [ext_resource type="AudioStream" uid="uid://d2c26adid12ej" path="res://assets/audio/footsteps/04-footstep.ogg" id="12_s12a5"]
+[ext_resource type="PackedScene" uid="uid://bl2ps5iflbamr" path="res://scenes/components/shield_component.tscn" id="13_8p8kg"]
 [ext_resource type="AudioStream" uid="uid://cpi24holwev0a" path="res://assets/audio/quill-grunt1.ogg" id="13_llq8p"]
 [ext_resource type="Texture2D" uid="uid://cx8rjajjksa8h" path="res://assets/visuals/quill's_shield.png" id="16_aeufi"]
 [ext_resource type="Texture2D" uid="uid://dtg2k8c8ei83p" path="res://assets/visuals/quill's_sword_2.png" id="16_kxcj6"]
@@ -422,7 +423,7 @@ footsteps_audio = NodePath("../../Sounds/Footsteps")
 sprite = NodePath("../../Visuals/Sprite")
 
 [node name="WeaponComponent" parent="Components" unique_id=1035590107 node_paths=PackedStringArray("character_body", "attack_box", "anim_player", "attack_sound") instance=ExtResource("11_ql8w0")]
-knockback = Vector2(75, -25)
+knockback = Vector2(100, -50)
 character_body = NodePath("../..")
 attack_box = NodePath("../../Attackbox")
 anim_player = NodePath("../../AnimationPlayer")
@@ -430,6 +431,8 @@ attack_sound = NodePath("../../Sounds/Attack")
 
 [node name="HealthComponent" parent="Components" unique_id=1130167078 node_paths=PackedStringArray("body") instance=ExtResource("12_aeufi")]
 body = NodePath("../..")
+
+[node name="ShieldComponent" parent="Components" unique_id=675793755 instance=ExtResource("13_8p8kg")]
 
 [node name="Visuals" type="Node2D" parent="." unique_id=2003763140]
 
@@ -440,6 +443,7 @@ autoplay = "idle"
 frame_progress = 0.57761985
 
 [node name="Sword" type="Sprite2D" parent="Visuals" unique_id=1298361440]
+z_index = 1
 texture = ExtResource("16_kxcj6")
 offset = Vector2(3, 3)
 
