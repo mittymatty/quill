@@ -1,5 +1,8 @@
 class_name StateMachine extends Node
 
+@export_subgroup("Nodes")
+@export var state_machine_owner: PhysicsBody2D
+
 @export_subgroup("States")
 @export var initial_state: State
 
@@ -9,6 +12,9 @@ var previous_state: State
 func _ready() -> void:
 	for child_state: State in get_children():
 		child_state.switch_state.connect(change_state)
+		child_state.set_state_owner(state_machine_owner)
+	
+	change_state(initial_state)
 
 func _process(delta: float) -> void: #Propogate event
 	if active_state:
@@ -29,3 +35,4 @@ func change_state(new_state: State) -> void:
 	
 	if active_state:
 		active_state.enter_state()
+		print(active_state)

@@ -8,9 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="6_a54c4"]
 [ext_resource type="PackedScene" uid="uid://ddnaujh8g10oe" path="res://scenes/components/tracker_component.tscn" id="8_sychi"]
 [ext_resource type="PackedScene" uid="uid://dolv0ui3en5r3" path="res://scenes/components/jump_detector_component.tscn" id="8_v138m"]
-[ext_resource type="AudioStream" uid="uid://vij5mfe42ueg" path="res://assets/05-footstep.ogg" id="8_xr5up"]
+[ext_resource type="AudioStream" uid="uid://vij5mfe42ueg" path="res://assets/audio/footsteps/05-footstep.ogg" id="8_xr5up"]
 [ext_resource type="PackedScene" uid="uid://cgou2ah3j44ta" path="res://scenes/components/jump_component.tscn" id="9_hq213"]
 [ext_resource type="PackedScene" uid="uid://cjro72gvhep3e" path="res://scenes/components/health_component.tscn" id="9_v138m"]
+[ext_resource type="PackedScene" uid="uid://ygux51qhvuoa" path="res://scenes/components/touch_damager_component.tscn" id="10_4c8tj"]
 [ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/health_bar.tscn" id="12_hq213"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ka18"]
@@ -76,9 +77,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sychi"]
-size = Vector2(12, 14)
+size = Vector2(9, 14)
 
-[node name="ken_wolf" unique_id=729534692 node_paths=PackedStringArray("gravity_component", "movement_component", "animation_component", "health_component", "tracker_component", "jump_detector_component", "jump_component", "visible_on_screen_enabler_2d") instance=ExtResource("1_q6ihe")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hy6xw"]
+size = Vector2(7, 11)
+
+[node name="ken_wolf" unique_id=729534692 node_paths=PackedStringArray("gravity_component", "movement_component", "animation_component", "health_component", "tracker_component", "jump_detector_component", "jump_component", "touch_damager_component", "visible_on_screen_enabler_2d") instance=ExtResource("1_q6ihe")]
 collision_layer = 4
 script = ExtResource("2_xr5up")
 gravity_component = NodePath("Components/GravityComponent")
@@ -88,6 +92,7 @@ health_component = NodePath("Components/HealthComponent")
 tracker_component = NodePath("Components/TrackerComponent")
 jump_detector_component = NodePath("Components/JumpDetectorComponent")
 jump_component = NodePath("Components/JumpComponent")
+touch_damager_component = NodePath("Components/TouchDamagerComponent")
 visible_on_screen_enabler_2d = NodePath("VisibleOnScreenEnabler2D")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." index="0" unique_id=391288275]
@@ -96,7 +101,7 @@ visible_on_screen_enabler_2d = NodePath("VisibleOnScreenEnabler2D")
 
 [node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="1" unique_id=222523302 node_paths=PackedStringArray("sprite", "nodes_to_flip") instance=ExtResource("5_xr5up")]
 sprite = NodePath("../../Visuals/Sprite")
-nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Raycasts")]
+nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Raycasts"), NodePath("../../TouchDamageZone")]
 
 [node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=275666189 instance=ExtResource("6_a54c4")]
 speed = 20.0
@@ -104,7 +109,7 @@ speed = 20.0
 [node name="TrackerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="3" unique_id=1220211303 node_paths=PackedStringArray("tracker", "drop_raycast") instance=ExtResource("8_sychi")]
 tracker = NodePath("../..")
 drop_raycast = NodePath("../../Raycasts/DropDetect")
-stop_tracking_distance = 10.0
+stop_tracking_distance = 5.0
 
 [node name="JumpDetectorComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=1174977127 node_paths=PackedStringArray("trigger_raycast") instance=ExtResource("8_v138m")]
 trigger_raycast = NodePath("../../Raycasts/JumpTrigger")
@@ -115,6 +120,10 @@ jump_velocity = -250.0
 [node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="6" unique_id=1130167078 node_paths=PackedStringArray("body") instance=ExtResource("9_v138m")]
 max_health = 50.0
 body = NodePath("../..")
+
+[node name="TouchDamagerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="7" unique_id=934853369 node_paths=PackedStringArray("hazard_owner", "attack_box") instance=ExtResource("10_4c8tj")]
+hazard_owner = NodePath("../..")
+attack_box = NodePath("../../TouchDamageZone")
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
 sprite_frames = SubResource("SpriteFrames_5kcic")
@@ -127,7 +136,7 @@ frame_progress = 0.81982934
 stream = ExtResource("8_xr5up")
 
 [node name="Collision" parent="." index="4" unique_id=832957629]
-position = Vector2(-1, 1)
+position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_sychi")
 
 [node name="Raycasts" type="Node2D" parent="." index="5" unique_id=361667094]
@@ -143,5 +152,14 @@ target_position = Vector2(8, 0)
 offset_top = -11.0
 offset_bottom = -9.0
 body = NodePath("..")
+
+[node name="TouchDamageZone" type="Area2D" parent="." index="7" unique_id=1682368582]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchDamageZone" index="0" unique_id=1615675323]
+position = Vector2(4.5, 2.5)
+shape = SubResource("RectangleShape2D_hy6xw")
+debug_color = Color(0.97805005, 0, 0.40302134, 0.41960785)
 
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]

@@ -1,10 +1,7 @@
 [gd_scene format=3 uid="uid://gyei4cxi4knh"]
 
 [ext_resource type="Script" uid="uid://cnh10ptl6bij0" path="res://scripts/quill.gd" id="1_mtoyt"]
-[ext_resource type="Script" uid="uid://bwc2rpjs4hne5" path="res://scripts/state_machine/state_machine.gd" id="2_kxcj6"]
-[ext_resource type="Script" uid="uid://c4th1dyqmrawa" path="res://scripts/states/idle.gd" id="3_uqne6"]
 [ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="4_34b6c"]
-[ext_resource type="Script" uid="uid://cxiups7is4ht3" path="res://scripts/state_machine/state.gd" id="4_ql8w0"]
 [ext_resource type="Texture2D" uid="uid://xsxequex5r7d" path="res://assets/visuals/Quill-sheet.png" id="5_34b6c"]
 [ext_resource type="PackedScene" uid="uid://bmfvsuo8g21cg" path="res://scenes/components/input_component.tscn" id="5_iaavo"]
 [ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="5_yh003"]
@@ -16,13 +13,31 @@
 [ext_resource type="AudioStream" uid="uid://8vs2f80frui6" path="res://resources/alternating_footsteps.tres" id="11_rkik5"]
 [ext_resource type="PackedScene" uid="uid://cjro72gvhep3e" path="res://scenes/components/health_component.tscn" id="12_aeufi"]
 [ext_resource type="AudioStream" uid="uid://d2c26adid12ej" path="res://assets/audio/footsteps/04-footstep.ogg" id="12_s12a5"]
+[ext_resource type="Texture2D" uid="uid://cac0mewysjqc8" path="res://assets/visuals/quill-drift.png" id="13_0upei"]
 [ext_resource type="PackedScene" uid="uid://bl2ps5iflbamr" path="res://scenes/components/shield_component.tscn" id="13_8p8kg"]
-[ext_resource type="AudioStream" uid="uid://cpi24holwev0a" path="res://assets/audio/quill-grunt1.ogg" id="13_llq8p"]
+[ext_resource type="Texture2D" uid="uid://c0ffw8e73r4dt" path="res://assets/visuals/quill-jump.png" id="13_cwran"]
+[ext_resource type="AudioStream" uid="uid://cpi24holwev0a" path="res://assets/audio/voice/quill-grunt1.ogg" id="13_llq8p"]
 [ext_resource type="Texture2D" uid="uid://cx8rjajjksa8h" path="res://assets/visuals/quill's_shield.png" id="16_aeufi"]
 [ext_resource type="Texture2D" uid="uid://dtg2k8c8ei83p" path="res://assets/visuals/quill's_sword_2.png" id="16_kxcj6"]
-[ext_resource type="AudioStream" uid="uid://dibchowmpkpiu" path="res://assets/audio/02-butter-knife-slash.ogg" id="17_uqne6"]
+[ext_resource type="AudioStream" uid="uid://dibchowmpkpiu" path="res://assets/audio/attacking/02-butter-knife-slash.ogg" id="17_uqne6"]
+[ext_resource type="AudioStream" uid="uid://u0lbqwtxl3dd" path="res://assets/audio/blocking/block-02.ogg" id="21_0upei"]
 [ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/health_bar.tscn" id="21_ihrxj"]
 [ext_resource type="PackedScene" uid="uid://cfot0uo34kdkg" path="res://scenes/shake_camera.tscn" id="22_cwran"]
+[ext_resource type="AudioStream" uid="uid://dikrkgc1yd8cx" path="res://assets/audio/blocking/block-03.ogg" id="22_lbqce"]
+[ext_resource type="AudioStream" uid="uid://bb2vjnop402r1" path="res://assets/audio/blocking/block_shatter.ogg" id="23_lbqce"]
+[ext_resource type="AudioStream" uid="uid://cfhii35s1lxiu" path="res://assets/audio/blocking/deflect_01.ogg" id="24_krgoy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p8kg"]
+atlas = ExtResource("13_0upei")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0upei"]
+atlas = ExtResource("13_0upei")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg6ou"]
+atlas = ExtResource("13_0upei")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uqne6"]
 atlas = ExtResource("5_34b6c")
@@ -52,9 +67,13 @@ region = Rect2(64, 0, 16, 16)
 atlas = ExtResource("5_34b6c")
 region = Rect2(80, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ql8w0"]
-atlas = ExtResource("5_34b6c")
-region = Rect2(80, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_krgoy"]
+atlas = ExtResource("13_cwran")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58m20"]
+atlas = ExtResource("13_cwran")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_llq8p"]
 atlas = ExtResource("6_iaavo")
@@ -74,6 +93,20 @@ region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cgqta"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p8kg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0upei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg6ou")
+}],
+"loop": 0,
+"name": &"drift",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uqne6")
@@ -107,11 +140,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ql8w0")
+"texture": SubResource("AtlasTexture_krgoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58m20")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"jump",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -130,6 +166,12 @@ animations = [{
 "name": &"run",
 "speed": 10.0
 }]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hy6xw"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("21_0upei")
+stream_1/stream = ExtResource("22_lbqce")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
 size = Vector2(13, 6)
@@ -425,10 +467,10 @@ _data = {
 &"raise": SubResource("Animation_0upei")
 }
 
-[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("state_machine", "gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component", "shield_component")]
+[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("camera", "gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component", "shield_component")]
 collision_layer = 2
 script = ExtResource("1_mtoyt")
-state_machine = NodePath("StateMachine")
+camera = NodePath("ShakeCamera")
 gravity_component = NodePath("Components/GravityComponent")
 input_component = NodePath("Components/InputComponent")
 movement_component = NodePath("Components/MovementComponent")
@@ -439,32 +481,11 @@ weapon_component = NodePath("Components/WeaponComponent")
 health_component = NodePath("Components/HealthComponent")
 shield_component = NodePath("Components/ShieldComponent")
 
-[node name="StateMachine" type="Node" parent="." unique_id=491062762 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("2_kxcj6")
-initial_state = NodePath("Idle")
-metadata/_custom_type_script = "uid://bwc2rpjs4hne5"
-
-[node name="Idle" type="Node" parent="StateMachine" unique_id=314411883]
-script = ExtResource("3_uqne6")
-metadata/_custom_type_script = "uid://cxiups7is4ht3"
-
-[node name="Run" type="Node" parent="StateMachine" unique_id=505164579]
-script = ExtResource("4_ql8w0")
-metadata/_custom_type_script = "uid://cxiups7is4ht3"
-
-[node name="Drift" type="Node" parent="StateMachine" unique_id=1314424946]
-script = ExtResource("4_ql8w0")
-metadata/_custom_type_script = "uid://cxiups7is4ht3"
-
-[node name="Jump" type="Node" parent="StateMachine" unique_id=1880626227]
-script = ExtResource("4_ql8w0")
-metadata/_custom_type_script = "uid://cxiups7is4ht3"
-
 [node name="Components" type="Node" parent="." unique_id=332795451]
 
 [node name="MovementComponent" parent="Components" unique_id=275666189 instance=ExtResource("4_34b6c")]
-ground_accel_speed = 4.0
-ground_decel_speed = 6.0
+ground_accel_speed = 3.0
+ground_decel_speed = 4.0
 air_accel_speed = 20.0
 air_decel_speed = 0.5
 
@@ -475,10 +496,11 @@ air_decel_speed = 0.5
 [node name="AnimationComponent" parent="Components" unique_id=222523302 node_paths=PackedStringArray("sprite", "nodes_to_flip") instance=ExtResource("5_yh003")]
 sprite = NodePath("../../Visuals/Sprite")
 nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Attackbox")]
+can_drift = true
 
 [node name="AdvancedJumpComponent" parent="Components" unique_id=2065928452 node_paths=PackedStringArray("jump_sound") instance=ExtResource("6_xe6gk")]
 jump_sound = NodePath("../../Sounds/Jump")
-jump_velocity = -250.0
+jump_velocity = -275.0
 
 [node name="FootstepsComponent" parent="Components" unique_id=499613779 node_paths=PackedStringArray("footsteps_audio", "sprite") instance=ExtResource("7_3yhwj")]
 footsteps_audio = NodePath("../../Sounds/Footsteps")
@@ -491,12 +513,16 @@ attack_box = NodePath("../../Attackbox")
 anim_player = NodePath("../../SwordAnimPlayer")
 attack_sound = NodePath("../../Sounds/Attack")
 
-[node name="HealthComponent" parent="Components" unique_id=1130167078 node_paths=PackedStringArray("body") instance=ExtResource("12_aeufi")]
+[node name="HealthComponent" parent="Components" unique_id=1130167078 node_paths=PackedStringArray("body", "shield_component") instance=ExtResource("12_aeufi")]
 body = NodePath("../..")
+shield_component = NodePath("../ShieldComponent")
 
-[node name="ShieldComponent" parent="Components" unique_id=675793755 node_paths=PackedStringArray("anim_player", "shield_visuals") instance=ExtResource("13_8p8kg")]
+[node name="ShieldComponent" parent="Components" unique_id=675793755 node_paths=PackedStringArray("anim_player", "shield_visuals", "raise_sound", "block_sound", "block_break_sound") instance=ExtResource("13_8p8kg")]
 anim_player = NodePath("../../ShieldAnimPlayer")
 shield_visuals = NodePath("../../Visuals/Shield")
+raise_sound = NodePath("../../Sounds/Voice")
+block_sound = NodePath("../../Sounds/Block")
+block_break_sound = NodePath("../../Sounds/BlockBreak")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=2003763140]
 
@@ -504,7 +530,6 @@ shield_visuals = NodePath("../../Visuals/Shield")
 sprite_frames = SubResource("SpriteFrames_cgqta")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.57761985
 
 [node name="Sword" type="Sprite2D" parent="Visuals" unique_id=1298361440]
 z_index = 1
@@ -535,8 +560,17 @@ stream = ExtResource("17_uqne6")
 volume_db = 10.0
 pitch_scale = 0.8
 
+[node name="Block" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1139079697]
+stream = SubResource("AudioStreamRandomizer_hy6xw")
+
+[node name="BlockBreak" type="AudioStreamPlayer2D" parent="Sounds" unique_id=584315801]
+stream = ExtResource("23_lbqce")
+pitch_scale = 0.8
+
+[node name="Deflect" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1056904595]
+stream = ExtResource("24_krgoy")
+
 [node name="Attackbox" type="Area2D" parent="." unique_id=331505840]
-visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -550,19 +584,21 @@ debug_color = Color(0.99771076, 0.04391218, 0, 0.41960785)
 position = Vector2(-2.5, -6)
 shape = SubResource("RectangleShape2D_13qdw")
 disabled = true
+debug_color = Color(0.28785446, 0.6305189, 7.70092e-07, 0.41960785)
 
 [node name="slash_lower" type="CollisionShape2D" parent="Attackbox" unique_id=128652894]
 position = Vector2(7, -0.5)
 shape = SubResource("RectangleShape2D_b1lj4")
 disabled = true
+debug_color = Color(0.28785446, 0.6305189, 7.70092e-07, 0.41960785)
 
 [node name="aerial_sweep" type="CollisionShape2D" parent="Attackbox" unique_id=694525123]
 position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_njqwk")
 disabled = true
+debug_color = Color(0.7471443, 0.46215004, 3.85046e-07, 0.41960785)
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=499183358]
-visible = false
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_cgqta")
 
@@ -573,11 +609,12 @@ libraries/ = SubResource("AnimationLibrary_uqne6")
 libraries/ = SubResource("AnimationLibrary_lbqce")
 
 [node name="HealthBar" parent="." unique_id=1492475502 node_paths=PackedStringArray("body") instance=ExtResource("21_ihrxj")]
-visible = false
 body = NodePath("..")
 
 [node name="ShakeCamera" parent="." unique_id=872129259 instance=ExtResource("22_cwran")]
 position = Vector2(0, -15)
 zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 decay = 1.0
 max_offset = Vector2(12, 8)

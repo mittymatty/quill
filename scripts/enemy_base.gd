@@ -1,6 +1,6 @@
 class_name Enemy extends CharacterBody2D
 
-func damage_flash() -> void:
+func damage_flash(_damage_taken: float) -> void:
 	var red_flash: Tween = create_tween()
 	var white_flash: Tween = create_tween()
 	

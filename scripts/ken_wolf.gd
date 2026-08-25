@@ -10,6 +10,7 @@ extends Enemy
 @export var tracker_component: TrackerComponent
 @export var jump_detector_component: JumpDetectorComponent
 @export var jump_component: JumpComponent
+@export var touch_damager_component: TouchDamagerComponent
 
 @export var visible_on_screen_enabler_2d: VisibleOnScreenEnabler2D
 
@@ -29,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	
 	gravity_component.handle_gravity(self,delta)
 	animation_component.handle_horizontal_flip(tracker_component.movement_horizontal,false)
-	animation_component.handle_move_animation(tracker_component.movement_horizontal)
+	animation_component.handle_move_animation(tracker_component.movement_horizontal,velocity.x)
 	movement_component.handle_horizontal_movement(self, tracker_component.movement_horizontal)
 	jump_component.handle_jump(self,jump_detector_component.check_if_should_jump())
 	
@@ -40,4 +41,5 @@ func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 
 func on_health_component_died() -> void:
 	dead = true
-	animation_component.handle_move_animation(0.0)
+	touch_damager_component.queue_free()
+	animation_component.handle_move_animation(0.0,0.0)

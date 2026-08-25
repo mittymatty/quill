@@ -9,11 +9,14 @@ class_name HealthComponent extends Node
 @export var body: PhysicsBody2D
 @export var invincibility_timer: Timer
 
+@export_subgroup("Optional Nodes")
+@export var shield_component: ShieldComponent
+
 @onready var health: float = max_health
 var dead: bool = false
 
 signal health_changed
-signal damaged
+signal damaged (damage: float)
 signal died
 
 func get_health() -> float:
@@ -22,7 +25,9 @@ func get_health() -> float:
 #for health-changing methods aside from damage
 func affect_health(affect_by: float) -> void:
 	health = clampf(health + affect_by, 0.0, max_health)
-	health_changed.emit()
+	
+	if !is_zero_approx(affect_by):
+		health_changed.emit()
 	
 	if health <= 0.0:
 		dead = true
@@ -35,13 +40,28 @@ func set_health(to_set_to: float) -> void:
 func get_is_affectable() -> bool:
 	return invincibility_timer.is_stopped() and !invulnerable and !dead
 
-func take_damage(damage: float) -> void:
+func get_could_block_attack_from(from: Vector2) -> bool:
+	if !shield_component: return false
+	if !shield_component.shield_visuals: return false
+	
+	var shield_x_greater: bool = shield_component.shield_visuals.global_position > body.global_position
+	
+	if shield_x_greater and from.x > body.global_position.x:
+		return true
+	
+	if !shield_x_greater and from.x < body.global_position.x:
+		return true
+	
+	return false
+
+func take_damage(damage: float, knockback: Vector2, from: Vector2) -> void:
 	if !get_is_affectable(): return
 	invincibility_timer.start()
 	
-	affect_health(-damage)
-	damaged.emit()
-
-func take_knockback(knockback: Vector2) -> void:
-	if dead: return
+	if !shield_component or !shield_component.is_blocking or !get_could_block_attack_from(from):
+		affect_health(-damage)
+		damaged.emit(damage)
+	elif shield_component: #If it gets this far, the shield is blocking
+		shield_component.take_hit(1)
+	
 	body.velocity += knockback * knockback_multiplier

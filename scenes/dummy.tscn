@@ -38,8 +38,8 @@ movement_component = NodePath("Components/MovementComponent")
 [node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="1" unique_id=275666189 instance=ExtResource("5_v72lb")]
 
 [node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=1130167078 node_paths=PackedStringArray("body") instance=ExtResource("5_p3fdn")]
-max_health = 25.0
-knockback_multiplier = 2.0
+max_health = 35.0
+knockback_multiplier = 0.5
 body = NodePath("../..")
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]

@@ -16,8 +16,7 @@ func _ready() -> void:
 
 func on_attack_box_contact(body: Node2D) -> void:
 	if body.health_component:
-		body.health_component.take_knockback(Vector2(knockback.x + abs(character_body.velocity.x)/2 if character_body.global_position.x < body.global_position.x else -knockback.x - abs(character_body.velocity.x)/2,knockback.y))
-		body.health_component.take_damage(damage)
+		body.health_component.take_damage(damage,Vector2(knockback.x + abs(character_body.velocity.x)/2 if character_body.global_position.x < body.global_position.x else -knockback.x - abs(character_body.velocity.x)/2,knockback.y),character_body.global_position)
 
 func handle_attack(want_to_attack: bool, looking_up : bool, looking_down : bool) -> void:
 	if !check_can_attack(want_to_attack): return

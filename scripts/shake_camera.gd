@@ -1,4 +1,4 @@
-extends Camera2D
+class_name ShakeCamera2D extends Camera2D
 
 @export_subgroup("Configuration")
 @export var decay: float = 0.5  # How quickly the shaking stops [0, 1].

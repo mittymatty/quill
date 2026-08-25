@@ -1,7 +1,7 @@
 class_name quill extends CharacterBody2D
 
 @export_subgroup("Nodes")
-@export var state_machine: StateMachine
+@export var camera: ShakeCamera2D
 @export var gravity_component: GravityComponent
 @export var input_component: InputComponent
 @export var movement_component: MovementComponent
@@ -12,11 +12,17 @@ class_name quill extends CharacterBody2D
 @export var health_component: HealthComponent
 @export var shield_component: ShieldComponent
 
+func _ready() -> void:
+	health_component.damaged.connect(add_camera_trauma)
+
+func add_camera_trauma(damage_taken: float) -> void:
+	camera.add_trauma(damage_taken/15)
+
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self,delta)
 	movement_component.handle_horizontal_movement(self, input_component.input_horizontal)
 	animation_component.handle_horizontal_flip(input_component.input_horizontal,shield_component.is_blocking)
-	animation_component.handle_move_animation(input_component.input_horizontal)
+	animation_component.handle_move_animation(input_component.input_horizontal, velocity.x)
 	animation_component.handle_jump_animation(jump_component.is_going_up, gravity_component.is_falling)
 	jump_component.handle_jump(self,input_component.get_jump_input(),input_component.get_jump_input_held(),input_component.get_jump_input_released())
 	footsteps_component.handle_footstep_sound(self)

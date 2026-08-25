@@ -13,9 +13,10 @@ class_name ShieldComponent extends Node
 @export var raise_sound: AudioStreamPlayer2D
 @export var deflect_sound: AudioStreamPlayer2D
 @export var block_sound: AudioStreamPlayer2D
+@export var block_break_sound: AudioStreamPlayer2D
+
 
 var is_blocking: bool = false
-
 var has_deflected: bool = false
 
 func _ready() -> void:
@@ -34,6 +35,8 @@ func begin_block() -> void:
 	is_blocking = true
 	anim_player.play("raise")
 	deflect_delayer.start()
+	if raise_sound:
+		raise_sound.play()
 
 func end_block() -> void:
 	if !has_deflected:
@@ -51,3 +54,10 @@ func start_deflect() -> void:
 func on_deflect_timeout() -> void:
 	if shield_visuals:
 		shield_visuals.modulate.ok_hsl_l = 1
+
+func get_is_deflecting() -> bool:
+	return !deflect_timer.is_stopped()
+
+func take_hit(_hits: int) -> void:
+	if block_sound:
+		block_sound.play()
