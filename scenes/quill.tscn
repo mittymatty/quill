@@ -565,6 +565,7 @@ stream = SubResource("AudioStreamRandomizer_hy6xw")
 
 [node name="BlockBreak" type="AudioStreamPlayer2D" parent="Sounds" unique_id=584315801]
 stream = ExtResource("23_lbqce")
+volume_db = 5.0
 pitch_scale = 0.8
 
 [node name="Deflect" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1056904595]

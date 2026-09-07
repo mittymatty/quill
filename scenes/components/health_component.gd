@@ -55,13 +55,19 @@ func get_could_block_attack_from(from: Vector2) -> bool:
 	return false
 
 func take_damage(damage: float, knockback: Vector2, from: Vector2) -> void:
+	var total_knockback_multiplier: float = 1.0
+	
 	if !get_is_affectable(): return
 	invincibility_timer.start()
 	
 	if !shield_component or !shield_component.is_blocking or !get_could_block_attack_from(from):
 		affect_health(-damage)
 		damaged.emit(damage)
+		if shield_component and shield_component.is_blocking: # Blocking, but in wrong direction
+			shield_component.break_block()
 	elif shield_component: #If it gets this far, the shield is blocking
 		shield_component.take_hit(1)
+		if shield_component.remaining_hits <= 0:
+			total_knockback_multiplier *= 1.5
 	
-	body.velocity += knockback * knockback_multiplier
+	body.velocity += knockback * total_knockback_multiplier

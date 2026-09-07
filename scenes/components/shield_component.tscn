@@ -9,7 +9,7 @@ deflect_timer = NodePath("DeflectTimer")
 deflect_delayer = NodePath("DeflectDelayer")
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=1606800018]
-wait_time = 0.5
+wait_time = 1.5
 one_shot = true
 
 [node name="DeflectTimer" type="Timer" parent="." unique_id=1036570996]

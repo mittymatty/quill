@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://8y8wf4xdgl6y"]
+
+[ext_resource type="PackedScene" uid="uid://bb0yvqn7y5cax" path="res://scenes/projectiles/projectile_base.tscn" id="1_kd17d"]
+[ext_resource type="Texture2D" uid="uid://d4iy3hd3roa3s" path="res://assets/visuals/rock.png" id="2_f40gg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5bkip"]
+radius = 3.0
+
+[node name="RockProjectile" unique_id=20750959 instance=ExtResource("1_kd17d")]
+weight = 10.0
+
+[node name="Visuals" parent="." index="0" unique_id=1762040141]
+texture = ExtResource("2_f40gg")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=359490001]
+shape = SubResource("CircleShape2D_5bkip")

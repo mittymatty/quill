@@ -1,5 +1,7 @@
 class_name quill extends CharacterBody2D
 
+#enum Statuses {Idle,Run,Drift,Jump,Fall}
+
 @export_subgroup("Nodes")
 @export var camera: ShakeCamera2D
 @export var gravity_component: GravityComponent
@@ -16,7 +18,7 @@ func _ready() -> void:
 	health_component.damaged.connect(add_camera_trauma)
 
 func add_camera_trauma(damage_taken: float) -> void:
-	camera.add_trauma(damage_taken/15)
+	camera.add_trauma(clampf(damage_taken,0.0,100.0)/50)
 
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self,delta)
