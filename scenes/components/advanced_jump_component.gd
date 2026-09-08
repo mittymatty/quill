@@ -2,11 +2,15 @@ class_name AdvancedJumpComponent extends Node
 
 @export_subgroup("Nodes")
 @export var jump_sound: AudioStreamPlayer2D
+@export var land_sound: AudioStreamPlayer2D
 @export var jump_buffer_timer: Timer
 @export var coyote_timer: Timer
+@export var wall_coyote_timer: Timer
 
 @export_subgroup("Settings")
 @export var jump_velocity: float = -350.0
+@export var wall_jump_velocity: float = -100.0
+@export var wall_jump_pushback: float = 50.0
 @export var jump_release_multiplier: float = 0.75
 @export var coyote_walking_enabled: bool = true
 
@@ -20,8 +24,11 @@ func has_just_stepped_off_ledge(body: CharacterBody2D) -> bool:
 func has_just_landed(body: CharacterBody2D) -> bool:
 	return body.is_on_floor() and !last_frame_on_floor and is_jumping
 
-func is_allowed_to_jump(body: CharacterBody2D, want_to_jump: bool) -> bool:
-	return want_to_jump and (body.is_on_floor() or not coyote_timer.is_stopped())
+func is_allowed_to_jump(body: CharacterBody2D) -> bool:
+	return (body.is_on_floor() or not coyote_timer.is_stopped())
+
+func is_allowed_to_wall_jump(body: CharacterBody2D, h_input_axis: float) -> bool:
+	return body.velocity.y > 0 and (body.is_on_wall_only() or not wall_coyote_timer.is_stopped()) and !is_zero_approx(h_input_axis)
 
 func jump(body: CharacterBody2D) -> void:
 	body.velocity.y = jump_velocity
@@ -32,12 +39,23 @@ func jump(body: CharacterBody2D) -> void:
 	if jump_sound != null:
 		jump_sound.play()
 
-func handle_jump(body: CharacterBody2D, want_to_jump: bool, jump_held: bool, jump_released: bool) -> void:
+func wall_jump(body: CharacterBody2D,h_input_axis: float) -> void:
+	wall_coyote_timer.stop()
+	body.velocity = Vector2(wall_jump_pushback * (-h_input_axis if body.is_on_wall() else h_input_axis),wall_jump_velocity)
+
+func handle_jump(body: CharacterBody2D, want_to_jump: bool, jump_held: bool, jump_released: bool,h_input_axis: float) -> void:
 	if has_just_landed(body):
 		is_jumping = false
+		land_sound.play()
 	
-	if is_allowed_to_jump(body, want_to_jump):
-		jump(body)
+	if is_allowed_to_wall_jump(body,h_input_axis):
+		wall_coyote_timer.start()
+	
+	if want_to_jump:
+		if is_allowed_to_jump(body):
+			jump(body)
+		elif is_allowed_to_wall_jump(body, h_input_axis):
+			wall_jump(body, h_input_axis)
 	
 	if !jump_held and is_going_up:
 		body.velocity.y = 0

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://n6lb5xns0b68" path="res://scripts/projectile_testing.gd" id="1_uvlxo"]
 [ext_resource type="Script" uid="uid://bju5815fmcnm2" path="res://scripts/projectile_launcher.gd" id="2_61yce"]
 [ext_resource type="PackedScene" uid="uid://8y8wf4xdgl6y" path="res://scenes/projectiles/rock_projectile.tscn" id="3_s3yq3"]
+[ext_resource type="Texture2D" uid="uid://daldma4x7bcqg" path="res://assets/visuals/quill's_sword.png" id="4_q0fdb"]
 
 [node name="ProjectileTesting" type="Node2D" unique_id=2136427355]
 script = ExtResource("1_uvlxo")
@@ -10,7 +11,12 @@ script = ExtResource("1_uvlxo")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1649488103]
 
 [node name="ProjectileLauncher" type="Node2D" parent="." unique_id=915842081 node_paths=PackedStringArray("projectile_container")]
+position = Vector2(-112, -114)
 script = ExtResource("2_61yce")
 projectile_scene = ExtResource("3_s3yq3")
 projectile_container = NodePath("..")
 metadata/_custom_type_script = "uid://bju5815fmcnm2"
+
+[node name="Quill\'sSword" type="Sprite2D" parent="ProjectileLauncher" unique_id=553008671]
+position = Vector2(-2, -2)
+texture = ExtResource("4_q0fdb")

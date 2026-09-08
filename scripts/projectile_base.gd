@@ -20,8 +20,8 @@ func projectile_hit(body: Node2D) -> void:
 func destroy_projectile() -> void:
 	queue_free()
 
-func update_movement() -> void:
-	pass
+func update_movement(delta) -> void:
+	global_position.x += initial_speed * delta
 
-func _physics_process(_delta: float) -> void:
-	update_movement()
+func _physics_process(delta: float) -> void:
+	update_movement(delta)

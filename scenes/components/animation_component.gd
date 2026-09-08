@@ -30,7 +30,12 @@ func handle_jump_animation(is_jumping: bool, is_falling: bool) -> void:
 		if !sprite.animation == "jump":
 			sprite.play("jump")
 	elif is_falling:
-		sprite.play("fall")
+		if !sprite.animation == "fall":
+			sprite.play("fall")
+
+func handle_wall_animation() -> void:
+	if !sprite.animation == "wall":
+			sprite.play("wall")
 
 func flip_node_and_children(node: Node2D, new_flip: float) -> void: # Used in handle_horizontal_flip
 	node.scale.x = new_flip
