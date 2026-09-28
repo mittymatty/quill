@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cu0m5demynbe2" path="res://scenes/enemy_base.tscn" id="1_k5f3b"]
 [ext_resource type="Texture2D" uid="uid://byi72h1gcjvk7" path="res://assets/visuals/training_dummy.png" id="2_6m2ry"]
-[ext_resource type="Script" uid="uid://163d6v6xxyj4" path="res://scripts/dummy.gd" id="2_w4gkx"]
+[ext_resource type="Script" uid="uid://163d6v6xxyj4" path="res://scripts/entities/dummy.gd" id="2_w4gkx"]
 [ext_resource type="PackedScene" uid="uid://vqjy0rat2u5d" path="res://scenes/components/gravity_component.tscn" id="3_w4gkx"]
 [ext_resource type="PackedScene" uid="uid://cjro72gvhep3e" path="res://scenes/components/health_component.tscn" id="5_p3fdn"]
 [ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="5_v72lb"]

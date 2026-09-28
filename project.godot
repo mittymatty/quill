@@ -31,8 +31,6 @@ folder_colors={
 "res://assets/": "purple",
 "res://resources/": "red",
 "res://scenes/": "teal",
-"res://scenes/components/": "yellow",
-"res://scenes/projectiles/": "pink",
 "res://scripts/": "orange"
 }
 

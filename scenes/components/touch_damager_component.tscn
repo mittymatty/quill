@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ygux51qhvuoa"]
 
-[ext_resource type="Script" uid="uid://deawle8ietkfr" path="res://scenes/components/touch_damager_component.gd" id="1_moyyf"]
+[ext_resource type="Script" uid="uid://deawle8ietkfr" path="res://scripts/components/touch_damager_component.gd" id="1_moyyf"]
 
 [node name="TouchDamagerComponent" type="Node" unique_id=934853369 node_paths=PackedStringArray("cooldown_timer")]
 script = ExtResource("1_moyyf")

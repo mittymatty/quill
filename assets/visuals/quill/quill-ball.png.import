@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtg2k8c8ei83p"
-path="res://.godot/imported/quill's_sword_2.png-8a74cd9a5b26682515c6e7c4c5480d26.ctex"
+uid="uid://bkys6s818y2p8"
+path="res://.godot/imported/quill-ball.png-21f24557d75564149e42ff140801650c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visuals/quill's_sword_2.png"
-dest_files=["res://.godot/imported/quill's_sword_2.png-8a74cd9a5b26682515c6e7c4c5480d26.ctex"]
+source_file="res://assets/visuals/quill/quill-ball.png"
+dest_files=["res://.godot/imported/quill-ball.png-21f24557d75564149e42ff140801650c.ctex"]
 
 [params]
 

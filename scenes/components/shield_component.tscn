@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bl2ps5iflbamr"]
 
-[ext_resource type="Script" uid="uid://sw6vc5ydeged" path="res://scenes/components/shield_component.gd" id="1_yy3ww"]
+[ext_resource type="Script" uid="uid://sw6vc5ydeged" path="res://scripts/components/shield_component.gd" id="1_yy3ww"]
 
 [node name="ShieldComponent" type="Node" unique_id=675793755 node_paths=PackedStringArray("cooldown_timer", "deflect_timer", "deflect_delayer")]
 script = ExtResource("1_yy3ww")

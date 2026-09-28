@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx8rjajjksa8h"
-path="res://.godot/imported/quill's_shield.png-1e2321e8e5d2a8dfb6240082b4b6754f.ctex"
+uid="uid://drn6ve6yiup2n"
+path="res://.godot/imported/quill-fall.png-71f85f4f681538a556ae33ee4fe029b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visuals/quill's_shield.png"
-dest_files=["res://.godot/imported/quill's_shield.png-1e2321e8e5d2a8dfb6240082b4b6754f.ctex"]
+source_file="res://assets/visuals/quill/quill-fall.png"
+dest_files=["res://.godot/imported/quill-fall.png-71f85f4f681538a556ae33ee4fe029b2.ctex"]
 
 [params]
 

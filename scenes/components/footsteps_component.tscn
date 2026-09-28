@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c17hgniyoisc1"]
 
-[ext_resource type="Script" uid="uid://hw8fn4bca0vv" path="res://scenes/components/footsteps_component.gd" id="1_qt5q2"]
+[ext_resource type="Script" uid="uid://hw8fn4bca0vv" path="res://scripts/components/footsteps_component.gd" id="1_qt5q2"]
 
 [node name="FootstepsComponent" type="Node" unique_id=499613779 node_paths=PackedStringArray("footsteps_audio")]
 script = ExtResource("1_qt5q2")

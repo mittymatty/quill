@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0ffw8e73r4dt"
-path="res://.godot/imported/quill-jump.png-7ed1a278f40e6e0f37f21ba169309d9d.ctex"
+path="res://.godot/imported/quill-jump.png-1c81782624a2eeee06eec103af391657.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visuals/quill-jump.png"
-dest_files=["res://.godot/imported/quill-jump.png-7ed1a278f40e6e0f37f21ba169309d9d.ctex"]
+source_file="res://assets/visuals/quill/quill-jump.png"
+dest_files=["res://.godot/imported/quill-jump.png-1c81782624a2eeee06eec103af391657.ctex"]
 
 [params]
 

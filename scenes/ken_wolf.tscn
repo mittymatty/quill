@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cu0m5demynbe2" path="res://scenes/enemy_base.tscn" id="1_q6ihe"]
 [ext_resource type="Texture2D" uid="uid://cycqu4hk0naql" path="res://assets/visuals/ken_wolf.png" id="2_5hjy8"]
 [ext_resource type="PackedScene" uid="uid://vqjy0rat2u5d" path="res://scenes/components/gravity_component.tscn" id="2_nkl14"]
-[ext_resource type="Script" uid="uid://cud56gf30nnvj" path="res://scripts/ken_wolf.gd" id="2_xr5up"]
+[ext_resource type="Script" uid="uid://cud56gf30nnvj" path="res://scripts/entities/ken_wolf.gd" id="2_xr5up"]
 [ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="5_xr5up"]
 [ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="6_a54c4"]
 [ext_resource type="PackedScene" uid="uid://ddnaujh8g10oe" path="res://scenes/components/tracker_component.tscn" id="8_sychi"]

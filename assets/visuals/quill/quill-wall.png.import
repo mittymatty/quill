@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drn6ve6yiup2n"
-path="res://.godot/imported/quill-fall.png-a529c361d7a09b578a172c7e06f3390f.ctex"
+uid="uid://dajmhco3ta2se"
+path="res://.godot/imported/quill-wall.png-bd1cc0f9ef8bfa90c1ec405db6a15102.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visuals/quill-fall.png"
-dest_files=["res://.godot/imported/quill-fall.png-a529c361d7a09b578a172c7e06f3390f.ctex"]
+source_file="res://assets/visuals/quill/quill-wall.png"
+dest_files=["res://.godot/imported/quill-wall.png-bd1cc0f9ef8bfa90c1ec405db6a15102.ctex"]
 
 [params]
 
