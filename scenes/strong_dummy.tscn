@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://78uawfejbjh4"]
+
+[ext_resource type="PackedScene" uid="uid://dhwv4qkv6l8ce" path="res://scenes/dummy.tscn" id="1_1cksp"]
+
+[node name="strong_dummy" unique_id=729534692 instance=ExtResource("1_1cksp")]
+
+[node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=1130167078]
+max_health = 200.0
+knockback_multiplier = 0.0
+
+[node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
+modulate = Color(0.73207814, 0.18044317, 0.27981701, 1)

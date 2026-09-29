@@ -55,7 +55,7 @@ func get_could_block_attack_from(from: Vector2) -> bool:
 	return false
 
 func take_damage(damage: float, knockback: Vector2, from: Vector2) -> void:
-	var total_knockback_multiplier: float = 1.0
+	var total_knockback_multiplier: float = knockback_multiplier
 	
 	if !get_is_affectable(): return
 	invincibility_timer.start()

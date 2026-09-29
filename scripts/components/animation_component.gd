@@ -37,6 +37,10 @@ func handle_wall_animation() -> void:
 	if !sprite.animation == "wall":
 			sprite.play("wall")
 
+func handle_ball_animation() -> void:
+	if !sprite.animation == "ball":
+			sprite.play("ball")
+
 func flip_node_and_children(node: Node2D, new_flip: float) -> void: # Used in handle_horizontal_flip
 	node.scale.x = new_flip
 	

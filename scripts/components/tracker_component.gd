@@ -9,8 +9,13 @@ class_name TrackerComponent extends Node
 @export_subgroup("Configuration")
 @export var start_tracking_distance: float = 100.0
 @export var stop_tracking_distance: float = 1.0
+@export var above_elevation_difference: float = 20.0
+@export var below_elevation_difference: float = 20.0
 
 var movement_horizontal: float = 0.0
+
+var target_is_above: bool = false
+var target_is_below: bool = false
 
 func _ready() -> void:
 	refresh_timer.timeout.connect(get_axis_to_target)
@@ -19,10 +24,15 @@ func get_axis_to_target () -> void:
 	if !tracker_target: return
 	var target_x: float = tracker_target.global_position.x
 	var self_x: float = tracker.global_position.x
+	var target_y: float = tracker_target.global_position.y
+	var self_y: float = tracker.global_position.y
+	
 	var distance: float = tracker.global_position.distance_to(tracker_target.global_position)
 	
-	movement_horizontal = 0.0
+	target_is_above = target_y <= self_y - above_elevation_difference
+	target_is_below = target_y >= self_y + below_elevation_difference
 	
+	movement_horizontal = 0.0
 	if drop_raycast and !drop_raycast.is_colliding(): return
 	if distance > start_tracking_distance or distance < stop_tracking_distance: return
 	
