@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://ded0n0eoga3gt"]
+
+[ext_resource type="PackedScene" uid="uid://cu0m5demynbe2" path="res://scenes/entities/enemy_base.tscn" id="1_fcrjy"]
+[ext_resource type="PackedScene" uid="uid://vqjy0rat2u5d" path="res://scenes/components/gravity_component.tscn" id="2_0qp3i"]
+[ext_resource type="Texture2D" uid="uid://bwg84oucbhgl1" path="res://assets/visuals/ngarrou_body_idle.png" id="2_u6om4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qp3i"]
+atlas = ExtResource("2_u6om4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4so2t"]
+atlas = ExtResource("2_u6om4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dfc5"]
+atlas = ExtResource("2_u6om4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkeh5"]
+atlas = ExtResource("2_u6om4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acj6a"]
+atlas = ExtResource("2_u6om4")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgyit"]
+atlas = ExtResource("2_u6om4")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wtbhc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qp3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4so2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dfc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkeh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acj6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgyit")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hy6xw"]
+size = Vector2(13, 27)
+
+[node name="ngarrou" unique_id=729534692 node_paths=PackedStringArray("gravity_component") instance=ExtResource("1_fcrjy")]
+gravity_component = NodePath("Components/GravityComponent")
+
+[node name="GravityComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=827299611 instance=ExtResource("2_0qp3i")]
+
+[node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
+sprite_frames = SubResource("SpriteFrames_wtbhc")
+frame_progress = 0.9872555
+
+[node name="Collision" parent="." index="3" unique_id=832957629]
+position = Vector2(-1.5, 2.5)
+shape = SubResource("RectangleShape2D_hy6xw")

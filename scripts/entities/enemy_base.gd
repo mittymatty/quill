@@ -1,4 +1,6 @@
-class_name Enemy extends CharacterBody2D
+class_name Enemy extends Entity
+
+@export var team: String = "enemy"
 
 func damage_flash(_damage_taken: float) -> void:
 	var red_flash: Tween = create_tween()

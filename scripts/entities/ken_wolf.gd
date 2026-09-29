@@ -3,7 +3,6 @@ extends Enemy
 @export var player: CharacterBody2D
 
 @export_subgroup("Nodes")
-@export var gravity_component: GravityComponent
 @export var movement_component: MovementComponent
 @export var animation_component: AnimationComponent
 @export var health_component: HealthComponent

@@ -1,4 +1,4 @@
-class_name quill extends CharacterBody2D
+class_name quill extends Entity
 
 enum States {IDLE,RUN,DRIFT,JUMP,FALL,WALL,BALL}
 var state: States = States.IDLE
@@ -6,11 +6,10 @@ var previous_state: States = States.IDLE
 
 @export_subgroup("Config")
 @export var team: String = "player"
-@export var print_state: bool = true
+@export var print_state: bool = false
 
 @export_subgroup("Nodes")
 @export var camera: ShakeCamera2D
-@export var gravity_component: GravityComponent
 @export var input_component: InputComponent
 @export var movement_component: MovementComponent
 @export var animation_component: AnimationComponent
@@ -61,16 +60,16 @@ func check_state_changed (has_state_changed: bool) -> void:
 	if print_state:
 		print(States.find_key(state))
 	if state in [States.WALL]:
-		velocity.y *= 0.2
+		velocity.y *= 0.1
 
 func _physics_process(delta: float) -> void:
 	previous_state = state
 	set_state()
 	check_state_changed(previous_state != state)
 	
-	gravity_component.handle_gravity(self,delta) # Includes WALL gravity change
 	jump_component.handle_jump(self,input_component.get_jump_input(),input_component.get_jump_input_held(),input_component.get_jump_input_released(),input_component.input_horizontal)
 	footsteps_component.handle_footstep_sound(self)
+	gravity_component.handle_gravity(self,delta) # Includes WALL gravity change
 	
 	if !state in [States.BALL]:
 		movement_component.handle_horizontal_movement(self, input_component.input_horizontal)
@@ -90,6 +89,5 @@ func _physics_process(delta: float) -> void:
 		animation_component.handle_wall_animation()
 	elif state == States.BALL:
 		animation_component.handle_ball_animation()
-	
 	
 	move_and_slide()

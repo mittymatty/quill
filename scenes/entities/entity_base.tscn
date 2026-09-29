@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://be7rmnosx37e5"]
+
+[ext_resource type="Script" uid="uid://bpnwyctwurbgp" path="res://scripts/entity_base.gd" id="1_iljqi"]
+[ext_resource type="Script" uid="uid://cwmqry4yemd5i" path="res://scripts/components/gravity_component.gd" id="2_v6q1w"]
+
+[node name="Entity" type="CharacterBody2D" unique_id=1811359124 node_paths=PackedStringArray("gravity_component")]
+z_index = 1
+collision_layer = 0
+script = ExtResource("1_iljqi")
+gravity_component = NodePath("Components/GravityComponent")
+
+[node name="Components" type="Node" parent="." unique_id=1217021385]
+
+[node name="GravityComponent" type="Node" parent="Components" unique_id=490926799]
+script = ExtResource("2_v6q1w")
+metadata/_custom_type_script = "uid://cwmqry4yemd5i"
+
+[node name="Visuals" type="Node2D" parent="." unique_id=812096161]
+
+[node name="Sounds" type="Node2D" parent="." unique_id=1877485222]
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=623365970]

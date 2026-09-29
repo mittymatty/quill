@@ -3,10 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://doyih0op0kutt" path="res://scenes/black_parallax.tscn" id="1_iywne"]
 [ext_resource type="Script" uid="uid://dkrrrcjs4cu6b" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="TileSet" uid="uid://6ykykp1d4nf6" path="res://resources/tile_map.tres" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://gyei4cxi4knh" path="res://scenes/quill.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://dhwv4qkv6l8ce" path="res://scenes/dummy.tscn" id="4_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://ct6m3qj7461m2" path="res://scenes/ken_wolf.tscn" id="5_iywne"]
-[ext_resource type="PackedScene" uid="uid://78uawfejbjh4" path="res://scenes/strong_dummy.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://gyei4cxi4knh" path="res://scenes/entities/quill.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://dhwv4qkv6l8ce" path="res://scenes/entities/dummy.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://ct6m3qj7461m2" path="res://scenes/entities/ken_wolf.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://78uawfejbjh4" path="res://scenes/entities/strong_dummy.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://ded0n0eoga3gt" path="res://scenes/entities/ngarrou.tscn" id="8_gee14"]
 
 [node name="game" type="Node2D" unique_id=667705833]
 script = ExtResource("1_p57ef")
@@ -42,3 +43,6 @@ player = NodePath("../quill")
 
 [node name="dummy4" parent="world" unique_id=1003567764 instance=ExtResource("7_u5sy4")]
 position = Vector2(44, 83)
+
+[node name="enemy_base" parent="." unique_id=1919323625 instance=ExtResource("8_gee14")]
+position = Vector2(142, 79)

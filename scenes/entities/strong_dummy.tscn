@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://78uawfejbjh4"]
 
-[ext_resource type="PackedScene" uid="uid://dhwv4qkv6l8ce" path="res://scenes/dummy.tscn" id="1_1cksp"]
+[ext_resource type="PackedScene" uid="uid://dhwv4qkv6l8ce" path="res://scenes/entities/dummy.tscn" id="1_1cksp"]
 
 [node name="strong_dummy" unique_id=729534692 instance=ExtResource("1_1cksp")]
 

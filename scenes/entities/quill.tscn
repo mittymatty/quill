@@ -544,11 +544,11 @@ _data = {
 &"raise": SubResource("Animation_0upei")
 }
 
-[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("camera", "gravity_component", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component", "shield_component", "ball_state_timer")]
+[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("camera", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component", "shield_component", "ball_state_timer", "gravity_component")]
+z_index = 2
 collision_layer = 2
 script = ExtResource("1_mtoyt")
 camera = NodePath("ShakeCamera")
-gravity_component = NodePath("Components/GravityComponent")
 input_component = NodePath("Components/InputComponent")
 movement_component = NodePath("Components/MovementComponent")
 animation_component = NodePath("Components/AnimationComponent")
@@ -558,6 +558,7 @@ weapon_component = NodePath("Components/WeaponComponent")
 health_component = NodePath("Components/HealthComponent")
 shield_component = NodePath("Components/ShieldComponent")
 ball_state_timer = NodePath("Timers/BallStateTimer")
+gravity_component = NodePath("Components/GravityComponent")
 
 [node name="ShakeCamera" parent="." unique_id=872129259 instance=ExtResource("22_cwran")]
 position = Vector2(0, -15)
@@ -590,7 +591,7 @@ jump_sound = NodePath("../../Sounds/Jump")
 land_sound = NodePath("../../Sounds/Land")
 jump_velocity = -275.0
 wall_jump_velocity = -180.0
-wall_jump_pushback = 190.0
+wall_jump_pushback = 200.0
 jump_release_multiplier = 0.5
 coyote_walking_enabled = false
 

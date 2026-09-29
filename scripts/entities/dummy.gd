@@ -1,7 +1,6 @@
 extends Enemy
 
 @export_subgroup("Nodes")
-@export var gravity_component: GravityComponent
 @export var health_component: HealthComponent
 @export var movement_component: MovementComponent
 
