@@ -3,8 +3,10 @@ class_name TrackerComponent extends Node
 @export_subgroup("Nodes")
 @export var tracker_target: Node2D
 @export var tracker: Node2D
-@export var drop_raycast: RayCast2D
 @export var refresh_timer: Timer
+
+@export_subgroup("Optional_Nodes")
+@export var drop_raycast: RayCast2D
 
 @export_subgroup("Configuration")
 @export var start_tracking_distance: float = 100.0

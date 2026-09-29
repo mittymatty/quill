@@ -1,13 +1,22 @@
 [gd_scene format=3 uid="uid://cu0m5demynbe2"]
 
 [ext_resource type="Script" uid="uid://bpw7e005dau1g" path="res://scripts/entities/enemy_base.gd" id="1_fr7lv"]
+[ext_resource type="PackedScene" uid="uid://cjro72gvhep3e" path="res://scenes/components/health_component.tscn" id="2_qag7e"]
+[ext_resource type="PackedScene" uid="uid://vqjy0rat2u5d" path="res://scenes/components/gravity_component.tscn" id="3_dtjhs"]
 
-[node name="enemy_base" type="CharacterBody2D" unique_id=729534692]
+[node name="enemy_base" type="CharacterBody2D" unique_id=729534692 node_paths=PackedStringArray("health_component", "gravity_component")]
 z_index = -1
-collision_layer = 8
+collision_layer = 4
 script = ExtResource("1_fr7lv")
+health_component = NodePath("Components/HealthComponent")
+gravity_component = NodePath("Components/GravityComponent")
 
 [node name="Components" type="Node" parent="." unique_id=1001103590]
+
+[node name="HealthComponent" parent="Components" unique_id=1130167078 node_paths=PackedStringArray("body") instance=ExtResource("2_qag7e")]
+body = NodePath("../..")
+
+[node name="GravityComponent" parent="Components" unique_id=827299611 instance=ExtResource("3_dtjhs")]
 
 [node name="Visuals" type="Node2D" parent="." unique_id=1477317777]
 

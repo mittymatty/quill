@@ -44,5 +44,7 @@ player = NodePath("../quill")
 [node name="dummy4" parent="world" unique_id=1003567764 instance=ExtResource("7_u5sy4")]
 position = Vector2(44, 83)
 
-[node name="enemy_base" parent="." unique_id=1919323625 instance=ExtResource("8_gee14")]
-position = Vector2(142, 79)
+[node name="ngarrou" parent="world" unique_id=1667325703 node_paths=PackedStringArray("player") instance=ExtResource("8_gee14")]
+position = Vector2(123, 54)
+collision_layer = 8
+player = NodePath("../quill")

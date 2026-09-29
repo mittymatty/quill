@@ -3,8 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cu0m5demynbe2" path="res://scenes/entities/enemy_base.tscn" id="1_k5f3b"]
 [ext_resource type="Texture2D" uid="uid://byi72h1gcjvk7" path="res://assets/visuals/training_dummy.png" id="2_6m2ry"]
 [ext_resource type="Script" uid="uid://163d6v6xxyj4" path="res://scripts/entities/dummy.gd" id="2_w4gkx"]
-[ext_resource type="PackedScene" uid="uid://vqjy0rat2u5d" path="res://scenes/components/gravity_component.tscn" id="3_w4gkx"]
-[ext_resource type="PackedScene" uid="uid://cjro72gvhep3e" path="res://scenes/components/health_component.tscn" id="5_p3fdn"]
 [ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="5_v72lb"]
 [ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/health_bar.tscn" id="7_p3fdn"]
 
@@ -26,21 +24,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sw0xa"]
 size = Vector2(7, 11)
 
-[node name="dummy" unique_id=729534692 node_paths=PackedStringArray("gravity_component", "health_component", "movement_component") instance=ExtResource("1_k5f3b")]
-collision_layer = 4
+[node name="dummy" unique_id=729534692 node_paths=PackedStringArray("movement_component") instance=ExtResource("1_k5f3b")]
 script = ExtResource("2_w4gkx")
-gravity_component = NodePath("Components/GravityComponent")
-health_component = NodePath("Components/HealthComponent")
 movement_component = NodePath("Components/MovementComponent")
 
-[node name="GravityComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=827299611 instance=ExtResource("3_w4gkx")]
-
-[node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="1" unique_id=275666189 instance=ExtResource("5_v72lb")]
-
-[node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=1130167078 node_paths=PackedStringArray("body") instance=ExtResource("5_p3fdn")]
-max_health = 35.0
-knockback_multiplier = 0.5
-body = NodePath("../..")
+[node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=275666189 instance=ExtResource("5_v72lb")]
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
 sprite_frames = SubResource("SpriteFrames_5kcic")

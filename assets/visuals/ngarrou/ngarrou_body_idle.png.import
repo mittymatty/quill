@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwg84oucbhgl1"
-path="res://.godot/imported/ngarrou_body_idle.png-2db4993f2b10da76170393485e7db86b.ctex"
+path="res://.godot/imported/ngarrou_body_idle.png-b4fa490a0f3d6a5113f4ea39d49fac64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visuals/ngarrou_body_idle.png"
-dest_files=["res://.godot/imported/ngarrou_body_idle.png-2db4993f2b10da76170393485e7db86b.ctex"]
+source_file="res://assets/visuals/ngarrou/ngarrou_body_idle.png"
+dest_files=["res://.godot/imported/ngarrou_body_idle.png-b4fa490a0f3d6a5113f4ea39d49fac64.ctex"]
 
 [params]
 

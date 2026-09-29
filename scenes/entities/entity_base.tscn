@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://be7rmnosx37e5"]
 
-[ext_resource type="Script" uid="uid://bpnwyctwurbgp" path="res://scripts/entity_base.gd" id="1_iljqi"]
+[ext_resource type="Script" uid="uid://bpnwyctwurbgp" path="res://scripts/entities/entity_base.gd" id="1_iljqi"]
 [ext_resource type="Script" uid="uid://cwmqry4yemd5i" path="res://scripts/components/gravity_component.gd" id="2_v6q1w"]
 
 [node name="Entity" type="CharacterBody2D" unique_id=1811359124 node_paths=PackedStringArray("gravity_component")]
