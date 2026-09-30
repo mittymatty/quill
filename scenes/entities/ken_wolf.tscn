@@ -89,11 +89,11 @@ jump_detector_component = NodePath("Components/JumpDetectorComponent")
 jump_component = NodePath("Components/JumpComponent")
 touch_damager_component = NodePath("Components/TouchDamagerComponent")
 visible_on_screen_enabler_2d = NodePath("VisibleOnScreenEnabler2D")
+queue_free_on_death = true
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." index="0" unique_id=391288275]
 
-[node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=222523302 node_paths=PackedStringArray("sprite", "nodes_to_flip") instance=ExtResource("5_xr5up")]
-sprite = NodePath("../../Visuals/Sprite")
+[node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=222523302 node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("5_xr5up")]
 nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Raycasts"), NodePath("../../TouchDamageZone")]
 
 [node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="1" unique_id=275666189 instance=ExtResource("6_a54c4")]

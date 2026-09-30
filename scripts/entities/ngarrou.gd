@@ -16,6 +16,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	movement_component.handle_horizontal_movement(self,tracker_component.movement_horizontal)
-	animation_component.handle_horizontal_flip(velocity.x,false)
+	animation_component.handle_horizontal_flip(tracker_component.movement_horizontal,false)
+	animation_component.handle_move_animation(tracker_component.movement_horizontal,velocity.x)
 	jump_component.handle_jump(self,jump_detector_component.check_if_should_jump())
 	move_and_slide()

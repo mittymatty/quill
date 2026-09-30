@@ -17,12 +17,6 @@ func _ready() -> void:
 	tracker_component.tracker_target = player
 
 func _physics_process(delta: float) -> void:
-	if state in [States.DEAD]:
-		movement_component.handle_horizontal_movement(self,0.0)
-		gravity_component.handle_gravity(self,delta)
-		move_and_slide()
-		return
-	
 	gravity_component.handle_gravity(self,delta)
 	animation_component.handle_horizontal_flip(tracker_component.movement_horizontal,false)
 	animation_component.handle_move_animation(tracker_component.movement_horizontal,velocity.x)
@@ -33,8 +27,3 @@ func _physics_process(delta: float) -> void:
 
 func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	visible_on_screen_enabler_2d.queue_free()
-
-func on_health_component_died() -> void:
-	super.on_health_component_died()
-	touch_damager_component.queue_free()
-	animation_component.handle_move_animation(0.0,0.0)
