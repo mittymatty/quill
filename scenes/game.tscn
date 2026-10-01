@@ -38,12 +38,12 @@ position = Vector2(309, 58)
 collision_mask = 5
 
 [node name="ken_wolf" parent="world" unique_id=1416112845 node_paths=PackedStringArray("player") instance=ExtResource("5_iywne")]
-position = Vector2(414, 78)
+position = Vector2(16, 84)
 player = NodePath("../quill")
 
 [node name="dummy4" parent="world" unique_id=1003567764 instance=ExtResource("7_u5sy4")]
 position = Vector2(44, 83)
 
 [node name="ngarrou" parent="world" unique_id=1177152942 node_paths=PackedStringArray("player") instance=ExtResource("8_gee14")]
-position = Vector2(121, 62)
+position = Vector2(494, 69)
 player = NodePath("../quill")

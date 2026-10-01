@@ -11,10 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/health_bar.tscn" id="6_5dfc5"]
 [ext_resource type="PackedScene" uid="uid://dolv0ui3en5r3" path="res://scenes/components/jump_detector_component.tscn" id="6_k60bk"]
 [ext_resource type="PackedScene" uid="uid://cgou2ah3j44ta" path="res://scenes/components/jump_component.tscn" id="7_w4iam"]
+[ext_resource type="PackedScene" uid="uid://dnxj761xnjuvc" path="res://scenes/components/weapon_component.tscn" id="8_nhsre"]
+[ext_resource type="PackedScene" uid="uid://dowvkres1w357" path="res://scenes/components/weapon_auto_trigger_component.tscn" id="9_7yy1d"]
 [ext_resource type="Texture2D" uid="uid://cqcc4w74ibvu1" path="res://assets/visuals/ngarrou/ngarrou_body_run.png" id="9_bxpcg"]
-[ext_resource type="Texture2D" uid="uid://c0f1vb5jseify" path="res://assets/visuals/ngarrou/ngarrou_arm1_extended.png" id="9_w4iam"]
+[ext_resource type="Texture2D" uid="uid://c0f1vb5jseify" path="res://assets/visuals/ngarrou/ngarrou_arm1_bent.png" id="9_w4iam"]
 [ext_resource type="Texture2D" uid="uid://6vprexj8pvwy" path="res://assets/visuals/ngarrou/ngarrou_arm1_run.png" id="12_nhsre"]
 [ext_resource type="Texture2D" uid="uid://d1t8hr6evja6x" path="res://assets/visuals/ngarrou/ngarrou_arm2_run.png" id="14_7yy1d"]
+[ext_resource type="Texture2D" uid="uid://bjdi03ea5xg46" path="res://assets/visuals/ngarrou/ngarrou_arm1_extended.png" id="17_yl1hi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qp3i"]
 atlas = ExtResource("2_u6om4")
@@ -364,12 +367,24 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2mrg4"]
 size = Vector2(16, 28)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgqta"]
+size = Vector2(21, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yl1hi"]
+size = Vector2(33, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hy6xw"]
+size = Vector2(18, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4xrl"]
+size = Vector2(19, 16)
+
 [sub_resource type="Animation" id="Animation_w4iam"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/front_arm_extended:visible")
+tracks/0/path = NodePath("Visuals/front_arm_bent:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -393,7 +408,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/front_arm_extended:rotation")
+tracks/2/path = NodePath("Visuals/front_arm_bent:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -405,7 +420,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Visuals/front_arm_extended:position")
+tracks/3/path = NodePath("Visuals/front_arm_bent:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -414,6 +429,154 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(-2, -3)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackBox/slash_1:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackBox/slash_2:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AttackBox/slash_3:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visuals/front_arm_extended:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visuals/front_arm_extended:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.7853982]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visuals/front_arm_extended:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, -5)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AttackBox/jab_1:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_yl1hi"]
+resource_name = "jab"
+length = 0.48
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/front_arm_animated:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.46666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/front_arm_extended:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.46666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/front_arm_extended:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.23333335, 0.36666667, 0.46666667),
+"transitions": PackedFloat32Array(1, 2, 2, 2, 2),
+"update": 0,
+"values": [0.0, -0.8813912722571364, -0.8726646259971648, -0.8726646259971648, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/front_arm_extended:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1090385, 0.20000002, 0.26666668, 0.43333334),
+"transitions": PackedFloat32Array(1, 2, 2, 2, 2),
+"update": 0,
+"values": [Vector2(-6, -5), Vector2(-17, -2.0000005), Vector2(9, -2), Vector2(9, -2), Vector2(-6, -5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackBox/jab_1:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.13333334, 0.29913694),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_df3bg"]
 resource_name = "slash"
@@ -421,7 +584,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/front_arm_extended:visible")
+tracks/0/path = NodePath("Visuals/front_arm_bent:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -445,11 +608,11 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/front_arm_extended:rotation")
+tracks/2/path = NodePath("Visuals/front_arm_bent:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.40000007, 0.6333333, 0.70000005),
+"times": PackedFloat32Array(0, 0.26666668, 0.40000007, 0.6333333, 0.70000005),
 "transitions": PackedFloat32Array(0.5, -2, -2, -2, -2),
 "update": 0,
 "values": [-0.6981317007977318, -4.0945425, -0.705113, -0.705113, 0.0]
@@ -457,33 +620,71 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Visuals/front_arm_extended:position")
+tracks/3/path = NodePath("Visuals/front_arm_bent:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.5333334, 0.70000005),
+"times": PackedFloat32Array(0, 0.26666668, 0.4, 0.5333334, 0.70000005),
 "transitions": PackedFloat32Array(0.5, -2, -2, -2, -2),
 "update": 0,
 "values": [Vector2(-6, -5), Vector2(-7, -2), Vector2(7.9999995, -2), Vector2(5.9999995, -2), Vector2(-6, -5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackBox/slash_1:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackBox/slash_2:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.34728837, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AttackBox/slash_3:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.3640656, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c23ye"]
 _data = {
 &"RESET": SubResource("Animation_w4iam"),
+&"jab": SubResource("Animation_yl1hi"),
 &"slash": SubResource("Animation_df3bg")
 }
 
-[node name="ngarrou" unique_id=729534692 node_paths=PackedStringArray("movement_component", "tracker_component", "animation_component", "jump_detector_component", "jump_component") instance=ExtResource("1_fcrjy")]
+[node name="ngarrou" unique_id=729534692 node_paths=PackedStringArray("movement_component", "tracker_component", "animation_component", "jump_detector_component", "jump_component", "weapon_auto_trigger_component") instance=ExtResource("1_fcrjy")]
 script = ExtResource("2_5dfc5")
 movement_component = NodePath("Components/MovementComponent")
 tracker_component = NodePath("Components/TrackerComponent")
 animation_component = NodePath("Components/AnimationComponent")
 jump_detector_component = NodePath("Components/JumpDetectorComponent")
 jump_component = NodePath("Components/JumpComponent")
+weapon_auto_trigger_component = NodePath("Components/WeaponTriggerComponent")
 queue_free_on_death = true
 
 [node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=1130167078]
-max_health = 200.0
+max_health = 150.0
 knockback_multiplier = 0.3
 
 [node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=275666189 instance=ExtResource("3_gkeh5")]
@@ -498,7 +699,7 @@ stop_tracking_distance = 10.0
 
 [node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=222523302 node_paths=PackedStringArray("sprites", "nodes_to_flip") instance=ExtResource("5_mgyit")]
 sprites = [NodePath("../../Visuals/Sprite"), NodePath("../../Visuals/front_arm_animated"), NodePath("../../Visuals/back_arm_animated")]
-nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Raycasts")]
+nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Raycasts"), NodePath("../../AttackRaycasts"), NodePath("../../AttackBox")]
 
 [node name="JumpDetectorComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="5" unique_id=1174977127 node_paths=PackedStringArray("trigger_raycast", "disable_trigger_raycast") instance=ExtResource("6_k60bk")]
 trigger_raycast = NodePath("../../Raycasts/JumpTrigger")
@@ -506,6 +707,25 @@ disable_trigger_raycast = NodePath("../../Raycasts/NullifyJumpTrigger")
 
 [node name="JumpComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="6" unique_id=466440326 instance=ExtResource("7_w4iam")]
 jump_velocity = -200.0
+
+[node name="WeaponComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="7" unique_id=1035590107 node_paths=PackedStringArray("character_body", "attack_box", "anim_player") instance=ExtResource("8_nhsre")]
+damage = 25.0
+knockback = Vector2(200, -300)
+character_body = NodePath("../..")
+attack_box = NodePath("../../AttackBox")
+anim_player = NodePath("../../FrontArmAttacks")
+
+[node name="AttackCooldownTimer" parent="Components/WeaponComponent" index="0" unique_id=1339807466]
+wait_time = 0.8
+
+[node name="WeaponTriggerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="8" unique_id=1227028261 node_paths=PackedStringArray("target_weapon_component", "raycasts_to_trigger") instance=ExtResource("9_7yy1d")]
+target_weapon_component = NodePath("../WeaponComponent")
+raycasts_to_trigger = {
+NodePath("../../AttackRaycasts/SlashTrigger1"): "slash",
+NodePath("../../AttackRaycasts/SlashTrigger2"): "slash",
+NodePath("../../AttackRaycasts/SlashTrigger3"): "slash",
+NodePath("../../AttackRaycasts/JabTrigger1"): "jab"
+}
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
 sprite_frames = SubResource("SpriteFrames_rgxoq")
@@ -524,18 +744,55 @@ sprite_frames = SubResource("SpriteFrames_ijgl8")
 animation = &"run"
 autoplay = "idle"
 
-[node name="front_arm_extended" type="Sprite2D" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="3" unique_id=1799945966]
+[node name="front_arm_bent" type="Sprite2D" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="3" unique_id=1799945966]
 visible = false
 position = Vector2(-2, -3)
 rotation = -4.0945425
 texture = ExtResource("9_w4iam")
 offset = Vector2(7, 7)
 
+[node name="front_arm_extended" type="Sprite2D" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="4" unique_id=499794080]
+visible = false
+position = Vector2(-6, -5)
+rotation = -0.7853982
+texture = ExtResource("17_yl1hi")
+offset = Vector2(12, 6)
+
 [node name="Collision" parent="." index="3" unique_id=832957629]
+visible = false
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_2mrg4")
 
-[node name="Raycasts" type="Node2D" parent="." index="4" unique_id=1166654145]
+[node name="AttackBox" type="Area2D" parent="." index="4" unique_id=1706979580]
+collision_layer = 0
+collision_mask = 2
+
+[node name="slash_1" type="CollisionShape2D" parent="AttackBox" index="0" unique_id=864063005]
+position = Vector2(2.5, -15)
+shape = SubResource("RectangleShape2D_cgqta")
+disabled = true
+debug_color = Color(0.8646074, 0.0006014419, 0.86547065, 0.41960785)
+
+[node name="jab_1" type="CollisionShape2D" parent="AttackBox" index="1" unique_id=1572416004]
+position = Vector2(16.5, 1.5)
+shape = SubResource("RectangleShape2D_yl1hi")
+disabled = true
+debug_color = Color(0.8646074, 0.0006014419, 0.86547065, 0.41960785)
+
+[node name="slash_2" type="CollisionShape2D" parent="AttackBox" index="2" unique_id=1009398565]
+position = Vector2(17, -9)
+shape = SubResource("RectangleShape2D_hy6xw")
+disabled = true
+debug_color = Color(0.8646074, 0.0006014419, 0.86547065, 0.41960785)
+
+[node name="slash_3" type="CollisionShape2D" parent="AttackBox" index="3" unique_id=883838607]
+position = Vector2(17.5, 8)
+shape = SubResource("RectangleShape2D_s4xrl")
+disabled = true
+debug_color = Color(0.8646074, 0.0006014419, 0.86547065, 0.41960785)
+
+[node name="Raycasts" type="Node2D" parent="." index="5" unique_id=1166654145]
+visible = false
 
 [node name="DropDetector" type="RayCast2D" parent="Raycasts" index="0" unique_id=1304193120]
 position = Vector2(5, 7)
@@ -549,10 +806,35 @@ target_position = Vector2(10, 0)
 position = Vector2(7, -17)
 target_position = Vector2(10, 0)
 
-[node name="HealthBar" parent="." index="5" unique_id=1492475502 node_paths=PackedStringArray("body") instance=ExtResource("6_5dfc5")]
+[node name="AttackRaycasts" type="Node2D" parent="." index="6" unique_id=799421229]
+modulate = Color(1, 1, 0, 1)
+
+[node name="SlashTrigger1" type="RayCast2D" parent="AttackRaycasts" index="0" unique_id=392162747]
+position = Vector2(1, 12)
+target_position = Vector2(20, 0)
+collision_mask = 2
+
+[node name="JabTrigger1" type="RayCast2D" parent="AttackRaycasts" index="1" unique_id=1956004962]
+position = Vector2(-6, 5)
+target_position = Vector2(39, 0)
+collision_mask = 2
+
+[node name="SlashTrigger2" type="RayCast2D" parent="AttackRaycasts" index="2" unique_id=543695246]
+position = Vector2(1, -4)
+target_position = Vector2(24, -14)
+collision_mask = 2
+
+[node name="SlashTrigger3" type="RayCast2D" parent="AttackRaycasts" index="3" unique_id=618158103]
+position = Vector2(1, -4)
+target_position = Vector2(0, -24)
+collision_mask = 2
+
+[node name="HealthBar" parent="." index="7" unique_id=1492475502 node_paths=PackedStringArray("body") instance=ExtResource("6_5dfc5")]
 offset_top = -21.0
 offset_bottom = -19.0
 body = NodePath("..")
 
-[node name="FrontArm" type="AnimationPlayer" parent="." index="6" unique_id=75543409]
+[node name="FrontArmAttacks" type="AnimationPlayer" parent="." index="8" unique_id=75543409]
 libraries/ = SubResource("AnimationLibrary_c23ye")
+
+[editable path="Components/WeaponComponent"]

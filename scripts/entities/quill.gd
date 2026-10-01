@@ -77,7 +77,9 @@ func _physics_process(delta: float) -> void:
 	if !state in [States.WALL, States.BALL]:
 		animation_component.handle_horizontal_flip(input_component.input_horizontal,shield_component.is_blocking)
 		shield_component.handle_block(input_component.get_block_input_held())
-		weapon_component.handle_attack(input_component.get_attack_input(),input_component.get_up_input_held(),input_component.get_down_input_held())
+		
+		var next_attack: String = weapon_component.get_attack_type(input_component.get_up_input_held(),input_component.get_down_input_held())
+		weapon_component.handle_attack(input_component.get_attack_input(),next_attack)
 	
 	if state in [States.IDLE,States.RUN,States.DRIFT]: #State-based animations
 		ball_state_timer.stop()

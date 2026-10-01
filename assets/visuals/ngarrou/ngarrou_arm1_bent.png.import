@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjdi03ea5xg46"
-path="res://.godot/imported/ngarrou_arm1_extended.png-2fa2fa79513310ac2a739954effce4f2.ctex"
+uid="uid://c0f1vb5jseify"
+path="res://.godot/imported/ngarrou_arm1_bent.png-75be9eb36f9d245e02de518be9a8d4ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visuals/ngarrou/ngarrou_arm1_extended.png"
-dest_files=["res://.godot/imported/ngarrou_arm1_extended.png-2fa2fa79513310ac2a739954effce4f2.ctex"]
+source_file="res://assets/visuals/ngarrou/ngarrou_arm1_bent.png"
+dest_files=["res://.godot/imported/ngarrou_arm1_bent.png-75be9eb36f9d245e02de518be9a8d4ae.ctex"]
 
 [params]
 

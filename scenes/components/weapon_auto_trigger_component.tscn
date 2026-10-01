@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dowvkres1w357"]
+
+[ext_resource type="Script" uid="uid://cjy5rydd4pmx5" path="res://scripts/components/weapon_auto_trigger_component.gd" id="1_p41a2"]
+
+[node name="WeaponAutoTriggerComponent" type="Node" unique_id=1227028261]
+script = ExtResource("1_p41a2")
