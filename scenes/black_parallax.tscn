@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://o5htt1c16r1w" path="res://assets/visuals/BlackBackground.png" id="2_2pjpr"]
 
 [node name="BlackParallax" type="Parallax2D" unique_id=1438434454]
-z_index = -5
+z_index = -10
 texture_filter = 1
 scroll_scale = Vector2(-1, -1)
 follow_viewport = false

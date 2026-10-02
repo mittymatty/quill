@@ -24,11 +24,15 @@ var previous_state: States = States.IDLE
 
 func _ready() -> void:
 	health_component.damaged.connect(add_camera_trauma)
+	shield_component.deflected.connect(on_deflect)
 	weapon_component.attack_success.connect(on_attack_success)
 	weapon_component.attack_attempted.connect(on_attack_attempt)
 
 func add_camera_trauma(damage_taken: float) -> void:
 	camera.add_trauma(clampf(damage_taken,0.0,100.0)/50)
+
+func on_deflect (prevented_damage: float) -> void:
+	HitstopManager.hitstop(prevented_damage * 0.025, 0.5)
 
 func on_attack_success (attack_type: String, _damage_dealt: float) -> void:
 	if attack_type == "aerial_sweep" and state == States.FALL:
@@ -38,6 +42,22 @@ func on_attack_success (attack_type: String, _damage_dealt: float) -> void:
 func on_attack_attempt (attack_type: String) -> void:
 	if attack_type == "jab":
 		velocity.x += clampf(velocity.x,0.0,100.0) * 0.5
+
+func get_attack_type(looking_up: bool, looking_down: bool) -> String:
+	if looking_up and !looking_down:
+		return "slash"
+	
+	if looking_down:
+		return "aerial_sweep"
+	
+	return "jab"
+
+func check_state_changed (has_state_changed: bool) -> void:
+	if !has_state_changed: return
+	if print_state:
+		print(States.find_key(state))
+	if state in [States.WALL]:
+		velocity.y *= 0.1
 
 func set_state() -> void:
 	if is_on_floor() and !is_zero_approx(input_component.input_horizontal):
@@ -55,13 +75,6 @@ func set_state() -> void:
 	elif !is_on_floor() and velocity.y >= 0:
 		state = States.FALL
 
-func check_state_changed (has_state_changed: bool) -> void:
-	if !has_state_changed: return
-	if print_state:
-		print(States.find_key(state))
-	if state in [States.WALL]:
-		velocity.y *= 0.1
-
 func _physics_process(delta: float) -> void:
 	previous_state = state
 	set_state()
@@ -76,10 +89,9 @@ func _physics_process(delta: float) -> void:
 	
 	if !state in [States.WALL, States.BALL]:
 		animation_component.handle_horizontal_flip(input_component.input_horizontal,shield_component.is_blocking)
-		shield_component.handle_block(input_component.get_block_input_held())
+		shield_component.handle_block(input_component.get_block_input_held() and shield_component.shield_visuals.visible)
 		
-		var next_attack: String = weapon_component.get_attack_type(input_component.get_up_input_held(),input_component.get_down_input_held())
-		weapon_component.handle_attack(input_component.get_attack_input(),next_attack)
+		weapon_component.handle_attack(input_component.get_attack_input(),get_attack_type(input_component.get_up_input_held(),input_component.get_down_input_held()))
 	
 	if state in [States.IDLE,States.RUN,States.DRIFT]: #State-based animations
 		ball_state_timer.stop()

@@ -42,14 +42,9 @@ func on_attack_box_contact(hit_body: Node2D) -> void:
 		if hit_health_component.health < previous_health: # Make sure the attack actually hurt the target
 			attack_success.emit(current_attack_type, previous_health - hit_health_component.health)
 
-func get_attack_type(looking_up: bool, looking_down: bool) -> String:
-	if looking_up and !looking_down:
-		return "slash"
-	
-	if looking_down:
-		return "aerial_sweep"
-	
-	return "jab"
+func on_attack_animation_ended (_anim_name) -> void:
+	current_attack_type = ""
 
 func _ready() -> void:
 	attack_box.body_entered.connect(on_attack_box_contact)
+	anim_player.animation_finished.connect(on_attack_animation_ended)

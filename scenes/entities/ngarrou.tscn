@@ -370,6 +370,9 @@ size = Vector2(16, 28)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgqta"]
 size = Vector2(21, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lk6cp"]
+size = Vector2(33.5, 10)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yl1hi"]
 size = Vector2(33, 13)
 
@@ -508,6 +511,42 @@ tracks/10/path = NodePath("AttackBox/jab_1:disabled")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Visuals/front_arm_bent:flip_h")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Visuals/front_arm_bent:offset")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, 7)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("AttackBox/upward_slash_1:disabled")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -666,14 +705,140 @@ tracks/6/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_lk6cp"]
+resource_name = "upward_slash"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/front_arm_bent:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8000001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/front_arm_animated:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8000001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/front_arm_bent:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.46666667, 0.70000005),
+"transitions": PackedFloat32Array(0.5, -2, -2, -2),
+"update": 0,
+"values": [-0.6981317007977318, 0.8761552845011532, -4.080579791162743, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/front_arm_bent:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.4, 0.70000005),
+"transitions": PackedFloat32Array(0.5, -2, -2, -2),
+"update": 0,
+"values": [Vector2(-6, -5), Vector2(-7, -2), Vector2(7.9999995, -2), Vector2(-6, -5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackBox/slash_1:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.43333334, 0.56666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackBox/slash_2:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.34728837, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AttackBox/slash_3:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.29739892, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visuals/front_arm_bent:flip_h")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visuals/front_arm_bent:offset")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(7, 7), Vector2(-7, 7), Vector2(7, 7)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AttackBox/upward_slash_1:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.2, 0.33),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c23ye"]
 _data = {
 &"RESET": SubResource("Animation_w4iam"),
 &"jab": SubResource("Animation_yl1hi"),
-&"slash": SubResource("Animation_df3bg")
+&"slash": SubResource("Animation_df3bg"),
+&"upward_slash": SubResource("Animation_lk6cp")
 }
 
 [node name="ngarrou" unique_id=729534692 node_paths=PackedStringArray("movement_component", "tracker_component", "animation_component", "jump_detector_component", "jump_component", "weapon_auto_trigger_component") instance=ExtResource("1_fcrjy")]
+collision_layer = 5
 script = ExtResource("2_5dfc5")
 movement_component = NodePath("Components/MovementComponent")
 tracker_component = NodePath("Components/TrackerComponent")
@@ -696,6 +861,7 @@ ground_decel_speed = 12.0
 tracker = NodePath("../..")
 drop_raycast = NodePath("../../Raycasts/DropDetector")
 stop_tracking_distance = 10.0
+back_up_distance = 35.0
 
 [node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=222523302 node_paths=PackedStringArray("sprites", "nodes_to_flip") instance=ExtResource("5_mgyit")]
 sprites = [NodePath("../../Visuals/Sprite"), NodePath("../../Visuals/front_arm_animated"), NodePath("../../Visuals/back_arm_animated")]
@@ -720,11 +886,13 @@ wait_time = 0.8
 
 [node name="WeaponTriggerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="8" unique_id=1227028261 node_paths=PackedStringArray("target_weapon_component", "raycasts_to_trigger") instance=ExtResource("9_7yy1d")]
 target_weapon_component = NodePath("../WeaponComponent")
+attack_selection_behaviour = 1
 raycasts_to_trigger = {
 NodePath("../../AttackRaycasts/SlashTrigger1"): "slash",
 NodePath("../../AttackRaycasts/SlashTrigger2"): "slash",
-NodePath("../../AttackRaycasts/SlashTrigger3"): "slash",
-NodePath("../../AttackRaycasts/JabTrigger1"): "jab"
+NodePath("../../AttackRaycasts/UpwardSlashTrigger1"): "upward_slash",
+NodePath("../../AttackRaycasts/JabTrigger1"): "jab",
+NodePath("../../AttackRaycasts/UpwardSlashTrigger2"): "upward_slash"
 }
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
@@ -773,19 +941,25 @@ shape = SubResource("RectangleShape2D_cgqta")
 disabled = true
 debug_color = Color(0.8646074, 0.0006014419, 0.86547065, 0.41960785)
 
-[node name="jab_1" type="CollisionShape2D" parent="AttackBox" index="1" unique_id=1572416004]
+[node name="upward_slash_1" type="CollisionShape2D" parent="AttackBox" index="1" unique_id=964650240]
+position = Vector2(6, 21)
+shape = SubResource("RectangleShape2D_lk6cp")
+disabled = true
+debug_color = Color(0.8646074, 0.0006014419, 0.86547065, 0.41960785)
+
+[node name="jab_1" type="CollisionShape2D" parent="AttackBox" index="2" unique_id=1572416004]
 position = Vector2(16.5, 1.5)
 shape = SubResource("RectangleShape2D_yl1hi")
 disabled = true
 debug_color = Color(0.8646074, 0.0006014419, 0.86547065, 0.41960785)
 
-[node name="slash_2" type="CollisionShape2D" parent="AttackBox" index="2" unique_id=1009398565]
+[node name="slash_2" type="CollisionShape2D" parent="AttackBox" index="3" unique_id=1009398565]
 position = Vector2(17, -9)
 shape = SubResource("RectangleShape2D_hy6xw")
 disabled = true
 debug_color = Color(0.8646074, 0.0006014419, 0.86547065, 0.41960785)
 
-[node name="slash_3" type="CollisionShape2D" parent="AttackBox" index="3" unique_id=883838607]
+[node name="slash_3" type="CollisionShape2D" parent="AttackBox" index="4" unique_id=883838607]
 position = Vector2(17.5, 8)
 shape = SubResource("RectangleShape2D_s4xrl")
 disabled = true
@@ -821,12 +995,17 @@ collision_mask = 2
 
 [node name="SlashTrigger2" type="RayCast2D" parent="AttackRaycasts" index="2" unique_id=543695246]
 position = Vector2(1, -4)
-target_position = Vector2(24, -14)
+target_position = Vector2(32, -14)
 collision_mask = 2
 
-[node name="SlashTrigger3" type="RayCast2D" parent="AttackRaycasts" index="3" unique_id=618158103]
+[node name="UpwardSlashTrigger1" type="RayCast2D" parent="AttackRaycasts" index="3" unique_id=618158103]
 position = Vector2(1, -4)
-target_position = Vector2(0, -24)
+target_position = Vector2(-2, -28)
+collision_mask = 2
+
+[node name="UpwardSlashTrigger2" type="RayCast2D" parent="AttackRaycasts" index="4" unique_id=1741685296]
+position = Vector2(1, -4)
+target_position = Vector2(19, -29)
 collision_mask = 2
 
 [node name="HealthBar" parent="." index="7" unique_id=1492475502 node_paths=PackedStringArray("body") instance=ExtResource("6_5dfc5")]

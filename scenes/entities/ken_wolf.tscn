@@ -111,13 +111,15 @@ trigger_raycast = NodePath("../../Raycasts/JumpTrigger")
 jump_velocity = -250.0
 
 [node name="TouchDamagerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="5" unique_id=934853369 node_paths=PackedStringArray("hazard_owner", "attack_box") instance=ExtResource("10_4c8tj")]
-damage = 25.0
+damage = 15.0
 knockback = Vector2(125, -75)
 hazard_owner = NodePath("../..")
 attack_box = NodePath("../../TouchDamageZone")
 
 [node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="6" unique_id=1130167078]
 max_health = 50.0
+knockback_multiplier = null
+invulnerable = null
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
 sprite_frames = SubResource("SpriteFrames_5kcic")

@@ -26,10 +26,9 @@
 [ext_resource type="AudioStream" uid="uid://bvaq1pu5yku0m" path="res://assets/audio/footsteps/03-footstep.ogg" id="20_8bs1s"]
 [ext_resource type="AudioStream" uid="uid://u0lbqwtxl3dd" path="res://assets/audio/blocking/block-02.ogg" id="21_0upei"]
 [ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/health_bar.tscn" id="21_ihrxj"]
-[ext_resource type="PackedScene" uid="uid://cfot0uo34kdkg" path="res://scenes/shake_camera.tscn" id="22_cwran"]
 [ext_resource type="AudioStream" uid="uid://dikrkgc1yd8cx" path="res://assets/audio/blocking/block-03.ogg" id="22_lbqce"]
 [ext_resource type="AudioStream" uid="uid://bb2vjnop402r1" path="res://assets/audio/blocking/block_shatter.ogg" id="23_lbqce"]
-[ext_resource type="AudioStream" uid="uid://cfhii35s1lxiu" path="res://assets/audio/blocking/deflect_01.ogg" id="24_krgoy"]
+[ext_resource type="AudioStream" uid="uid://247up0iiaqaw" path="res://assets/audio/blocking/deflection_ping.ogg" id="27_svjdr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d3t4i"]
 atlas = ExtResource("11_58m20")
@@ -544,11 +543,10 @@ _data = {
 &"raise": SubResource("Animation_0upei")
 }
 
-[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("camera", "input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component", "shield_component", "ball_state_timer", "gravity_component")]
+[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component", "shield_component", "ball_state_timer", "gravity_component")]
 z_index = 2
 collision_layer = 2
 script = ExtResource("1_mtoyt")
-camera = NodePath("ShakeCamera")
 input_component = NodePath("Components/InputComponent")
 movement_component = NodePath("Components/MovementComponent")
 animation_component = NodePath("Components/AnimationComponent")
@@ -559,14 +557,6 @@ health_component = NodePath("Components/HealthComponent")
 shield_component = NodePath("Components/ShieldComponent")
 ball_state_timer = NodePath("Timers/BallStateTimer")
 gravity_component = NodePath("Components/GravityComponent")
-
-[node name="ShakeCamera" parent="." unique_id=872129259 instance=ExtResource("22_cwran")]
-position = Vector2(0, -15)
-zoom = Vector2(4, 4)
-position_smoothing_enabled = true
-position_smoothing_speed = 8.0
-decay = 1.0
-max_offset = Vector2(12, 8)
 
 [node name="Components" type="Node" parent="." unique_id=332795451]
 
@@ -611,10 +601,11 @@ attack_sound = NodePath("../../Sounds/Attack")
 body = NodePath("../..")
 shield_component = NodePath("../ShieldComponent")
 
-[node name="ShieldComponent" parent="Components" unique_id=675793755 node_paths=PackedStringArray("anim_player", "shield_visuals", "raise_sound", "block_sound", "block_break_sound") instance=ExtResource("13_8p8kg")]
+[node name="ShieldComponent" parent="Components" unique_id=675793755 node_paths=PackedStringArray("anim_player", "shield_visuals", "raise_sound", "deflect_sound", "block_sound", "block_break_sound") instance=ExtResource("13_8p8kg")]
 anim_player = NodePath("../../ShieldAnimPlayer")
 shield_visuals = NodePath("../../Visuals/Shield")
 raise_sound = NodePath("../../Sounds/Voice")
+deflect_sound = NodePath("../../Sounds/Deflect")
 block_sound = NodePath("../../Sounds/Block")
 block_break_sound = NodePath("../../Sounds/BlockBreak")
 
@@ -668,7 +659,8 @@ volume_db = 5.0
 pitch_scale = 0.8
 
 [node name="Deflect" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1056904595]
-stream = ExtResource("24_krgoy")
+stream = ExtResource("27_svjdr")
+volume_db = 5.0
 
 [node name="Land" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1781104586]
 stream = ExtResource("12_s12a5")

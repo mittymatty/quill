@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://doyih0op0kutt" path="res://scenes/black_parallax.tscn" id="1_iywne"]
 [ext_resource type="Script" uid="uid://dkrrrcjs4cu6b" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="TileSet" uid="uid://6ykykp1d4nf6" path="res://resources/tile_map.tres" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://b1wymq1ew2p7q" path="res://scripts/shake_camera.gd" id="2_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://gyei4cxi4knh" path="res://scenes/entities/quill.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://dhwv4qkv6l8ce" path="res://scenes/entities/dummy.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://ct6m3qj7461m2" path="res://scenes/entities/ken_wolf.tscn" id="5_iywne"]
@@ -11,6 +12,18 @@
 
 [node name="game" type="Node2D" unique_id=667705833]
 script = ExtResource("1_p57ef")
+
+[node name="ShakeCamera2D" type="Camera2D" parent="." unique_id=264833131 node_paths=PackedStringArray("target")]
+position = Vector2(526, -76)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+script = ExtResource("2_0tnpc")
+target = NodePath("../world/quill")
+decay = 1.0
+max_offset = Vector2(12, 8)
+bonus_offset = Vector2(0, -15)
+metadata/_custom_type_script = "uid://b1wymq1ew2p7q"
 
 [node name="world" type="Node2D" parent="." unique_id=411618213]
 
@@ -22,8 +35,9 @@ tile_set = ExtResource("1_uwrxv")
 
 [node name="projectiles" type="Node2D" parent="world" unique_id=1235922349]
 
-[node name="quill" parent="world" unique_id=591547464 instance=ExtResource("2_yqjtg")]
+[node name="quill" parent="world" unique_id=591547464 node_paths=PackedStringArray("camera") instance=ExtResource("2_yqjtg")]
 position = Vector2(213, 79)
+camera = NodePath("../../ShakeCamera2D")
 
 [node name="dummy" parent="world" unique_id=729534692 instance=ExtResource("4_lbhrr")]
 position = Vector2(293, 58)

@@ -2,5 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cjy5rydd4pmx5" path="res://scripts/components/weapon_auto_trigger_component.gd" id="1_p41a2"]
 
-[node name="WeaponAutoTriggerComponent" type="Node" unique_id=1227028261]
+[node name="WeaponAutoTriggerComponent" type="Node" unique_id=1227028261 node_paths=PackedStringArray("refresh_timer")]
 script = ExtResource("1_p41a2")
+refresh_timer = NodePath("RefreshTimer")
+
+[node name="RefreshTimer" type="Timer" parent="." unique_id=1763765266]
+wait_time = 0.025
+one_shot = true

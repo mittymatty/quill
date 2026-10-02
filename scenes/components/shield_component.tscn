@@ -13,7 +13,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="DeflectTimer" type="Timer" parent="." unique_id=1036570996]
-wait_time = 0.3
+wait_time = 0.2
 one_shot = true
 
 [node name="DeflectDelayer" type="Timer" parent="." unique_id=1304848287]

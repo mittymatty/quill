@@ -1,7 +1,7 @@
 class_name ShieldComponent extends Node
 
 @export_subgroup("Configuration")
-@export var max_hits_deflected: int = 3
+@export var max_hits_blocked: int = 3
 @export var knockback: Vector2 = Vector2(50.0,-50.0)
 
 @export_subgroup("Nodes")
@@ -19,6 +19,9 @@ var remaining_hits: int = 0
 var is_blocking: bool = false
 var has_deflected: bool = false
 
+signal blocked (prevented_damage: float)
+signal deflected (prevented_damage: float)
+
 func _ready() -> void:
 	deflect_delayer.timeout.connect(start_deflect)
 	deflect_timer.timeout.connect(on_deflect_timeout)
@@ -32,10 +35,11 @@ func handle_block(wants_to_block: bool) -> void:
 		end_block()
 
 func begin_block() -> void:
+	has_deflected = false
 	is_blocking = true
 	anim_player.play("raise")
 	deflect_delayer.start()
-	remaining_hits = max_hits_deflected
+	remaining_hits = max_hits_blocked
 	raise_sound.play()
 
 func end_block() -> void: #For the player to trigger
@@ -47,7 +51,6 @@ func end_block() -> void: #For the player to trigger
 	has_deflected = false
 
 func start_deflect() -> void:
-	
 	deflect_timer.start()
 	
 	if shield_visuals:
@@ -64,15 +67,17 @@ func break_block() -> void: #For taking damage when blocking, or running out of 
 	end_block()
 	block_break_sound.play()
 
-func take_hit(hits: int) -> void:
-	#if 
+func take_hit(hits: int, prevented_damage: float) -> void:
+	if get_is_deflecting():
+		has_deflected = true
+		deflected.emit(prevented_damage)
+		deflect_sound.play()
+		return
 	
 	remaining_hits -= hits
+	blocked.emit(prevented_damage)
 	
 	if remaining_hits > 0:
 		block_sound.play()
 	else:
 		break_block()
-
-func deflect() -> void: #To be called externally
-	has_deflected = true
