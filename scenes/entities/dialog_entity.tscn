@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://g4bu5mxq4d57"]
+
+[ext_resource type="PackedScene" uid="uid://be7rmnosx37e5" path="res://scenes/entities/entity_base.tscn" id="1_w1g31"]
+[ext_resource type="PackedScene" uid="uid://5dhsar1c0mf7" path="res://scenes/components/dialog_component.tscn" id="2_qrw7a"]
+[ext_resource type="Script" uid="uid://bsgltod8clspt" path="res://scripts/entities/dialog_entity.gd" id="2_y5fhy"]
+[ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="3_y5fhy"]
+[ext_resource type="PackedScene" uid="uid://ddnaujh8g10oe" path="res://scenes/components/tracker_component.tscn" id="4_0iv8l"]
+
+[node name="DialogEntity" unique_id=1811359124 node_paths=PackedStringArray("dialog_component", "animation_component", "tracker_component") instance=ExtResource("1_w1g31")]
+script = ExtResource("2_y5fhy")
+dialog_component = NodePath("Components/DialogComponent")
+animation_component = NodePath("Components/AnimationComponent")
+tracker_component = NodePath("Components/TrackerComponent")
+
+[node name="DialogComponent" parent="Components" parent_id_path=PackedInt32Array(1217021385) index="1" unique_id=876192846 node_paths=PackedStringArray("dialog_trigger_area") instance=ExtResource("2_qrw7a")]
+dialog_trigger_area = NodePath("../../DialogTriggerArea")
+
+[node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1217021385) index="2" unique_id=222523302 node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("3_y5fhy")]
+nodes_to_flip = [NodePath("../../Visuals")]
+
+[node name="TrackerComponent" parent="Components" parent_id_path=PackedInt32Array(1217021385) index="3" unique_id=1220211303 node_paths=PackedStringArray("tracker") instance=ExtResource("4_0iv8l")]
+tracker = NodePath("../..")
+
+[node name="DialogTriggerArea" type="Area2D" parent="." index="3" unique_id=1871787629]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTriggerArea" index="0" unique_id=439147639]
+position = Vector2(0, -1.5)

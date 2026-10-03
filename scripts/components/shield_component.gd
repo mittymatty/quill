@@ -74,6 +74,7 @@ func take_hit(hits: int, prevented_damage: float) -> void:
 		deflect_sound.play()
 		return
 	
+	has_deflected = false
 	remaining_hits -= hits
 	blocked.emit(prevented_damage)
 	

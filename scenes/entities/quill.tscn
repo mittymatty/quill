@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c17hgniyoisc1" path="res://scenes/components/footsteps_component.tscn" id="7_3yhwj"]
 [ext_resource type="Texture2D" uid="uid://bkys6s818y2p8" path="res://assets/visuals/quill/quill-ball.png" id="11_58m20"]
 [ext_resource type="PackedScene" uid="uid://dnxj761xnjuvc" path="res://scenes/components/weapon_component.tscn" id="11_ql8w0"]
-[ext_resource type="AudioStream" uid="uid://8vs2f80frui6" path="res://resources/alternating_footsteps.tres" id="11_rkik5"]
 [ext_resource type="PackedScene" uid="uid://cjro72gvhep3e" path="res://scenes/components/health_component.tscn" id="12_aeufi"]
 [ext_resource type="Texture2D" uid="uid://drn6ve6yiup2n" path="res://assets/visuals/quill/quill-fall.png" id="12_dg6ou"]
 [ext_resource type="AudioStream" uid="uid://d2c26adid12ej" path="res://assets/audio/footsteps/04-footstep.ogg" id="12_s12a5"]
@@ -24,7 +23,9 @@
 [ext_resource type="Texture2D" uid="uid://dajmhco3ta2se" path="res://assets/visuals/quill/quill-wall.png" id="17_rhy1h"]
 [ext_resource type="AudioStream" uid="uid://dibchowmpkpiu" path="res://assets/audio/attacking/02-butter-knife-slash.ogg" id="17_uqne6"]
 [ext_resource type="AudioStream" uid="uid://bvaq1pu5yku0m" path="res://assets/audio/footsteps/03-footstep.ogg" id="20_8bs1s"]
+[ext_resource type="AudioStream" uid="uid://w6bhjp5v3qs3" path="res://assets/audio/footsteps/01-footstep.ogg" id="20_8iyjr"]
 [ext_resource type="AudioStream" uid="uid://u0lbqwtxl3dd" path="res://assets/audio/blocking/block-02.ogg" id="21_0upei"]
+[ext_resource type="AudioStream" uid="uid://de4vys184d5sl" path="res://assets/audio/footsteps/02-footstep.ogg" id="21_7y5df"]
 [ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/health_bar.tscn" id="21_ihrxj"]
 [ext_resource type="AudioStream" uid="uid://dikrkgc1yd8cx" path="res://assets/audio/blocking/block-03.ogg" id="22_lbqce"]
 [ext_resource type="AudioStream" uid="uid://bb2vjnop402r1" path="res://assets/audio/blocking/block_shatter.ogg" id="23_lbqce"]
@@ -242,6 +243,11 @@ animations = [{
 "name": &"wall",
 "speed": 6.5
 }]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vg10f"]
+streams_count = 2
+stream_0/stream = ExtResource("20_8iyjr")
+stream_1/stream = ExtResource("21_7y5df")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hy6xw"]
 playback_mode = 1
@@ -545,7 +551,7 @@ _data = {
 
 [node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component", "shield_component", "ball_state_timer", "gravity_component")]
 z_index = 2
-collision_layer = 2
+collision_layer = 10
 script = ExtResource("1_mtoyt")
 input_component = NodePath("Components/InputComponent")
 movement_component = NodePath("Components/MovementComponent")
@@ -635,7 +641,7 @@ hframes = 2
 [node name="Sounds" type="Node2D" parent="." unique_id=811975392]
 
 [node name="Footsteps" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1920806529]
-stream = ExtResource("11_rkik5")
+stream = SubResource("AudioStreamRandomizer_vg10f")
 volume_db = 5.0
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="Sounds" unique_id=447194459]

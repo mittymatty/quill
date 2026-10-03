@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://eiicrwohuok5"]
 
-[ext_resource type="PackedScene" uid="uid://be7rmnosx37e5" path="res://scenes/entities/entity_base.tscn" id="1_mevmy"]
+[ext_resource type="PackedScene" uid="uid://g4bu5mxq4d57" path="res://scenes/entities/dialog_entity.tscn" id="1_kv0go"]
+[ext_resource type="Resource" uid="uid://3400j26oa8k2" path="res://resources/test_dialog.tres" id="2_2brny"]
 [ext_resource type="Texture2D" uid="uid://cg0mymbk3f2v6" path="res://assets/visuals/dr_sashiya.png" id="2_kv0go"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2brny"]
@@ -27,7 +28,7 @@ region = Rect2(64, 0, 16, 20)
 atlas = ExtResource("2_kv0go")
 region = Rect2(80, 0, 16, 20)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hy6xw"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2brny"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -53,17 +54,29 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgqta"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv0go"]
+size = Vector2(28, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlge3"]
 size = Vector2(6, 17)
 
-[node name="dr_sashiya" unique_id=1811359124 instance=ExtResource("1_mevmy")]
+[node name="dr_sashiya" unique_id=1811359124 instance=ExtResource("1_kv0go")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" parent_id_path=PackedInt32Array(812096161) index="0" unique_id=1087382360]
-sprite_frames = SubResource("SpriteFrames_hy6xw")
+[node name="DialogComponent" parent="Components" parent_id_path=PackedInt32Array(1217021385) index="1" unique_id=876192846]
+dialog_data = ExtResource("2_2brny")
+
+[node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1217021385) index="2" unique_id=222523302 node_paths=PackedStringArray("nodes_to_flip")]
+nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../DialogTriggerArea")]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Visuals" parent_id_path=PackedInt32Array(812096161) index="0" unique_id=149213830]
+sprite_frames = SubResource("SpriteFrames_2brny")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.094034754
 
-[node name="Collision" parent="." index="3" unique_id=623365970]
+[node name="CollisionShape2D" parent="DialogTriggerArea" parent_id_path=PackedInt32Array(1871787629) index="0" unique_id=439147639]
+position = Vector2(8, -1)
+shape = SubResource("RectangleShape2D_kv0go")
+
+[node name="Collision" parent="." index="4" unique_id=623365970]
 position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_cgqta")
+shape = SubResource("RectangleShape2D_jlge3")
