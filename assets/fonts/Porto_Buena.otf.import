@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://3bhcqn43i0l3"
-path="res://.godot/imported/hobo.ttf-93b7fec3ecfddba81b54b87d1596bc3a.fontdata"
+uid="uid://cr2s3mcqbs0y1"
+path="res://.godot/imported/Porto_Buena.otf-154ed62b3e0a7f8557d147251ee6b9a3.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/hobo.ttf"
-dest_files=["res://.godot/imported/hobo.ttf-93b7fec3ecfddba81b54b87d1596bc3a.fontdata"]
+source_file="res://assets/fonts/Porto_Buena.otf"
+dest_files=["res://.godot/imported/Porto_Buena.otf-154ed62b3e0a7f8557d147251ee6b9a3.fontdata"]
 
 [params]
 

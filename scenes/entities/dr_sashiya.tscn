@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://eiicrwohuok5"]
 
 [ext_resource type="PackedScene" uid="uid://g4bu5mxq4d57" path="res://scenes/entities/dialog_entity.tscn" id="1_kv0go"]
-[ext_resource type="Resource" uid="uid://3400j26oa8k2" path="res://resources/test_dialog.tres" id="2_2brny"]
+[ext_resource type="Resource" uid="uid://3400j26oa8k2" path="res://resources/dialogs/test_dialog/test_dialog_data.tres" id="2_2brny"]
 [ext_resource type="Texture2D" uid="uid://cg0mymbk3f2v6" path="res://assets/visuals/dr_sashiya.png" id="2_kv0go"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2brny"]
@@ -55,7 +55,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kv0go"]
-size = Vector2(28, 23)
+size = Vector2(35, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlge3"]
 size = Vector2(6, 17)
@@ -68,13 +68,16 @@ dialog_data = ExtResource("2_2brny")
 [node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1217021385) index="2" unique_id=222523302 node_paths=PackedStringArray("nodes_to_flip")]
 nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../DialogTriggerArea")]
 
+[node name="TrackerComponent" parent="Components" parent_id_path=PackedInt32Array(1217021385) index="3" unique_id=1220211303]
+start_tracking_distance = 25.0
+
 [node name="Sprite" type="AnimatedSprite2D" parent="Visuals" parent_id_path=PackedInt32Array(812096161) index="0" unique_id=149213830]
 sprite_frames = SubResource("SpriteFrames_2brny")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" parent="DialogTriggerArea" parent_id_path=PackedInt32Array(1871787629) index="0" unique_id=439147639]
-position = Vector2(8, -1)
+position = Vector2(11.5, -1)
 shape = SubResource("RectangleShape2D_kv0go")
 
 [node name="Collision" parent="." index="4" unique_id=623365970]

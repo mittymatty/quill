@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://d152pkxpc7u6w"]
+
+[ext_resource type="Texture2D" uid="uid://duf1ya42l6x2f" path="res://assets/visuals/dialog_box_9patch.png" id="1_s316w"]
+[ext_resource type="FontFile" uid="uid://cr2s3mcqbs0y1" path="res://assets/fonts/Porto_Buena.otf" id="2_3qt37"]
+[ext_resource type="Script" uid="uid://cj51s17o5cmic" path="res://scripts/UI/dialog_choice.gd" id="2_gc7pf"]
+[ext_resource type="Texture2D" uid="uid://d4iy3hd3roa3s" path="res://assets/visuals/rock.png" id="3_gc7pf"]
+
+[node name="DialogChoice" type="NinePatchRect" unique_id=373768870]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_s316w")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+script = ExtResource("2_gc7pf")
+
+[node name="DialogChoiceLabel" type="RichTextLabel" parent="." unique_id=1762567183]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_3qt37")
+text = "Choice
+"
+fit_content = true
+vertical_alignment = 1
+
+[node name="Dot" type="TextureRect" parent="." unique_id=1823299592]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_vertical = 2
+texture = ExtResource("3_gc7pf")

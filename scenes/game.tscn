@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://78uawfejbjh4" path="res://scenes/entities/strong_dummy.tscn" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://ded0n0eoga3gt" path="res://scenes/entities/ngarrou.tscn" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://eiicrwohuok5" path="res://scenes/entities/dr_sashiya.tscn" id="10_vtaks"]
-[ext_resource type="PackedScene" uid="uid://lfi3dwxynhvg" path="res://scenes/UI/game_ui.tscn" id="11_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://lfi3dwxynhvg" path="res://scenes/UI/dialog_ui.tscn" id="11_kvpfn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kvpfn"]
 texture = ExtResource("4_vtaks")
