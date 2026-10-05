@@ -76,26 +76,28 @@ func set_state() -> void:
 		state = States.FALL
 
 func _physics_process(delta: float) -> void:
+	var frozen: bool = PlayerStatus.is_running_dialog
+	
 	previous_state = state
 	set_state()
 	check_state_changed(previous_state != state)
 	
-	jump_component.handle_jump(self,input_component.get_jump_input(),input_component.get_jump_input_held(),input_component.get_jump_input_released(),input_component.input_horizontal)
-	footsteps_component.handle_footstep_sound(self)
 	gravity_component.handle_gravity(self,delta) # Includes WALL gravity change
+	if !frozen:
+		jump_component.handle_jump(self,input_component.get_jump_input(),input_component.get_jump_input_held(),input_component.get_jump_input_released(),input_component.input_horizontal)
 	
+	footsteps_component.handle_footstep_sound(self)
 	if !state in [States.BALL]:
-		movement_component.handle_horizontal_movement(self, input_component.input_horizontal)
+		movement_component.handle_horizontal_movement(self, input_component.input_horizontal if !frozen else 0.0)
 	
-	if !state in [States.WALL, States.BALL]:
+	if !state in [States.WALL, States.BALL] and !frozen:
 		animation_component.handle_horizontal_flip(input_component.input_horizontal,shield_component.is_blocking)
 		shield_component.handle_block(input_component.get_block_input_held() and shield_component.shield_visuals.visible)
-		
 		weapon_component.handle_attack(input_component.get_attack_input(),get_attack_type(input_component.get_up_input_held(),input_component.get_down_input_held()))
 	
 	if state in [States.IDLE,States.RUN,States.DRIFT]: #State-based animations
 		ball_state_timer.stop()
-		animation_component.handle_move_animation(input_component.input_horizontal, velocity.x)
+		animation_component.handle_move_animation(input_component.input_horizontal if !frozen else 0.0, velocity.x)
 	elif state in [States.JUMP,States.FALL]: #If falling or jumping
 		animation_component.handle_jump_animation(jump_component.is_going_up, gravity_component.is_falling)
 	elif state == States.WALL:

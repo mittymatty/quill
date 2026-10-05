@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DialogKeysResource" format=3 uid="uid://cubtq62dmo7wt"]
+
+[ext_resource type="Script" uid="uid://e3hm2fpmp0q1" path="res://scripts/resource_classes/dialog_keys_resource.gd" id="1_d82ju"]
+[ext_resource type="Resource" uid="uid://ca1r37vpahpl7" path="res://resources/dialogs/dr_sashiya/question.tres" id="2_2p6ix"]
+
+[resource]
+script = ExtResource("1_d82ju")
+dialog = "Oh, hey Quill!"
+next_dialog_key = ExtResource("2_2p6ix")
+metadata/_custom_type_script = "uid://e3hm2fpmp0q1"

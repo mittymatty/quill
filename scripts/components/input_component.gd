@@ -5,6 +5,9 @@ var input_horizontal: float = 0.0
 func _process(_delta: float) -> void:
 	input_horizontal = Input.get_axis("move_left","move_right")
 
+func get_interact_input() -> bool:
+	return Input.is_action_just_pressed("interact")
+
 func get_jump_input() -> bool:
 	return Input.is_action_just_pressed("jump")
 
@@ -23,8 +26,14 @@ func get_block_input_held() -> bool:
 func get_direction_lock_held() -> bool:
 	return Input.is_action_pressed("direction_lock")
 
+func get_up_input() -> bool:
+	return Input.is_action_just_pressed("look_up")
+
 func get_up_input_held() -> bool:
 	return Input.is_action_pressed("look_up")
+
+func get_down_input() -> bool:
+	return Input.is_action_just_pressed("look_down")
 
 func get_down_input_held() -> bool:
 	return Input.is_action_pressed("look_down")

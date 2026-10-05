@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://eiicrwohuok5"]
 
 [ext_resource type="PackedScene" uid="uid://g4bu5mxq4d57" path="res://scenes/entities/dialog_entity.tscn" id="1_kv0go"]
-[ext_resource type="Resource" uid="uid://3400j26oa8k2" path="res://resources/dialogs/test_dialog/test_dialog_data.tres" id="2_2brny"]
+[ext_resource type="Resource" uid="uid://byxshxl87lteq" path="res://resources/dialogs/dr_sashiya/dr_sashiya_1.tres" id="2_2brny"]
 [ext_resource type="Texture2D" uid="uid://cg0mymbk3f2v6" path="res://assets/visuals/dr_sashiya.png" id="2_kv0go"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2brny"]
@@ -51,7 +51,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kv0go"]

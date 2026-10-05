@@ -74,6 +74,10 @@ max_offset = Vector2(12, 8)
 bonus_offset = Vector2(0, -15)
 metadata/_custom_type_script = "uid://b1wymq1ew2p7q"
 
+[node name="UI" type="CanvasLayer" parent="." unique_id=603099669]
+
+[node name="DialogUI" parent="UI" unique_id=552836743 instance=ExtResource("11_kvpfn")]
+
 [node name="world" type="Node2D" parent="." unique_id=411618213]
 
 [node name="BlackParallax" parent="world" unique_id=1438434454 instance=ExtResource("1_iywne")]
@@ -85,7 +89,7 @@ tile_set = SubResource("TileSet_dinhu")
 [node name="projectiles" type="Node2D" parent="world" unique_id=1235922349]
 
 [node name="quill" parent="world" unique_id=591547464 node_paths=PackedStringArray("camera") instance=ExtResource("2_yqjtg")]
-position = Vector2(213, 79)
+position = Vector2(206, 92)
 camera = NodePath("../../ShakeCamera2D")
 
 [node name="dummy" parent="world" unique_id=729534692 instance=ExtResource("4_lbhrr")]
@@ -105,16 +109,12 @@ position = Vector2(-117, -9)
 player = NodePath("../quill")
 
 [node name="dummy4" parent="world" unique_id=1003567764 instance=ExtResource("7_u5sy4")]
-position = Vector2(44, 83)
+position = Vector2(51, 83)
 
 [node name="ngarrou" parent="world" unique_id=1177152942 node_paths=PackedStringArray("player") instance=ExtResource("8_gee14")]
 position = Vector2(494, 69)
 player = NodePath("../quill")
 
 [node name="dr_sashiya" parent="world" unique_id=1811359124 node_paths=PackedStringArray("player") instance=ExtResource("10_vtaks")]
-position = Vector2(98, 82)
+position = Vector2(98, 79)
 player = NodePath("../quill")
-
-[node name="UI" type="CanvasLayer" parent="." unique_id=603099669]
-
-[node name="GameUI" parent="UI" unique_id=552836743 instance=ExtResource("11_kvpfn")]

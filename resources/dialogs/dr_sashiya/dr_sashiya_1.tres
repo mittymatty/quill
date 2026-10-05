@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="DialogDataResource" format=3 uid="uid://byxshxl87lteq"]
+
+[ext_resource type="Script" uid="uid://dyo5evh1vtojx" path="res://scripts/resource_classes/dialog_data_resource.gd" id="1_el273"]
+[ext_resource type="Resource" uid="uid://cubtq62dmo7wt" path="res://resources/dialogs/dr_sashiya/intro.tres" id="1_fi2qu"]
+[ext_resource type="Resource" uid="uid://cf345dhq305md" path="res://resources/dialogs/dr_sashiya/repeat_intro.tres" id="2_1ucm6"]
+
+[resource]
+script = ExtResource("1_el273")
+character_name = "Dr. Sashiya"
+initial_key = ExtResource("1_fi2qu")
+repeat_visit_initial_key = ExtResource("2_1ucm6")
+metadata/_custom_type_script = "uid://dyo5evh1vtojx"

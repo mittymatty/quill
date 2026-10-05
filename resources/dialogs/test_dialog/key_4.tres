@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="DialogKeysResource" format=3 uid="uid://rebxbvcvvs6q"]
-
-[ext_resource type="Script" uid="uid://e3hm2fpmp0q1" path="res://scripts/resource_classes/dialog_keys_resource.gd" id="1_omchl"]
-
-[resource]
-script = ExtResource("1_omchl")
-dialog = ":D"
-metadata/_custom_type_script = "uid://e3hm2fpmp0q1"

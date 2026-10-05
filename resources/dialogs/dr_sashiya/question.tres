@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DialogKeysResource" format=3 uid="uid://ca1r37vpahpl7"]
+
+[ext_resource type="Script" uid="uid://e3hm2fpmp0q1" path="res://scripts/resource_classes/dialog_keys_resource.gd" id="1_tklj1"]
+[ext_resource type="Resource" uid="uid://dk8ipaod53ut4" path="res://resources/dialogs/dr_sashiya/yes.tres" id="2_t2eql"]
+[ext_resource type="Resource" uid="uid://dp042o885756i" path="res://resources/dialogs/dr_sashiya/no.tres" id="3_ymj2n"]
+
+[resource]
+script = ExtResource("1_tklj1")
+dialog = "Still getting yourself into trouble, huh?"
+choices = Dictionary[String, ExtResource("1_tklj1")]({
+"No!": ExtResource("3_ymj2n"),
+"Yup!": ExtResource("2_t2eql")
+})
+metadata/_custom_type_script = "uid://e3hm2fpmp0q1"
