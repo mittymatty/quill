@@ -26,12 +26,16 @@ var frozen: bool = false # Used while in dialog
 
 func _ready() -> void:
 	health_component.damaged.connect(add_camera_trauma)
+	health_component.died.connect(on_killed)
 	shield_component.deflected.connect(on_deflect)
 	weapon_component.attack_success.connect(on_attack_success)
 	weapon_component.attack_attempted.connect(on_attack_attempt)
 
 func add_camera_trauma(damage_taken: float) -> void:
 	camera.add_trauma(clampf(damage_taken,0.0,100.0)/50)
+
+func on_killed () -> void:
+	state = States.DEAD
 
 func on_deflect (prevented_damage: float) -> void:
 	HitstopManager.hitstop(prevented_damage * 0.025, 0.5)
@@ -62,6 +66,8 @@ func check_state_changed (has_state_changed: bool) -> void:
 		velocity.y *= 0.1
 
 func set_state() -> void:
+	if state in [States.DEAD]: return #No un-deading!
+	
 	if is_on_floor() and !is_zero_approx(input_component.input_horizontal):
 		state = States.RUN
 	elif is_on_floor() and !is_zero_approx(velocity.x):
@@ -83,7 +89,7 @@ func _physics_process(delta: float) -> void:
 	set_state()
 	check_state_changed(previous_state != state)
 	
-	frozen = PlayerStatus.is_running_dialog
+	frozen = PlayerStatus.is_running_dialog or state in [States.DEAD]
 	
 	gravity_component.handle_gravity(self,delta) # Includes WALL gravity change
 	
@@ -94,7 +100,7 @@ func _physics_process(delta: float) -> void:
 	if !state in [States.BALL]:
 		movement_component.handle_horizontal_movement(self, input_component.input_horizontal if !frozen else 0.0)
 	
-	if !state in [States.WALL, States.BALL] and !frozen:
+	if !state in [States.WALL, States.BALL, States.DEAD] and !frozen:
 		animation_component.handle_horizontal_flip(input_component.input_horizontal,shield_component.is_blocking)
 		shield_component.handle_block(input_component.get_block_input_held() and shield_component.shield_visuals.visible)
 		weapon_component.handle_attack(input_component.get_attack_input(),get_attack_type(input_component.get_up_input_held(),input_component.get_down_input_held()))
@@ -109,5 +115,8 @@ func _physics_process(delta: float) -> void:
 		animation_component.handle_wall_animation()
 	elif state == States.BALL:
 		animation_component.handle_ball_animation()
+	elif state == States.DEAD:
+		animation_component.handle_horizontal_flip(velocity.x,false)
+		animation_component.handle_dead_animation(!is_on_floor(), velocity.y < 0.0)
 	
 	move_and_slide()

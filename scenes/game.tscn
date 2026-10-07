@@ -115,6 +115,8 @@ tile_set = SubResource("TileSet_dinhu")
 
 [node name="quill" parent="world" unique_id=591547464 node_paths=PackedStringArray("camera") instance=ExtResource("2_yqjtg")]
 position = Vector2(206, 92)
+team = null
+print_state = null
 camera = NodePath("../../ShakeCamera2D")
 
 [node name="dummy" parent="world" unique_id=729534692 instance=ExtResource("4_lbhrr")]

@@ -25,11 +25,28 @@ var target_is_below: bool = false
 var is_backing_up: bool = false
 var is_waiting: bool = false
 
+var connection
+
 func _ready() -> void:
 	refresh_timer.timeout.connect(get_axis_to_target)
+	await get_tree().create_timer(0.0).timeout
+	change_target(tracker_target)
+
+func on_target_dead () -> void:
+	tracker_target = null
+
+func change_target (new_target: Node2D) -> void:
+	if tracker_target != new_target:
+		tracker_target = new_target
+	
+	if tracker_target and "health_component" in tracker_target:
+		var HC: HealthComponent = tracker_target.health_component
+		connection = HC.died.connect(on_target_dead)
 
 func get_axis_to_target () -> void:
+	movement_horizontal = 0.0
 	if !tracker_target: return
+	
 	var target_x: float = tracker_target.global_position.x
 	var self_x: float = tracker.global_position.x
 	var target_y: float = tracker_target.global_position.y
@@ -40,7 +57,6 @@ func get_axis_to_target () -> void:
 	target_is_above = target_y <= self_y - above_elevation_difference
 	target_is_below = target_y >= self_y + below_elevation_difference
 	
-	movement_horizontal = 0.0
 	if drop_raycast and !drop_raycast.is_colliding(): return
 	if distance > start_tracking_distance or distance < stop_tracking_distance: return
 	

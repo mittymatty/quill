@@ -50,6 +50,15 @@ func handle_ball_animation() -> void:
 	if !get_current_anim() == "ball":
 			play_anim_on_all_sprites("ball")
 
+func handle_dead_animation(in_air: bool, going_up: bool) -> void:
+	if in_air:
+		if going_up and !get_current_anim() == "dead_air_up":
+			play_anim_on_all_sprites("dead_air_up")
+		elif !going_up and !get_current_anim() == "dead_air_down":
+			play_anim_on_all_sprites("dead_air_down")
+	else:
+		play_anim_on_all_sprites("dead")
+
 func flip_node_and_children(node: Node2D, new_flip: float) -> void: # Used in handle_horizontal_flip
 	node.scale.x = new_flip
 	
