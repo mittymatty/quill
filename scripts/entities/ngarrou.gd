@@ -1,5 +1,8 @@
 extends Enemy
 
+enum BOSS_STATES {MOBILE,IMMOBILE,CHARGE,ATTACK}
+enum BOSS_MOOD {AGGRO,CAUTIOUS}
+
 @export var player: CharacterBody2D
 
 @export_subgroup("Nodes")
@@ -15,7 +18,7 @@ func _ready() -> void:
 	tracker_component.tracker_target = player
 
 func _physics_process(delta: float) -> void:
-	super._physics_process(delta)
+	super._physics_process(delta) #Just gravity
 	movement_component.handle_horizontal_movement(self,tracker_component.movement_horizontal)
 	animation_component.handle_horizontal_flip(tracker_component.movement_horizontal,tracker_component.is_backing_up)
 	animation_component.handle_move_animation(tracker_component.movement_horizontal,velocity.x)

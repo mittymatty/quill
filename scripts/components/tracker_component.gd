@@ -16,12 +16,14 @@ class_name TrackerComponent extends Node
 
 @export_subgroup("Optional Configuration")
 @export var back_up_distance: float = -1.0
+@export var back_up_tolerance_distance: float = 10.0
 
 var movement_horizontal: float = 0.0
 
 var target_is_above: bool = false
 var target_is_below: bool = false
 var is_backing_up: bool = false
+var is_waiting: bool = false
 
 func _ready() -> void:
 	refresh_timer.timeout.connect(get_axis_to_target)
@@ -42,6 +44,8 @@ func get_axis_to_target () -> void:
 	if drop_raycast and !drop_raycast.is_colliding(): return
 	if distance > start_tracking_distance or distance < stop_tracking_distance: return
 	
-	is_backing_up = back_up_distance > 0.0 and distance < back_up_distance
-	
-	movement_horizontal = (1.0 if target_x > self_x else -1.0) * (1.0 if !is_backing_up else -1.0)
+	is_backing_up = back_up_distance >= 0.0 and distance < back_up_distance
+	is_waiting = is_backing_up and distance > back_up_distance and distance < back_up_distance + back_up_tolerance_distance
+	#if is_backing_up:
+		#print(distance < back_up_distance + back_up_tolerance_distance)
+	movement_horizontal = (1.0 if target_x > self_x else -1.0) * (1.0 if !is_backing_up else -1.0) * (1.0 if !is_waiting else 0.0)

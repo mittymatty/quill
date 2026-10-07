@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://da15iegxi8j68"]
+
+[ext_resource type="Script" uid="uid://bf1yjwi2potav" path="res://scripts/UI/vitals_ui.gd" id="1_0gels"]
+[ext_resource type="PackedScene" uid="uid://dtk8ydpl63lob" path="res://scenes/UI/heartbeat.tscn" id="1_4qs6s"]
+[ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/UI/health_bar.tscn" id="2_3g8y1"]
+[ext_resource type="FontFile" uid="uid://cr2s3mcqbs0y1" path="res://assets/fonts/Porto_Buena.otf" id="3_15ram"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xrivr"]
+font = ExtResource("3_15ram")
+
+[node name="VitalsUI" type="Control" unique_id=4244574 node_paths=PackedStringArray("heartbeat", "health_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0gels")
+heartbeat = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Pulse")
+health_bar = NodePath("MarginContainer/VBoxContainer/HealthBar")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=199854684]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1411107419]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 25
+
+[node name="HealthBar" parent="MarginContainer/VBoxContainer" unique_id=1492475502 instance=ExtResource("2_3g8y1")]
+custom_minimum_size = Vector2(225, 15)
+layout_mode = 2
+size_flags_horizontal = 0
+always_visible = true
+destroy_on_death = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1186747547]
+layout_mode = 2
+
+[node name="BPM" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1098933896]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "BPM: 00"
+label_settings = SubResource("LabelSettings_xrivr")
+
+[node name="Pulse" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2016338696 instance=ExtResource("1_4qs6s")]
+position = Vector2(80, 8)
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+width = 3.0
+default_color = Color(0.17837292, 0.5737785, 6.160736e-06, 1)
+spacing = 1.4
+gap_px = 60.0

@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://vij5mfe42ueg" path="res://assets/audio/footsteps/05-footstep.ogg" id="8_xr5up"]
 [ext_resource type="PackedScene" uid="uid://cgou2ah3j44ta" path="res://scenes/components/jump_component.tscn" id="9_hq213"]
 [ext_resource type="PackedScene" uid="uid://ygux51qhvuoa" path="res://scenes/components/touch_damager_component.tscn" id="10_4c8tj"]
-[ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/health_bar.tscn" id="12_hq213"]
+[ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/UI/health_bar.tscn" id="12_hq213"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ka18"]
 atlas = ExtResource("2_5hjy8")

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ddnaujh8g10oe" path="res://scenes/components/tracker_component.tscn" id="4_acj6a"]
 [ext_resource type="Texture2D" uid="uid://df1183jlg050k" path="res://assets/visuals/ngarrou/ngarrou_arm2_idle.png" id="5_5dfc5"]
 [ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="5_mgyit"]
-[ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/health_bar.tscn" id="6_5dfc5"]
+[ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/UI/health_bar.tscn" id="6_5dfc5"]
 [ext_resource type="PackedScene" uid="uid://dolv0ui3en5r3" path="res://scenes/components/jump_detector_component.tscn" id="6_k60bk"]
 [ext_resource type="PackedScene" uid="uid://cgou2ah3j44ta" path="res://scenes/components/jump_component.tscn" id="7_w4iam"]
 [ext_resource type="PackedScene" uid="uid://dnxj761xnjuvc" path="res://scenes/components/weapon_component.tscn" id="8_nhsre"]
@@ -861,7 +861,7 @@ ground_decel_speed = 12.0
 tracker = NodePath("../..")
 drop_raycast = NodePath("../../Raycasts/DropDetector")
 stop_tracking_distance = 10.0
-back_up_distance = 35.0
+back_up_distance = 30.0
 
 [node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=222523302 node_paths=PackedStringArray("sprites", "nodes_to_flip") instance=ExtResource("5_mgyit")]
 sprites = [NodePath("../../Visuals/Sprite"), NodePath("../../Visuals/front_arm_animated"), NodePath("../../Visuals/back_arm_animated")]

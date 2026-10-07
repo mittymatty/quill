@@ -7,9 +7,11 @@ class_name HealthBar extends ProgressBar
 @export_subgroup("Nodes")
 @export var body: PhysicsBody2D
 
-@onready var health_component: HealthComponent = body.health_component
+var health_component: HealthComponent
 
 func _ready() -> void:
+	await get_tree().create_timer(0.0).timeout
+	health_component = body.health_component
 	update_bar()
 	
 	health_component.health_changed.connect(update_bar)

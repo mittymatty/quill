@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dtk8ydpl63lob"]
+
+[ext_resource type="Script" uid="uid://uxk4d2qfjh" path="res://scripts/UI/heartbeat_v2.gd" id="1_aa34i"]
+[ext_resource type="AudioStream" uid="uid://bfrg15le5mwoa" path="res://assets/audio/ecg_beep.ogg" id="2_bvkqn"]
+
+[node name="Pulse" type="Line2D" unique_id=2016338696]
+round_precision = 2
+script = ExtResource("1_aa34i")
+
+[node name="Beep" type="AudioStreamPlayer" parent="." unique_id=706620175]
+stream = ExtResource("2_bvkqn")
+
+[node name="GapTimer" type="Timer" parent="." unique_id=558111866]
+one_shot = true

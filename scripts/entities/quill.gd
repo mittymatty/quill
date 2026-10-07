@@ -4,6 +4,8 @@ enum States {IDLE,RUN,DRIFT,JUMP,FALL,WALL,BALL,DEAD}
 var state: States = States.IDLE
 var previous_state: States = States.IDLE
 
+var frozen: bool = false # Used while in dialog
+
 @export_subgroup("Config")
 @export var team: String = "player"
 @export var print_state: bool = false
@@ -76,13 +78,15 @@ func set_state() -> void:
 		state = States.FALL
 
 func _physics_process(delta: float) -> void:
-	var frozen: bool = PlayerStatus.is_running_dialog
 	
 	previous_state = state
 	set_state()
 	check_state_changed(previous_state != state)
 	
+	frozen = PlayerStatus.is_running_dialog
+	
 	gravity_component.handle_gravity(self,delta) # Includes WALL gravity change
+	
 	if !frozen:
 		jump_component.handle_jump(self,input_component.get_jump_input(),input_component.get_jump_input_held(),input_component.get_jump_input_released(),input_component.input_horizontal)
 	

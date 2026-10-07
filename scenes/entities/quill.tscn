@@ -26,7 +26,6 @@
 [ext_resource type="AudioStream" uid="uid://w6bhjp5v3qs3" path="res://assets/audio/footsteps/01-footstep.ogg" id="20_8iyjr"]
 [ext_resource type="AudioStream" uid="uid://u0lbqwtxl3dd" path="res://assets/audio/blocking/block-02.ogg" id="21_0upei"]
 [ext_resource type="AudioStream" uid="uid://de4vys184d5sl" path="res://assets/audio/footsteps/02-footstep.ogg" id="21_7y5df"]
-[ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/health_bar.tscn" id="21_ihrxj"]
 [ext_resource type="AudioStream" uid="uid://dikrkgc1yd8cx" path="res://assets/audio/blocking/block-03.ogg" id="22_lbqce"]
 [ext_resource type="AudioStream" uid="uid://bb2vjnop402r1" path="res://assets/audio/blocking/block_shatter.ogg" id="23_lbqce"]
 [ext_resource type="AudioStream" uid="uid://247up0iiaqaw" path="res://assets/audio/blocking/deflection_ping.ogg" id="27_svjdr"]
@@ -269,6 +268,9 @@ size = Vector2(21, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgqta"]
 size = Vector2(4, 11)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xrivr"]
+polygon = PackedVector2Array(-2, -3, 3, -3, 3, 1, 2, 8, -1, 8, -2, 1, -2, -3)
 
 [sub_resource type="Animation" id="Animation_uqne6"]
 length = 0.001
@@ -552,6 +554,7 @@ _data = {
 [node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component", "shield_component", "ball_state_timer", "gravity_component")]
 z_index = 2
 collision_layer = 10
+collision_mask = 9
 script = ExtResource("1_mtoyt")
 input_component = NodePath("Components/InputComponent")
 movement_component = NodePath("Components/MovementComponent")
@@ -579,7 +582,7 @@ on_wall_multiplier = 0.1
 
 [node name="AnimationComponent" parent="Components" unique_id=222523302 node_paths=PackedStringArray("sprites", "nodes_to_flip") instance=ExtResource("5_yh003")]
 sprites = [NodePath("../../Visuals/Sprite")]
-nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Attackbox")]
+nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Attackbox"), NodePath("../../LightOccluder2D")]
 can_drift = true
 affect_child_Z_index = true
 
@@ -587,8 +590,8 @@ affect_child_Z_index = true
 jump_sound = NodePath("../../Sounds/Jump")
 land_sound = NodePath("../../Sounds/Land")
 jump_velocity = -275.0
-wall_jump_velocity = -180.0
-wall_jump_pushback = 200.0
+wall_jump_velocity = -175.0
+wall_jump_pushback = 215.0
 jump_release_multiplier = 0.5
 coyote_walking_enabled = false
 
@@ -704,11 +707,11 @@ debug_color = Color(0.7471443, 0.46215004, 3.85046e-07, 0.41960785)
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_cgqta")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1207344192]
+occluder = SubResource("OccluderPolygon2D_xrivr")
+
 [node name="SwordAnimPlayer" type="AnimationPlayer" parent="." unique_id=76498619]
 libraries/ = SubResource("AnimationLibrary_uqne6")
 
 [node name="ShieldAnimPlayer" type="AnimationPlayer" parent="." unique_id=2047458557]
 libraries/ = SubResource("AnimationLibrary_lbqce")
-
-[node name="HealthBar" parent="." unique_id=1492475502 node_paths=PackedStringArray("body") instance=ExtResource("21_ihrxj")]
-body = NodePath("..")
