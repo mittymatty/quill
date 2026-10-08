@@ -33,8 +33,8 @@ func affect_health(affect_by: float) -> void:
 		dead = true
 		died.emit()
 
-func set_health(to_set_to: float) -> void:
-	health = to_set_to
+func set_health(new_health: float) -> void:
+	health = new_health
 	health_changed.emit()
 
 func get_is_affectable() -> bool:

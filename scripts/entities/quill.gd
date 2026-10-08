@@ -1,4 +1,4 @@
-class_name quill extends Entity
+class_name Quill extends Entity
 
 enum States {IDLE,RUN,DRIFT,JUMP,FALL,WALL,BALL,DEAD}
 var state: States = States.IDLE
@@ -19,17 +19,13 @@ var frozen: bool = false # Used while in dialog
 @export var footsteps_component: FootstepsComponent
 @export var weapon_component: WeaponComponent
 @export var health_component: HealthComponent
+@export var energy_component: EnergyComponent
 @export var shield_component: ShieldComponent
 
 @export_subgroup("Timers")
 @export var ball_state_timer: Timer
 
-func _ready() -> void:
-	health_component.damaged.connect(add_camera_trauma)
-	health_component.died.connect(on_killed)
-	shield_component.deflected.connect(on_deflect)
-	weapon_component.attack_success.connect(on_attack_success)
-	weapon_component.attack_attempted.connect(on_attack_attempt)
+#region vitals
 
 func add_camera_trauma(damage_taken: float) -> void:
 	camera.add_trauma(clampf(damage_taken,0.0,100.0)/50)
@@ -39,6 +35,23 @@ func on_killed () -> void:
 
 func on_deflect (prevented_damage: float) -> void:
 	HitstopManager.hitstop(prevented_damage * 0.025, 0.5)
+
+func get_exertion_amount () -> float:
+	if state in [States.IDLE,States.DEAD,States.FALL]:
+		return 0.0
+	elif state in [States.RUN]:
+		return 5.0 #Make dynamic later
+	elif state in [States.DRIFT]:
+		return 3.5 #Make dynamic later
+	elif state in [States.JUMP]:
+		return 8.0
+	elif state in [States.BALL,States.WALL]:
+		return 7.0
+	return 0.0
+
+#endregion
+
+#region attack
 
 func on_attack_success (attack_type: String, _damage_dealt: float) -> void:
 	if attack_type == "aerial_sweep" and state == States.FALL:
@@ -57,6 +70,10 @@ func get_attack_type(looking_up: bool, looking_down: bool) -> String:
 		return "aerial_sweep"
 	
 	return "jab"
+
+#endregion
+
+#region states
 
 func check_state_changed (has_state_changed: bool) -> void:
 	if !has_state_changed: return
@@ -94,6 +111,9 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self,delta) # Includes WALL gravity change
 	
 	if !frozen:
+		energy_component.set_exertion_target(get_exertion_amount())
+		energy_component.handle_drainage(delta)
+		
 		jump_component.handle_jump(self,input_component.get_jump_input(),input_component.get_jump_input_held(),input_component.get_jump_input_released(),input_component.input_horizontal)
 	
 	footsteps_component.handle_footstep_sound(self)
@@ -120,3 +140,12 @@ func _physics_process(delta: float) -> void:
 		animation_component.handle_dead_animation(!is_on_floor(), velocity.y < 0.0)
 	
 	move_and_slide()
+
+#endregion
+
+func _ready() -> void:
+	health_component.damaged.connect(add_camera_trauma)
+	health_component.died.connect(on_killed)
+	shield_component.deflected.connect(on_deflect)
+	weapon_component.attack_success.connect(on_attack_success)
+	weapon_component.attack_attempted.connect(on_attack_attempt)

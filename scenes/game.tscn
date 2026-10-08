@@ -85,10 +85,7 @@ visible = false
 [node name="DialogUI" parent="UI" unique_id=552836743 instance=ExtResource("11_kvpfn")]
 
 [node name="VitalsUI" parent="UI" unique_id=4244574 node_paths=PackedStringArray("player") instance=ExtResource("4_ca42v")]
-player = NodePath("../../world/ngarrou")
-
-[node name="HealthBar" parent="UI/VitalsUI/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(4244574, 1411107419) index="0" unique_id=1492475502 node_paths=PackedStringArray("body")]
-body = NodePath("../../../../../world/quill")
+player = NodePath("../../world/quill")
 
 [node name="world" type="Node2D" parent="." unique_id=411618213]
 
@@ -115,8 +112,6 @@ tile_set = SubResource("TileSet_dinhu")
 
 [node name="quill" parent="world" unique_id=591547464 node_paths=PackedStringArray("camera") instance=ExtResource("2_yqjtg")]
 position = Vector2(206, 92)
-team = null
-print_state = null
 camera = NodePath("../../ShakeCamera2D")
 
 [node name="dummy" parent="world" unique_id=729534692 instance=ExtResource("4_lbhrr")]
@@ -154,5 +149,3 @@ shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 15.0
 texture = ExtResource("13_kvuet")
-
-[editable path="UI/VitalsUI"]
