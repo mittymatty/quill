@@ -43,6 +43,7 @@ func get_is_affectable() -> bool:
 func get_could_block_attack_from(from: Vector2) -> bool:
 	if !shield_component: return false
 	if !shield_component.shield_visuals: return false
+	if from == Vector2.ZERO: return false
 	
 	var shield_x_greater: bool = shield_component.shield_visuals.global_position > body.global_position
 	
@@ -65,7 +66,7 @@ func take_damage(damage: float, knockback: Vector2, from: Vector2) -> void:
 			shield_component.break_block()
 	elif shield_component: #If it gets this far, the shield is blocking
 		shield_component.take_hit(1,damage)
-		if shield_component.remaining_hits <= 0:
+		if shield_component.remaining_hits <= 0 and knockback != Vector2.ZERO:
 			body.velocity = knockback
 			return
 	

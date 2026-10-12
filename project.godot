@@ -25,6 +25,7 @@ Commands="*uid://dy7qvudcb6x52"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

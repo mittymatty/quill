@@ -21,6 +21,7 @@ var frozen: bool = false # Used while in dialog
 @export var health_component: HealthComponent
 @export var energy_component: EnergyComponent
 @export var shield_component: ShieldComponent
+@export var fall_damage_component: FallDamageComponent
 
 @export_subgroup("Timers")
 @export var ball_state_timer: Timer
@@ -28,10 +29,11 @@ var frozen: bool = false # Used while in dialog
 #region vitals
 
 func add_camera_trauma(damage_taken: float) -> void:
-	camera.add_trauma(clampf(damage_taken,0.0,100.0)/50)
+	camera.add_trauma(clampf(damage_taken,0.0,100.0)/40)
 
 func on_killed () -> void:
 	state = States.DEAD
+	energy_component.set_dead()
 
 func on_deflect (prevented_damage: float) -> void:
 	HitstopManager.hitstop(prevented_damage * 0.025, 0.5)
@@ -40,11 +42,11 @@ func get_exertion_amount () -> float:
 	if state in [States.IDLE,States.DEAD,States.FALL]:
 		return 0.0
 	elif state in [States.RUN]:
-		return 5.0 #Make dynamic later
+		return 6.0 #Make dynamic later
 	elif state in [States.DRIFT]:
 		return 3.5 #Make dynamic later
 	elif state in [States.JUMP]:
-		return 8.0
+		return 15.0
 	elif state in [States.BALL,States.WALL]:
 		return 7.0
 	return 0.0
@@ -113,7 +115,7 @@ func _physics_process(delta: float) -> void:
 	if !frozen:
 		energy_component.set_exertion_target(get_exertion_amount())
 		energy_component.handle_drainage(delta)
-		
+		fall_damage_component.handle_fall_damage(velocity.y)
 		jump_component.handle_jump(self,input_component.get_jump_input(),input_component.get_jump_input_held(),input_component.get_jump_input_released(),input_component.input_horizontal)
 	
 	footsteps_component.handle_footstep_sound(self)

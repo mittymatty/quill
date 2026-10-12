@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bkys6s818y2p8" path="res://assets/visuals/quill/quill-ball.png" id="11_58m20"]
 [ext_resource type="PackedScene" uid="uid://rqm50133xipc" path="res://scenes/components/energy_component.tscn" id="11_ghw75"]
 [ext_resource type="PackedScene" uid="uid://dnxj761xnjuvc" path="res://scenes/components/weapon_component.tscn" id="11_ql8w0"]
+[ext_resource type="PackedScene" uid="uid://bu11lf4brqkbv" path="res://scenes/components/fall_damage_component.tscn" id="12_2kxv1"]
 [ext_resource type="PackedScene" uid="uid://cjro72gvhep3e" path="res://scenes/components/health_component.tscn" id="12_aeufi"]
 [ext_resource type="Texture2D" uid="uid://drn6ve6yiup2n" path="res://assets/visuals/quill/quill-fall.png" id="12_dg6ou"]
 [ext_resource type="AudioStream" uid="uid://d2c26adid12ej" path="res://assets/audio/footsteps/04-footstep.ogg" id="12_s12a5"]
@@ -619,7 +620,7 @@ _data = {
 &"raise": SubResource("Animation_0upei")
 }
 
-[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component", "energy_component", "shield_component", "ball_state_timer", "gravity_component")]
+[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component", "energy_component", "shield_component", "fall_damage_component", "ball_state_timer", "gravity_component")]
 z_index = 2
 collision_layer = 10
 collision_mask = 9
@@ -633,6 +634,7 @@ weapon_component = NodePath("Components/WeaponComponent")
 health_component = NodePath("Components/HealthComponent")
 energy_component = NodePath("Components/EnergyComponent")
 shield_component = NodePath("Components/ShieldComponent")
+fall_damage_component = NodePath("Components/FallDamageComponent")
 ball_state_timer = NodePath("Timers/BallStateTimer")
 gravity_component = NodePath("Components/GravityComponent")
 
@@ -690,6 +692,12 @@ block_break_sound = NodePath("../../Sounds/BlockBreak")
 [node name="EnergyComponent" parent="Components" unique_id=1842489824 instance=ExtResource("11_ghw75")]
 starter_energy = 900.0
 resting_bpm = 118.0
+max_bpm = 250.0
+
+[node name="FallDamageComponent" parent="Components" unique_id=2001438267 node_paths=PackedStringArray("health_component") instance=ExtResource("12_2kxv1")]
+health_component = NodePath("../HealthComponent")
+min_damage_velocity = -380.0
+damage_per_1_velocity = 0.05
 
 [node name="Timers" type="Node" parent="." unique_id=1365412292]
 
@@ -701,7 +709,7 @@ one_shot = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Visuals" unique_id=632265729]
 sprite_frames = SubResource("SpriteFrames_cgqta")
-animation = &"dead"
+animation = &"idle"
 
 [node name="Sword" type="Sprite2D" parent="Visuals" unique_id=1298361440]
 z_index = 1
