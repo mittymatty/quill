@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duf1ya42l6x2f"
-path="res://.godot/imported/dialog_box_9patch.png-87c1ced86f8cdab69c0ba820e8eef8ff.ctex"
+uid="uid://ml26gh050gwl"
+path="res://.godot/imported/quill-dead-air-up.png-810653ce7d3ce1a5edc5f27c0c8d3ebe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visuals/dialog_box_9patch.png"
-dest_files=["res://.godot/imported/dialog_box_9patch.png-87c1ced86f8cdab69c0ba820e8eef8ff.ctex"]
+source_file="res://assets/visuals/quill/quill-dead-air-up.png"
+dest_files=["res://.godot/imported/quill-dead-air-up.png-810653ce7d3ce1a5edc5f27c0c8d3ebe.ctex"]
 
 [params]
 

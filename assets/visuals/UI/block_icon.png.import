@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb502tvkb50hk"
-path="res://.godot/imported/qull_dead.png-a01eb22ad038b27bfb5f83d5b2a4db63.ctex"
+uid="uid://dv88n2i0al8tu"
+path="res://.godot/imported/block_icon.png-4ace287e57a8f1e372bf3756668f80fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visuals/quill/qull_dead.png"
-dest_files=["res://.godot/imported/qull_dead.png-a01eb22ad038b27bfb5f83d5b2a4db63.ctex"]
+source_file="res://assets/visuals/UI/block_icon.png"
+dest_files=["res://.godot/imported/block_icon.png-4ace287e57a8f1e372bf3756668f80fc.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ml26gh050gwl"
-path="res://.godot/imported/quill_dead_air_up.png-297c6768c2c8e727e676b221c29e54d2.ctex"
+uid="uid://bw6mee82uofew"
+path="res://.godot/imported/quill-pant.png-2bef590c8e42b1a438f6026cc429452a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visuals/quill/quill_dead_air_up.png"
-dest_files=["res://.godot/imported/quill_dead_air_up.png-297c6768c2c8e727e676b221c29e54d2.ctex"]
+source_file="res://assets/visuals/quill/quill-pant.png"
+dest_files=["res://.godot/imported/quill-pant.png-2bef590c8e42b1a438f6026cc429452a.ctex"]
 
 [params]
 

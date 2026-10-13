@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dhwv4qkv6l8ce" path="res://scenes/entities/dummy.tscn" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://bhr0yxvpsno4y" path="res://assets/visuals/TileSheet.png" id="4_vtaks"]
 [ext_resource type="PackedScene" uid="uid://ct6m3qj7461m2" path="res://scenes/entities/ken_wolf.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://c3dlrtep7nvoj" path="res://scenes/UI/tool_ui.tscn" id="5_rysoc"]
 [ext_resource type="Texture2D" uid="uid://cilqle2d3u02q" path="res://assets/visuals/tent.png" id="5_trtic"]
 [ext_resource type="Texture2D" uid="uid://c15xjgg7lq64h" path="res://assets/visuals/health_sign_1.png" id="6_ir15t"]
 [ext_resource type="PackedScene" uid="uid://78uawfejbjh4" path="res://scenes/entities/strong_dummy.tscn" id="7_u5sy4"]
@@ -85,6 +86,9 @@ visible = false
 [node name="DialogUI" parent="UI" unique_id=552836743 instance=ExtResource("11_kvpfn")]
 
 [node name="VitalsUI" parent="UI" unique_id=4244574 node_paths=PackedStringArray("player") instance=ExtResource("4_ca42v")]
+player = NodePath("../../world/quill")
+
+[node name="ToolUI" parent="UI" unique_id=2134205157 node_paths=PackedStringArray("player") instance=ExtResource("5_rysoc")]
 player = NodePath("../../world/quill")
 
 [node name="world" type="Node2D" parent="." unique_id=411618213]

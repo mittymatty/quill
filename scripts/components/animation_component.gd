@@ -42,13 +42,15 @@ func handle_jump_animation(is_jumping: bool, is_falling: bool) -> void:
 		if !get_current_anim() == "fall":
 			play_anim_on_all_sprites("fall")
 
-func handle_wall_animation() -> void:
-	if !get_current_anim() == "wall":
-			play_anim_on_all_sprites("wall")
+func handle_animation(animation_name: String) -> void: #Use this
+	if !get_current_anim() == animation_name:
+			play_anim_on_all_sprites(animation_name)
 
-func handle_ball_animation() -> void:
-	if !get_current_anim() == "ball":
-			play_anim_on_all_sprites("ball")
+func handle_rest_animation() -> void:
+	if !get_current_anim() == "rest_start" and !get_current_anim() == "rest_loop":
+			play_anim_on_all_sprites("rest_start")
+			await sprites.front().animation_finished
+			play_anim_on_all_sprites("rest_loop")
 
 func handle_dead_animation(in_air: bool, going_up: bool) -> void:
 	if in_air:

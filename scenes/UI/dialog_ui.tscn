@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://lfi3dwxynhvg"]
 
-[ext_resource type="Texture2D" uid="uid://duf1ya42l6x2f" path="res://assets/visuals/dialog_box_9patch.png" id="1_168mx"]
+[ext_resource type="Texture2D" uid="uid://duf1ya42l6x2f" path="res://assets/visuals/UI/dialog_box_9patch.png" id="1_168mx"]
 [ext_resource type="Script" uid="uid://bq4mrw3l8gagn" path="res://scripts/UI/dialog_ui.gd" id="1_xqaim"]
 [ext_resource type="FontFile" uid="uid://cr2s3mcqbs0y1" path="res://assets/fonts/Porto_Buena.otf" id="2_168mx"]
 

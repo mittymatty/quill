@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://clwpig6o5iisg"]
+
+[ext_resource type="Script" uid="uid://bw6li8k0nmj4c" path="res://scripts/components/heart_component.gd" id="1_ty3g4"]
+
+[node name="HeartComponent" type="Node" unique_id=31515595]
+script = ExtResource("1_ty3g4")

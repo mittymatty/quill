@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://d152pkxpc7u6w"]
 
-[ext_resource type="Texture2D" uid="uid://duf1ya42l6x2f" path="res://assets/visuals/dialog_box_9patch.png" id="1_s316w"]
+[ext_resource type="Texture2D" uid="uid://duf1ya42l6x2f" path="res://assets/visuals/UI/dialog_box_9patch.png" id="1_s316w"]
 [ext_resource type="FontFile" uid="uid://cr2s3mcqbs0y1" path="res://assets/fonts/Porto_Buena.otf" id="2_3qt37"]
 [ext_resource type="Script" uid="uid://cj51s17o5cmic" path="res://scripts/UI/dialog_choice.gd" id="2_gc7pf"]
-[ext_resource type="Texture2D" uid="uid://d4iy3hd3roa3s" path="res://assets/visuals/rock.png" id="3_gc7pf"]
+[ext_resource type="Texture2D" uid="uid://d4iy3hd3roa3s" path="res://assets/visuals/UI/blip.png" id="3_gc7pf"]
 
 [node name="DialogChoice" type="NinePatchRect" unique_id=373768870]
 anchors_preset = 14

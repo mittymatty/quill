@@ -850,18 +850,19 @@ queue_free_on_death = true
 
 [node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=1130167078]
 max_health = 150.0
-knockback_multiplier = 0.3
+knockback_multiplier = 0.5
 
 [node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=275666189 instance=ExtResource("3_gkeh5")]
-speed = 25.0
+speed = 30.0
 ground_accel_speed = 3.0
 ground_decel_speed = 12.0
 
 [node name="TrackerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="3" unique_id=1220211303 node_paths=PackedStringArray("tracker", "drop_raycast") instance=ExtResource("4_acj6a")]
 tracker = NodePath("../..")
 drop_raycast = NodePath("../../Raycasts/DropDetector")
+start_tracking_distance = 125.0
 stop_tracking_distance = 10.0
-back_up_distance = 30.0
+back_up_distance = 25.0
 
 [node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=222523302 node_paths=PackedStringArray("sprites", "nodes_to_flip") instance=ExtResource("5_mgyit")]
 sprites = [NodePath("../../Visuals/Sprite"), NodePath("../../Visuals/front_arm_animated"), NodePath("../../Visuals/back_arm_animated")]

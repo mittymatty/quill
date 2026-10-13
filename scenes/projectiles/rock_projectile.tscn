@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8y8wf4xdgl6y"]
 
 [ext_resource type="PackedScene" uid="uid://bb0yvqn7y5cax" path="res://scenes/projectiles/projectile_base.tscn" id="1_kd17d"]
-[ext_resource type="Texture2D" uid="uid://d4iy3hd3roa3s" path="res://assets/visuals/rock.png" id="2_f40gg"]
+[ext_resource type="Texture2D" uid="uid://d4iy3hd3roa3s" path="res://assets/visuals/UI/blip.png" id="2_f40gg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5bkip"]
 radius = 3.0

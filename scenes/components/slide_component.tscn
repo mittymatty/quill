@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ckbnd8ymrdfj3"]
+
+[ext_resource type="Script" uid="uid://c88lwokc4swai" path="res://scripts/components/slide_component.gd" id="1_07atu"]
+
+[node name="SlideComponent" type="Node" unique_id=549073158 node_paths=PackedStringArray("slide_buffer_timer")]
+script = ExtResource("1_07atu")
+slide_buffer_timer = NodePath("SlideBufferTimer")
+
+[node name="SlideBufferTimer" type="Timer" parent="." unique_id=187770637]
+wait_time = 0.15
+one_shot = true

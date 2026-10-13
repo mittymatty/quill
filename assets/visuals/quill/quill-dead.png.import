@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4iy3hd3roa3s"
-path="res://.godot/imported/rock.png-1fe220d45163083bdfab2f8af08aa399.ctex"
+uid="uid://bb502tvkb50hk"
+path="res://.godot/imported/quill-dead.png-68a2566c2184015b3861fe770d40e822.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visuals/rock.png"
-dest_files=["res://.godot/imported/rock.png-1fe220d45163083bdfab2f8af08aa399.ctex"]
+source_file="res://assets/visuals/quill/quill-dead.png"
+dest_files=["res://.godot/imported/quill-dead.png-68a2566c2184015b3861fe770d40e822.ctex"]
 
 [params]
 

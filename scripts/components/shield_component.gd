@@ -21,6 +21,8 @@ var has_deflected: bool = false
 
 signal blocked (prevented_damage: float)
 signal deflected (prevented_damage: float)
+signal raised
+signal lowered
 
 func _ready() -> void:
 	deflect_delayer.timeout.connect(start_deflect)
@@ -38,6 +40,7 @@ func begin_block() -> void:
 	has_deflected = false
 	is_blocking = true
 	anim_player.play("raise")
+	raised.emit()
 	deflect_delayer.start()
 	remaining_hits = max_hits_blocked
 	raise_sound.play()
@@ -47,6 +50,7 @@ func end_block() -> void: #For the player to trigger
 		cooldown_timer.start()
 	
 	anim_player.play_backwards("raise")
+	lowered.emit()
 	is_blocking = false
 	has_deflected = false
 

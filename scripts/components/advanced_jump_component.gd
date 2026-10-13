@@ -7,7 +7,7 @@ class_name AdvancedJumpComponent extends Node
 @export var coyote_timer: Timer
 @export var wall_coyote_timer: Timer
 
-@export_subgroup("Settings")
+@export_subgroup("Configuration")
 @export var jump_velocity: float = -350.0
 @export var wall_jump_velocity: float = -100.0
 @export var wall_jump_pushback: float = 50.0

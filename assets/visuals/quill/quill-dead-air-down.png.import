@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o5htt1c16r1w"
-path="res://.godot/imported/BlackBackground.png-64dae26887ef3e5a6e70f3329a8e62ad.ctex"
+uid="uid://c8eecqttu3qrs"
+path="res://.godot/imported/quill-dead-air-down.png-f05395127de76bfd9c1c4b04a5474f4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visuals/BlackBackground.png"
-dest_files=["res://.godot/imported/BlackBackground.png-64dae26887ef3e5a6e70f3329a8e62ad.ctex"]
+source_file="res://assets/visuals/quill/quill-dead-air-down.png"
+dest_files=["res://.godot/imported/quill-dead-air-down.png-f05395127de76bfd9c1c4b04a5474f4e.ctex"]
 
 [params]
 

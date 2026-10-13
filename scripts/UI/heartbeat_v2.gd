@@ -95,9 +95,6 @@ func set_bpm (new_bpm: float) -> void:
 func set_dead (is_dead: bool) -> void:
 	dead = is_dead
 
-func get_bpm () -> float:
-	return bpm
-
 func set_params(
 	new_spacing: float = spacing,
 	new_speed: float = speed,
