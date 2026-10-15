@@ -17,6 +17,8 @@ extends Control
 @onready var max_bpm: float = heart_component.max_bpm
 @onready var rest_bpm: float = heart_component.resting_bpm
 
+var off_beat: bool = false
+
 func update_exertion () -> void:
 	if !exertion_refresh_rate.is_stopped(): return
 	exertion_refresh_rate.start()
@@ -26,9 +28,18 @@ func play_heartbeat_sound () -> void:
 	var bpm_diff: float = max_bpm - rest_bpm
 	var bpm_over_rest: float = heart_component.bpm - rest_bpm
 	var bpm_percent: float = bpm_over_rest/bpm_diff
-	var bpm_ratio: float = lerpf(bpm_over_rest, bpm_diff,bpm_percent)
+	var added_cam_trauma: float = clampf(bpm_percent,0.0,0.33)
 	
-	heartbeat_sound.volume_db = bpm_ratio * 0.05 if bpm_ratio > 50.0 else -50.0
+	off_beat = !off_beat
+	heartbeat_sound.volume_db = bpm_percent * 0.2 if bpm_percent > 0.35 else -50.0
+	
+	if bpm_percent > 0.50:
+		var flash: Tween = create_tween()
+		flash.tween_property(bpm_label, "modulate", Color("ffffff"), 0.1).from(lerp(Color("ffcc00ff"),Color("ff0000"),bpm_percent))
+	
+	if bpm_percent > 0.75 and off_beat and player.camera.trauma < added_cam_trauma:
+			player.camera.add_trauma(added_cam_trauma)
+	
 	heartbeat_sound.play()
 
 func update_bpm () -> void:

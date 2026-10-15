@@ -41,11 +41,11 @@ func on_deflect (prevented_damage: float) -> void:
 	HitstopManager.hitstop(prevented_damage * 0.025, 0.5)
 
 func get_exertion_amount () -> float:
-	if state in [States.IDLE,States.REST,States.DEAD,States.FALL]:
+	if state in [States.IDLE,States.REST,States.SLIDE,States.DEAD,States.FALL]:
 		return 0.0
 	elif state in [States.RUN]:
 		return 5.0 #Make dynamic later
-	elif state in [States.DRIFT,States.SLIDE]:
+	elif state in [States.DRIFT]:
 		return 3.5 #Make dynamic later
 	elif state in [States.JUMP]:
 		return 20.0
@@ -95,10 +95,10 @@ func set_state() -> void:
 		state = States.RUN
 	elif is_on_floor() and !is_zero_approx(velocity.x):
 		state = States.DRIFT
-	elif is_on_floor() and is_zero_approx(velocity.x) and !input_component.get_down_input_held():
-		state = States.IDLE
-	elif is_on_floor() and is_zero_approx(input_component.input_horizontal):
+	elif is_on_floor() and is_zero_approx(input_component.input_horizontal) and !frozen and input_component.get_down_input_held():
 		state = States.REST
+	elif is_on_floor() and is_zero_approx(velocity.x):
+		state = States.IDLE
 	elif is_on_wall_only() and velocity.y >= 0:
 		state = States.WALL
 	elif !ball_state_timer.is_stopped():

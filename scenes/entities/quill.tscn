@@ -820,8 +820,8 @@ starter_energy = 900.0
 
 [node name="HeartComponent" parent="Components" unique_id=31515595 instance=ExtResource("13_2vqar")]
 resting_bpm = 118.0
-max_bpm = 260.0
-bpm_increase_speed = 1.5
+max_bpm = 255.0
+bpm_increase_speed = 10.0
 resting_bpm_decrease_multiplier = 2.5
 
 [node name="Timers" type="Node" parent="." unique_id=1365412292]
