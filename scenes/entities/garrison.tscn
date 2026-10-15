@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cbe1nuyu0w1r4"]
+
+[ext_resource type="PackedScene" uid="uid://cu0m5demynbe2" path="res://scenes/entities/enemy_base.tscn" id="1_ixwsv"]
+[ext_resource type="Texture2D" uid="uid://bfqvnnu2t0dha" path="res://assets/visuals/garrison/garrison_body_idle.png" id="2_gc0r6"]
+[ext_resource type="Texture2D" uid="uid://4sdgmubrsna3" path="res://assets/visuals/garrison/garrison_axe.png" id="3_1k52w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nme4"]
+atlas = ExtResource("2_gc0r6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkop7"]
+atlas = ExtResource("2_gc0r6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq322"]
+atlas = ExtResource("2_gc0r6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awfev"]
+atlas = ExtResource("2_gc0r6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yxwx"]
+atlas = ExtResource("2_gc0r6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcl7q"]
+atlas = ExtResource("2_gc0r6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7icqn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nme4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkop7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq322")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awfev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yxwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcl7q")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6bmv"]
+radius = 9.0
+height = 22.0
+
+[node name="garrison" unique_id=729534692 instance=ExtResource("1_ixwsv")]
+
+[node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
+sprite_frames = SubResource("SpriteFrames_7icqn")
+autoplay = "default"
+frame_progress = 0.41605586
+
+[node name="Axe" type="Sprite2D" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="1" unique_id=720300293]
+z_index = 1
+position = Vector2(6, -2)
+texture = ExtResource("3_1k52w")
+
+[node name="Collision" parent="." index="3" unique_id=832957629]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_e6bmv")

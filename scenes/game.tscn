@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://lfi3dwxynhvg" path="res://scenes/UI/dialog_ui.tscn" id="11_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://qmglmb5m41nq" path="res://assets/visuals/arch1.png" id="12_dinhu"]
 [ext_resource type="Texture2D" uid="uid://b2bere5u2jeq0" path="res://assets/visuals/point_light_96x.png" id="13_kvuet"]
+[ext_resource type="PackedScene" uid="uid://cbe1nuyu0w1r4" path="res://scenes/entities/garrison.tscn" id="18_ssvqc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kvpfn"]
 texture = ExtResource("4_vtaks")
@@ -153,3 +154,6 @@ shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 15.0
 texture = ExtResource("13_kvuet")
+
+[node name="garrison" parent="world" unique_id=62077163 instance=ExtResource("18_ssvqc")]
+position = Vector2(270, 64)
