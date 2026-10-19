@@ -6,6 +6,7 @@ class_name SlideComponent extends Node
 var is_sliding: bool = false
 var previous_velocity: Vector2 = Vector2.ZERO
 var slide_velocity: Vector2 = Vector2.ZERO
+var has_stopped: bool = false
 
 func begin_slide () -> void:
 	var impact_velo: Vector2 = previous_velocity
@@ -24,11 +25,13 @@ func handle_slide (body: CharacterBody2D, delta: float, want_to_slide: bool,slid
 	if want_to_slide and !body.is_on_floor():
 		slide_buffer_timer.start()
 	
+	has_stopped = abs(body.velocity.x) < 10.0
+	
 	if body.is_on_floor() and !slide_buffer_timer.is_stopped() and slide_held and !is_sliding:
 		begin_slide()
+	elif is_sliding and (has_stopped or !slide_held or !body.is_on_floor):
+		end_slide(body)
 	elif is_sliding and !want_to_slide and slide_held and body.is_on_floor():
 		slide(body,delta)
-	elif is_sliding and (!slide_held or !body.is_on_floor):
-		end_slide(body)
 	else:
 		previous_velocity = body.velocity

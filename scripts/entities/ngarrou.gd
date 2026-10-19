@@ -6,7 +6,6 @@ enum BOSS_MOOD {AGGRO,CAUTIOUS}
 @export var player: CharacterBody2D
 
 @export_subgroup("Nodes")
-@export var movement_component: MovementComponent
 @export var tracker_component: TrackerComponent
 @export var animation_component: AnimationComponent
 @export var jump_detector_component: JumpDetectorComponent

@@ -33,13 +33,13 @@ func play_heartbeat_sound () -> void:
 	off_beat = !off_beat
 	heartbeat_sound.volume_db = bpm_percent * 0.2 if bpm_percent > 0.35 else -50.0
 	
-	if bpm_percent > 0.50:
+	if bpm_percent > 0.65:
 		var flash: Tween = create_tween()
 		flash.tween_property(bpm_label, "modulate", Color("ffffff"), 0.1).from(lerp(Color("ffcc00ff"),Color("ff0000"),bpm_percent))
 	
-	if bpm_percent > 0.75 and off_beat and player.camera.trauma < added_cam_trauma:
+	if bpm_percent > 0.8 and off_beat and player.camera.trauma < added_cam_trauma:
 			player.camera.add_trauma(added_cam_trauma)
-	
+		
 	heartbeat_sound.play()
 
 func update_bpm () -> void:

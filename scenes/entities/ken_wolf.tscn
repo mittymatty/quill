@@ -4,13 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://cycqu4hk0naql" path="res://assets/visuals/ken_wolf.png" id="2_5hjy8"]
 [ext_resource type="Script" uid="uid://cud56gf30nnvj" path="res://scripts/entities/ken_wolf.gd" id="2_xr5up"]
 [ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="5_xr5up"]
-[ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="6_a54c4"]
 [ext_resource type="PackedScene" uid="uid://ddnaujh8g10oe" path="res://scenes/components/tracker_component.tscn" id="8_sychi"]
 [ext_resource type="PackedScene" uid="uid://dolv0ui3en5r3" path="res://scenes/components/jump_detector_component.tscn" id="8_v138m"]
 [ext_resource type="AudioStream" uid="uid://vij5mfe42ueg" path="res://assets/audio/footsteps/05-footstep.ogg" id="8_xr5up"]
 [ext_resource type="PackedScene" uid="uid://cgou2ah3j44ta" path="res://scenes/components/jump_component.tscn" id="9_hq213"]
 [ext_resource type="PackedScene" uid="uid://ygux51qhvuoa" path="res://scenes/components/touch_damager_component.tscn" id="10_4c8tj"]
-[ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/UI/health_bar.tscn" id="12_hq213"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ka18"]
 atlas = ExtResource("2_5hjy8")
@@ -80,9 +78,8 @@ size = Vector2(9, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hy6xw"]
 size = Vector2(7, 11)
 
-[node name="ken_wolf" unique_id=729534692 node_paths=PackedStringArray("movement_component", "animation_component", "tracker_component", "jump_detector_component", "jump_component", "touch_damager_component", "visible_on_screen_enabler_2d") instance=ExtResource("1_q6ihe")]
+[node name="ken_wolf" unique_id=729534692 node_paths=PackedStringArray("animation_component", "tracker_component", "jump_detector_component", "jump_component", "touch_damager_component", "visible_on_screen_enabler_2d") instance=ExtResource("1_q6ihe")]
 script = ExtResource("2_xr5up")
-movement_component = NodePath("Components/MovementComponent")
 animation_component = NodePath("Components/AnimationComponent")
 tracker_component = NodePath("Components/TrackerComponent")
 jump_detector_component = NodePath("Components/JumpDetectorComponent")
@@ -96,30 +93,30 @@ queue_free_on_death = true
 [node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=222523302 node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("5_xr5up")]
 nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Raycasts"), NodePath("../../TouchDamageZone")]
 
-[node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="1" unique_id=275666189 instance=ExtResource("6_a54c4")]
-speed = 20.0
-
-[node name="TrackerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=1220211303 node_paths=PackedStringArray("tracker", "drop_raycast") instance=ExtResource("8_sychi")]
+[node name="TrackerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="1" unique_id=1220211303 node_paths=PackedStringArray("tracker", "drop_raycast") instance=ExtResource("8_sychi")]
 tracker = NodePath("../..")
 drop_raycast = NodePath("../../Raycasts/DropDetect")
 stop_tracking_distance = 5.0
 
-[node name="JumpDetectorComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="3" unique_id=1174977127 node_paths=PackedStringArray("trigger_raycast") instance=ExtResource("8_v138m")]
+[node name="JumpDetectorComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=1174977127 node_paths=PackedStringArray("trigger_raycast") instance=ExtResource("8_v138m")]
 trigger_raycast = NodePath("../../Raycasts/JumpTrigger")
 
-[node name="JumpComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=466440326 instance=ExtResource("9_hq213")]
+[node name="JumpComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="3" unique_id=466440326 instance=ExtResource("9_hq213")]
 jump_velocity = -250.0
 
-[node name="TouchDamagerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="5" unique_id=934853369 node_paths=PackedStringArray("hazard_owner", "attack_box") instance=ExtResource("10_4c8tj")]
+[node name="TouchDamagerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=934853369 node_paths=PackedStringArray("hazard_owner", "attack_box") instance=ExtResource("10_4c8tj")]
 damage = 15.0
 knockback = Vector2(125, -75)
 hazard_owner = NodePath("../..")
 attack_box = NodePath("../../TouchDamageZone")
 
-[node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="6" unique_id=1130167078]
+[node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="5" unique_id=1130167078]
 max_health = 50.0
 knockback_multiplier = null
 invulnerable = null
+
+[node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="7" unique_id=275666189]
+speed = 15.0
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
 sprite_frames = SubResource("SpriteFrames_5kcic")
@@ -144,12 +141,7 @@ position = Vector2(5, 6)
 position = Vector2(0, 4)
 target_position = Vector2(8, 0)
 
-[node name="HealthBar" parent="." index="6" unique_id=1492475502 node_paths=PackedStringArray("body") instance=ExtResource("12_hq213")]
-offset_top = -11.0
-offset_bottom = -9.0
-body = NodePath("..")
-
-[node name="TouchDamageZone" type="Area2D" parent="." index="7" unique_id=1682368582]
+[node name="TouchDamageZone" type="Area2D" parent="." index="6" unique_id=1682368582]
 collision_layer = 0
 collision_mask = 2
 

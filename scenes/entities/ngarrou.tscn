@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://ddnaujh8g10oe" path="res://scenes/components/tracker_component.tscn" id="4_acj6a"]
 [ext_resource type="Texture2D" uid="uid://df1183jlg050k" path="res://assets/visuals/ngarrou/ngarrou_arm2_idle.png" id="5_5dfc5"]
 [ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="5_mgyit"]
-[ext_resource type="PackedScene" uid="uid://cxycyknysydd1" path="res://scenes/UI/health_bar.tscn" id="6_5dfc5"]
 [ext_resource type="PackedScene" uid="uid://dolv0ui3en5r3" path="res://scenes/components/jump_detector_component.tscn" id="6_k60bk"]
 [ext_resource type="PackedScene" uid="uid://cgou2ah3j44ta" path="res://scenes/components/jump_component.tscn" id="7_w4iam"]
 [ext_resource type="PackedScene" uid="uid://dnxj761xnjuvc" path="res://scenes/components/weapon_component.tscn" id="8_nhsre"]
@@ -837,10 +836,9 @@ _data = {
 &"upward_slash": SubResource("Animation_lk6cp")
 }
 
-[node name="ngarrou" unique_id=729534692 node_paths=PackedStringArray("movement_component", "tracker_component", "animation_component", "jump_detector_component", "jump_component", "weapon_auto_trigger_component") instance=ExtResource("1_fcrjy")]
+[node name="ngarrou" unique_id=729534692 node_paths=PackedStringArray("tracker_component", "animation_component", "jump_detector_component", "jump_component", "weapon_auto_trigger_component") instance=ExtResource("1_fcrjy")]
 collision_layer = 12
 script = ExtResource("2_5dfc5")
-movement_component = NodePath("Components/MovementComponent")
 tracker_component = NodePath("Components/TrackerComponent")
 animation_component = NodePath("Components/AnimationComponent")
 jump_detector_component = NodePath("Components/JumpDetectorComponent")
@@ -852,7 +850,7 @@ queue_free_on_death = true
 max_health = 150.0
 knockback_multiplier = 0.5
 
-[node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=275666189 instance=ExtResource("3_gkeh5")]
+[node name="MovementComponent2" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=275666189 instance=ExtResource("3_gkeh5")]
 speed = 30.0
 ground_accel_speed = 3.0
 ground_decel_speed = 12.0
@@ -895,6 +893,10 @@ NodePath("../../AttackRaycasts/UpwardSlashTrigger1"): "upward_slash",
 NodePath("../../AttackRaycasts/JabTrigger1"): "jab",
 NodePath("../../AttackRaycasts/UpwardSlashTrigger2"): "upward_slash"
 }
+
+[node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="9" unique_id=275666189]
+ground_accel_speed = 3.0
+ground_decel_speed = 2.0
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
 sprite_frames = SubResource("SpriteFrames_rgxoq")
@@ -1009,12 +1011,11 @@ position = Vector2(1, -4)
 target_position = Vector2(19, -29)
 collision_mask = 2
 
-[node name="HealthBar" parent="." index="7" unique_id=1492475502 node_paths=PackedStringArray("body") instance=ExtResource("6_5dfc5")]
-offset_top = -21.0
-offset_bottom = -19.0
-body = NodePath("..")
-
-[node name="FrontArmAttacks" type="AnimationPlayer" parent="." index="8" unique_id=75543409]
+[node name="FrontArmAttacks" type="AnimationPlayer" parent="." index="7" unique_id=75543409]
 libraries/ = SubResource("AnimationLibrary_c23ye")
+
+[node name="HealthBar" parent="." index="8" unique_id=1492475502]
+offset_top = -18.0
+offset_bottom = -16.0
 
 [editable path="Components/WeaponComponent"]

@@ -33,6 +33,10 @@ var input_horizontal: float = 0.0 #Set each _physics_process
 func add_camera_trauma(damage_taken: float) -> void:
 	camera.add_trauma(clampf(damage_taken,0.0,100.0)/40)
 
+func on_damaged (damage_taken: float) -> void:
+	add_camera_trauma(damage_taken)
+	HitstopManager.hitstop(damage_taken * 0.005, 0.1)
+
 func on_killed () -> void:
 	state = States.DEAD
 	energy_component.set_dead()
@@ -156,7 +160,7 @@ func _physics_process(delta: float) -> void:
 #endregion
 
 func _ready() -> void:
-	health_component.damaged.connect(add_camera_trauma)
+	health_component.damaged.connect(on_damaged)
 	health_component.died.connect(on_killed)
 	shield_component.deflected.connect(on_deflect)
 	weapon_component.attack_success.connect(on_attack_success)

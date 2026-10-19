@@ -813,6 +813,9 @@ deflect_sound = NodePath("../../Sounds/Deflect")
 block_sound = NodePath("../../Sounds/Block")
 block_break_sound = NodePath("../../Sounds/BlockBreak")
 
+[node name="CooldownTimer" parent="Components/ShieldComponent" index="0" unique_id=1606800018]
+wait_time = 2.0
+
 [node name="EnergyComponent" parent="Components" unique_id=1842489824 instance=ExtResource("11_ghw75")]
 starter_energy = 900.0
 
@@ -821,7 +824,7 @@ starter_energy = 900.0
 [node name="HeartComponent" parent="Components" unique_id=31515595 instance=ExtResource("13_2vqar")]
 resting_bpm = 118.0
 max_bpm = 255.0
-bpm_increase_speed = 10.0
+bpm_increase_speed = 1.5
 resting_bpm_decrease_multiplier = 2.5
 
 [node name="Timers" type="Node" parent="." unique_id=1365412292]
@@ -922,3 +925,5 @@ libraries/ = SubResource("AnimationLibrary_uqne6")
 
 [node name="ShieldAnimPlayer" type="AnimationPlayer" parent="." unique_id=2047458557]
 libraries/ = SubResource("AnimationLibrary_lbqce")
+
+[editable path="Components/ShieldComponent"]

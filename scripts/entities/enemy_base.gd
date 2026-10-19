@@ -5,8 +5,9 @@ var state: States = States.IDLE
 var previous_state: States = States.IDLE
 
 @export var health_component: HealthComponent
+@export var movement_component: MovementComponent
 @export var team: String = "enemy"
-@export var queue_free_on_death: bool
+@export var queue_free_on_death: bool = false
 
 func _ready() -> void:
 	health_component.damaged.connect(damage_flash)
@@ -19,8 +20,12 @@ func damage_flash(_damage_taken: float) -> void:
 	white_flash.tween_property(self,"modulate:v",1,0.1).from(15)
 	red_flash.tween_property(self, "modulate:s", 0, 0.1).from(15)
 
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta) # Gravity
+	movement_component.handle_horizontal_movement(self, 0.0)
+
 func on_health_component_died () -> void:
 	state = States.DEAD
 	if queue_free_on_death:
 		queue_free()
-	#Use super.on_health_component_died() to add more logic afterwards in child scripts
+	#Use super.on_health_component_died() to add more logic in child scripts
