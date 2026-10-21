@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://gkcmi7uprtap"]
+
+[ext_resource type="Script" uid="uid://kfwtje4u6s4i" path="res://scripts/components/boss_attack.gd" id="1_3iadv"]
+
+[node name="BossAttack" type="Node" unique_id=371658564]
+script = ExtResource("1_3iadv")

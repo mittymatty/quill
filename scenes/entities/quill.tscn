@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://gyei4cxi4knh"]
 
 [ext_resource type="Script" uid="uid://cnh10ptl6bij0" path="res://scripts/entities/quill.gd" id="1_mtoyt"]
+[ext_resource type="Script" uid="uid://bwc2rpjs4hne5" path="res://scripts/state_machine/state_machine.gd" id="2_savqt"]
+[ext_resource type="Script" uid="uid://c4th1dyqmrawa" path="res://scripts/states/Idle.gd" id="3_fn1x2"]
 [ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="4_34b6c"]
 [ext_resource type="PackedScene" uid="uid://bmfvsuo8g21cg" path="res://scenes/components/input_component.tscn" id="5_iaavo"]
 [ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="5_yh003"]
@@ -762,6 +764,14 @@ slide_component = NodePath("Components/SlideComponent")
 ball_state_timer = NodePath("Timers/BallStateTimer")
 gravity_component = NodePath("Components/GravityComponent")
 
+[node name="StateMachine" type="Node" parent="." unique_id=572558151]
+script = ExtResource("2_savqt")
+metadata/_custom_type_script = "uid://bwc2rpjs4hne5"
+
+[node name="State" type="Node" parent="StateMachine" unique_id=389875402]
+script = ExtResource("3_fn1x2")
+metadata/_custom_type_script = "uid://cxiups7is4ht3"
+
 [node name="Components" type="Node" parent="." unique_id=332795451]
 
 [node name="MovementComponent" parent="Components" unique_id=275666189 instance=ExtResource("4_34b6c")]
@@ -918,6 +928,7 @@ position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_cgqta")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1207344192]
+visible = false
 occluder = SubResource("OccluderPolygon2D_xrivr")
 
 [node name="SwordAnimPlayer" type="AnimationPlayer" parent="." unique_id=76498619]

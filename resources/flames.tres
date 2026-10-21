@@ -1,0 +1,60 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://dtdpm4mhpewp6"]
+
+[sub_resource type="Curve" id="Curve_u28hv"]
+_data = [Vector2(0, 0.99999994), 0.0, 0.0, 0, 0, Vector2(0.43129772, 0.87378633), 0.0, 0.0, 0, 0, Vector2(0.740458, 0.72815526), 0.0, 0.0, 0, 0, Vector2(1, 0.28155333), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_v7ejp"]
+curve = SubResource("Curve_u28hv")
+
+[sub_resource type="Curve" id="Curve_5eeod"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.53435117, 0.97938144), 0.0, 0.0, 0, 0, Vector2(0.79770994, 0.5051546), 0.0, 0.0, 0, 0, Vector2(1, 0.19587624), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_5eeod"]
+curve = SubResource("Curve_5eeod")
+
+[sub_resource type="Gradient" id="Gradient_67v76"]
+offsets = PackedFloat32Array(0, 0.19915254, 0.43644068, 1)
+colors = PackedColorArray(1, 0.81960785, 0, 1, 1, 0.5372549, 0.2, 1, 0.7882353, 0.050980393, 0.09803922, 1, 0.25552073, 2.047061e-06, 1.0468439e-06, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_84qsg"]
+gradient = SubResource("Gradient_67v76")
+
+[sub_resource type="Curve" id="Curve_aen1m"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7595419, 30.927834), 0.0, 0.0, 0, 0, Vector2(1, 30.927834), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_67v76"]
+curve = SubResource("Curve_aen1m")
+
+[sub_resource type="Curve" id="Curve_84qsg"]
+_data = [Vector2(0, 0.556701), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.5463917), 0.0, 0.0, 0, 0, Vector2(0.50763357, 0.98969066), 0.0, 0.0, 0, 0, Vector2(0.7519084, 0.68041235), 0.0, 0.0, 0, 0, Vector2(1, 0.16494846), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_aen1m"]
+curve = SubResource("Curve_84qsg")
+
+[resource]
+particle_flag_disable_z = true
+particle_flag_inherit_emitter_scale = true
+direction = Vector3(0, -1, 0)
+spread = 20.0
+initial_velocity_min = 15.0
+initial_velocity_max = 55.0
+angular_velocity_min = -30.000015
+angular_velocity_max = 29.999983
+angular_velocity_curve = SubResource("CurveTexture_5eeod")
+orbit_velocity_min = -0.09999991
+orbit_velocity_max = 0.1000001
+gravity = Vector3(0, -20, 0)
+damping_min = 2.0
+damping_max = 3.0000002
+damping_curve = SubResource("CurveTexture_67v76")
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_aen1m")
+color_ramp = SubResource("GradientTexture1D_84qsg")
+alpha_curve = SubResource("CurveTexture_v7ejp")
+turbulence_enabled = true
+turbulence_noise_scale = 4.0

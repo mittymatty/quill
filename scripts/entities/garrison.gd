@@ -1,0 +1,3 @@
+extends Enemy
+
+enum BOSS_STATES {MOBILE,IMMOBILE,CHARGE,ATTACK}

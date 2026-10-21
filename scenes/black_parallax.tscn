@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://doyih0op0kutt"]
 
-[ext_resource type="Script" uid="uid://cxlpr8u8midjr" path="res://scripts/black_parallax.gd" id="1_4gek2"]
-[ext_resource type="Texture2D" uid="uid://o5htt1c16r1w" path="res://assets/visuals/UI/BlackBackground.png" id="2_2pjpr"]
+[ext_resource type="Script" uid="uid://cxlpr8u8midjr" path="res://scripts/UI/black_parallax.gd" id="1_4gek2"]
+[ext_resource type="Texture2D" uid="uid://b1gkond0vv0g0" path="res://assets/visuals/light_circle.png" id="2_4gek2"]
 
 [node name="BlackParallax" type="Parallax2D" unique_id=1438434454]
 z_index = -10
@@ -11,7 +11,7 @@ follow_viewport = false
 script = ExtResource("1_4gek2")
 
 [node name="BlackSprite" type="Sprite2D" parent="." unique_id=1816705102]
-visible = false
+modulate = Color(0, 0, 0, 1)
 scale = Vector2(100, 100)
-texture = ExtResource("2_2pjpr")
+texture = ExtResource("2_4gek2")
 offset = Vector2(6, 3)

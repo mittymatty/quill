@@ -1,0 +1,50 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://5j5uacg21b38"]
+
+[sub_resource type="Curve" id="Curve_4cle0"]
+_data = [Vector2(0, 0.51063824), 0.0, 0.0, 0, 0, Vector2(0.453125, 1), 0.0, 0.0, 0, 0, Vector2(0.7148437, 0.6702127), 0.0, 0.0, 0, 0, Vector2(1, 0.25531912), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_hqulx"]
+curve = SubResource("Curve_4cle0")
+
+[sub_resource type="Gradient" id="Gradient_afywk"]
+offsets = PackedFloat32Array(0, 0.15652174, 0.3652174, 0.5869565, 0.7826087, 1)
+colors = PackedColorArray(0.66656864, 0.6665687, 0.6665685, 1, 0.41981313, 0.41981313, 0.4198131, 1, 0.4236506, 0.42365065, 0.42365053, 1, 0.5869565, 0.5869565, 0.5869565, 1, 0.48570293, 0.48570377, 0.4857033, 1, 0.7792914, 0.7792914, 0.7792913, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yc5t4"]
+gradient = SubResource("Gradient_afywk")
+
+[sub_resource type="Curve" id="Curve_7tbng"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.90234375, 21.276596), 0.0, 0.0, 0, 0, Vector2(1, 72.34042), -145.24825, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_afywk"]
+curve = SubResource("Curve_7tbng")
+
+[sub_resource type="Curve" id="Curve_yc5t4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50781244, 0.98936164), 0.0, 0.0, 0, 0, Vector2(0.7851562, 0.48936164), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7tbng"]
+curve = SubResource("Curve_yc5t4")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.5
+direction = Vector3(0, -1, 0)
+spread = 35.0
+initial_velocity_min = 5.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, -5, 0)
+damping_min = 1.0
+damping_max = 2.0
+damping_curve = SubResource("CurveTexture_afywk")
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_7tbng")
+color_ramp = SubResource("GradientTexture1D_yc5t4")
+alpha_curve = SubResource("CurveTexture_hqulx")
+turbulence_enabled = true
+turbulence_noise_scale = 8.0
+turbulence_noise_speed_random = 0.0

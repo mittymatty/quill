@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://cbe1nuyu0w1r4"]
 
 [ext_resource type="PackedScene" uid="uid://cu0m5demynbe2" path="res://scenes/entities/enemy_base.tscn" id="1_ixwsv"]
+[ext_resource type="Script" uid="uid://d0rtm034udkka" path="res://scripts/entities/garrison.gd" id="2_1k52w"]
 [ext_resource type="Texture2D" uid="uid://bfqvnnu2t0dha" path="res://assets/visuals/garrison/garrison_body_idle.png" id="2_gc0r6"]
 [ext_resource type="Texture2D" uid="uid://4sdgmubrsna3" path="res://assets/visuals/garrison/garrison_axe.png" id="3_1k52w"]
+[ext_resource type="PackedScene" uid="uid://dt45lqcpc34ol" path="res://scenes/components/boss_attacks_component.tscn" id="3_7nme4"]
 [ext_resource type="Texture2D" uid="uid://be6w7kwtgrcwk" path="res://assets/visuals/garrison/garrison_stance_change.png" id="3_gc0r6"]
+[ext_resource type="Script" uid="uid://bh2ferfd88n2q" path="res://scripts/boss_attacks/charge.gd" id="4_xkop7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7nme4"]
 atlas = ExtResource("2_gc0r6")
@@ -154,6 +157,13 @@ radius = 9.0
 height = 22.0
 
 [node name="garrison" unique_id=729534692 instance=ExtResource("1_ixwsv")]
+script = ExtResource("2_1k52w")
+
+[node name="BossAttacksComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="3" unique_id=1476208345 instance=ExtResource("3_7nme4")]
+
+[node name="BossAttack" type="Node" parent="Components/BossAttacksComponent" index="0" unique_id=711789804]
+script = ExtResource("4_xkop7")
+metadata/_custom_type_script = "uid://kfwtje4u6s4i"
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
 sprite_frames = SubResource("SpriteFrames_7icqn")
