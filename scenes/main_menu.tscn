@@ -1,0 +1,280 @@
+[gd_scene format=4 uid="uid://b5v1xwqoidprj"]
+
+[ext_resource type="Script" uid="uid://dinhvj3lhiul7" path="res://scripts/main_menu.gd" id="1_jk1qb"]
+[ext_resource type="AudioStream" uid="uid://mjomy3c87qcy" path="res://assets/audio/music/refracted_light.ogg" id="2_5dd4i"]
+[ext_resource type="PackedScene" uid="uid://bmfvsuo8g21cg" path="res://scenes/components/input_component.tscn" id="2_lgwnu"]
+[ext_resource type="PackedScene" uid="uid://doyih0op0kutt" path="res://scenes/black_parallax.tscn" id="3_lgwnu"]
+[ext_resource type="TileSet" uid="uid://dg5k1xen2fsr4" path="res://resources/tile_set.tres" id="4_flqon"]
+[ext_resource type="PackedScene" uid="uid://bs8hmr4fp8h5v" path="res://scenes/fire.tscn" id="5_rcqid"]
+[ext_resource type="Texture2D" uid="uid://myhg0vcqasnc" path="res://assets/visuals/UI/word_quill.png" id="6_1ajci"]
+[ext_resource type="Texture2D" uid="uid://boej5ifplkpcv" path="res://assets/visuals/UI/word_treason.png" id="7_7b55j"]
+[ext_resource type="Texture2D" uid="uid://dtg2k8c8ei83p" path="res://assets/visuals/weapons/quill's_sword_2.png" id="7_rcqid"]
+[ext_resource type="Texture2D" uid="uid://diqn54xk0bcko" path="res://assets/visuals/UI/word_commits.png" id="8_5pajh"]
+[ext_resource type="Texture2D" uid="uid://dkl8wxd3ip7if" path="res://assets/visuals/quill/quill-sitting.png" id="8_flqon"]
+[ext_resource type="Texture2D" uid="uid://bybs5q1r1gdjb" path="res://assets/visuals/longer_sitting_log.png" id="9_7b55j"]
+[ext_resource type="PackedScene" uid="uid://0482w5a4sgxx" path="res://scenes/UI/sword_button.tscn" id="9_j7ex8"]
+[ext_resource type="Script" uid="uid://bnfwkugwak7ag" path="res://scripts/rand_anim_sprite.gd" id="10_j7ex8"]
+[ext_resource type="Texture2D" uid="uid://de2ii3lmuc482" path="res://assets/visuals/sitting_log.png" id="11_lgwnu"]
+[ext_resource type="Texture2D" uid="uid://b8gwnhpoptwwc" path="res://assets/visuals/the_listener.png" id="14_1ajci"]
+[ext_resource type="Texture2D" uid="uid://daldma4x7bcqg" path="res://assets/visuals/weapons/quill's_sword.png" id="16_5pajh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcqid"]
+atlas = ExtResource("8_flqon")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ajci"]
+atlas = ExtResource("8_flqon")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b55j"]
+atlas = ExtResource("8_flqon")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pajh"]
+atlas = ExtResource("8_flqon")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7ex8"]
+atlas = ExtResource("8_flqon")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqbf7"]
+atlas = ExtResource("8_flqon")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okl0v"]
+atlas = ExtResource("8_flqon")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou6ve"]
+atlas = ExtResource("8_flqon")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flqon"]
+atlas = ExtResource("8_flqon")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8gd2"]
+atlas = ExtResource("8_flqon")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hstxw"]
+atlas = ExtResource("8_flqon")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8egab"]
+atlas = ExtResource("8_flqon")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw5y6"]
+atlas = ExtResource("8_flqon")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svtp6"]
+atlas = ExtResource("8_flqon")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dfpl"]
+atlas = ExtResource("8_flqon")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a8gd2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcqid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ajci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7b55j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pajh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7ex8")
+}],
+"loop": 0,
+"name": &"breath",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqbf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okl0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou6ve")
+}],
+"loop": 0,
+"name": &"check_behind",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flqon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8gd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hstxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8egab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw5y6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svtp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dfpl")
+}],
+"loop": 0,
+"name": &"tail_flop",
+"speed": 8.0
+}]
+
+[node name="MainMenu" type="Node2D" unique_id=2104380537 node_paths=PackedStringArray("input_component")]
+script = ExtResource("1_jk1qb")
+input_component = NodePath("InputComponent")
+
+[node name="InputComponent" parent="." unique_id=2036460052 instance=ExtResource("2_lgwnu")]
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1198278418]
+stream = ExtResource("2_5dd4i")
+autoplay = true
+parameters/looping = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1672810549]
+position = Vector2(575, 322)
+zoom = Vector2(6, 6)
+
+[node name="BlackParallax" parent="." unique_id=1438434454 instance=ExtResource("3_lgwnu")]
+scroll_offset = Vector2(-41, 0)
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=828607895]
+tile_map_data = PackedByteArray("AAAeABYAAAAAAAIAAAAfABYAAAABAAIAAAAgABYAAAACAAIAAAAhABYAAAAAAAIAAAAiABYAAAABAAIAAAAjABYAAAACAAIAAAAkABYAAAAAAAIAAAAlABYAAAABAAIAAAAmABYAAAACAAIAAAAnABYAAAAAAAIAAAAoABYAAAABAAIAAAApABYAAAACAAIAAAAeABcAAAACAAEAAAAeABgAAAAAAAEAAAAeABkAAAAAAAEAAAAeABoAAAAAAAEAAAAeABsAAAAAAAEAAAAfABcAAAAAAAEAAAAfABgAAAAAAAEAAAAfABkAAAAAAAEAAAAfABoAAAAAAAEAAAAfABsAAAAAAAEAAAAgABcAAAAAAAEAAAAgABgAAAAAAAEAAAAgABkAAAAAAAEAAAAgABoAAAAAAAEAAAAgABsAAAAAAAEAAAAhABcAAAAAAAEAAAAhABgAAAABAAEAAAAhABkAAAAAAAEAAAAhABoAAAAAAAEAAAAhABsAAAAAAAEAAAAiABcAAAAAAAEAAAAiABgAAAAAAAEAAAAiABkAAAAAAAEAAAAiABoAAAAAAAEAAAAiABsAAAAAAAEAAAAjABcAAAAAAAEAAAAjABgAAAAAAAEAAAAjABkAAAAAAAEAAAAjABoAAAAAAAEAAAAjABsAAAAAAAEAAAAkABcAAAABAAEAAAAkABgAAAAAAAEAAAAkABkAAAAAAAEAAAAkABoAAAAAAAEAAAAkABsAAAAAAAEAAAAlABcAAAAAAAEAAAAlABgAAAAAAAEAAAAlABkAAAAAAAEAAAAlABoAAAAAAAEAAAAlABsAAAAAAAEAAAAmABcAAAAAAAEAAAAmABgAAAAAAAEAAAAmABkAAAAAAAEAAAAmABoAAAAAAAEAAAAmABsAAAAAAAEAAAAnABcAAAAAAAEAAAAnABgAAAAAAAEAAAAnABkAAAAAAAEAAAAnABoAAAAAAAEAAAAnABsAAAAAAAEAAAAoABcAAAAAAAEAAAAoABgAAAAAAAEAAAAoABkAAAAAAAEAAAAoABoAAAAAAAEAAAAoABsAAAAAAAEAAAApABcAAAADAAEAAAApABgAAAAAAAEAAAApABkAAAAAAAEAAAApABoAAAAAAAEAAAApABsAAAAAAAEAAAAYABcAAAAAAAEAAAAYABgAAAAAAAEAAAAYABkAAAAAAAEAAAAYABoAAAAAAAEAAAAYABsAAAAAAAEAAAAYABwAAAAAAAEAAAAZABcAAAAAAAEAAAAZABgAAAAAAAEAAAAZABkAAAAAAAEAAAAZABoAAAAAAAEAAAAZABsAAAAAAAEAAAAZABwAAAAAAAEAAAAaABcAAAAAAAEAAAAaABgAAAAAAAEAAAAaABkAAAAAAAEAAAAaABoAAAAAAAEAAAAaABsAAAAAAAEAAAAaABwAAAAAAAEAAAAbABcAAAAAAAEAAAAbABgAAAAAAAEAAAAbABkAAAAAAAEAAAAbABoAAAAAAAEAAAAbABsAAAAAAAEAAAAbABwAAAAAAAEAAAAcABcAAAAAAAEAAAAcABgAAAAAAAEAAAAcABkAAAAAAAEAAAAcABoAAAAAAAEAAAAcABsAAAAAAAEAAAAcABwAAAAAAAEAAAAdABcAAAAAAAEAAAAdABgAAAAAAAEAAAAdABkAAAAAAAEAAAAdABoAAAAAAAEAAAAdABsAAAAAAAEAAAAdABwAAAAAAAEAAAAeABwAAAAAAAEAAAAfABwAAAAAAAEAAAAgABwAAAAAAAEAAAAhABwAAAAAAAEAAAAiABwAAAAAAAEAAAAjABwAAAAAAAEAAAAkABwAAAAAAAEAAAAlABwAAAAAAAEAAAAmABwAAAAAAAEAAAAnABwAAAAAAAEAAAAoABwAAAAAAAEAAAApABwAAAAAAAEAAAAqABcAAAAAAAEAAAAqABgAAAAAAAEAAAAqABkAAAAAAAEAAAAqABoAAAAAAAEAAAAqABsAAAAAAAEAAAAqABwAAAAAAAEAAAArABcAAAAAAAEAAAArABgAAAAAAAEAAAArABkAAAACAAEAAAArABoAAAAAAAEAAAArABsAAAAAAAEAAAArABwAAAAAAAEAAAAsABcAAAAAAAEAAAAsABgAAAAAAAEAAAAsABkAAAAAAAEAAAAsABoAAAAAAAEAAAAsABsAAAAAAAEAAAAsABwAAAAAAAEAAAAtABcAAAACAAEAAAAtABgAAAAAAAEAAAAtABkAAAAAAAEAAAAtABoAAAAAAAEAAAAtABsAAAAAAAEAAAAtABwAAAAAAAEAAAAuABcAAAAAAAEAAAAuABgAAAAAAAEAAAAuABkAAAAAAAEAAAAuABoAAAAAAAEAAAAuABsAAAAAAAEAAAAuABwAAAAAAAEAAAAvABcAAAAAAAEAAAAvABgAAAAAAAEAAAAvABkAAAAAAAEAAAAvABoAAAAAAAEAAAAvABsAAAAAAAEAAAAvABwAAAAAAAEAAAAwABcAAAAAAAEAAAAwABgAAAAAAAEAAAAwABkAAAAAAAEAAAAwABoAAAAAAAEAAAAwABsAAAAAAAEAAAAwABwAAAAAAAEAAAAYABYAAAAAAAIAAAAZABYAAAABAAIAAAAaABYAAAACAAIAAAAbABYAAAAAAAIAAAAcABYAAAABAAIAAAAdABYAAAACAAIAAAAqABYAAAAAAAIAAAArABYAAAABAAIAAAAsABYAAAACAAIAAAAtABYAAAAAAAIAAAAuABYAAAABAAIAAAAvABYAAAACAAIAAAAwABYAAAAAAAIAAAA=")
+tile_set = ExtResource("4_flqon")
+
+[node name="Detail" type="TileMapLayer" parent="." unique_id=1310918585]
+tile_map_data = PackedByteArray("AAAYABYAAAAAAAQAAAAZABYAAAABAAQAAAAaABYAAAACAAQAAAAbABYAAAAAAAQAAAAcABYAAAABAAQAAAAdABYAAAACAAQAAAAeABYAAAAAAAQAAAAfABYAAAABAAQAAAAgABYAAAACAAQAAAAhABYAAAAAAAQAAAAiABYAAAABAAQAAAAjABYAAAACAAQAAAAkABYAAAAAAAQAAAAlABYAAAABAAQAAAAmABYAAAACAAQAAAAnABYAAAAAAAQAAAAoABYAAAABAAQAAAApABYAAAACAAQAAAAqABYAAAAAAAQAAAArABYAAAABAAQAAAAsABYAAAACAAQAAAAtABYAAAAAAAQAAAAuABYAAAABAAQAAAAvABYAAAACAAQAAAAwABYAAAAAAAQAAAA=")
+tile_set = ExtResource("4_flqon")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=425060627]
+color = Color(0.37413925, 0.37413928, 0.37413922, 1)
+
+[node name="FirePit" parent="." unique_id=1058423868 instance=ExtResource("5_rcqid")]
+position = Vector2(574, 352)
+
+[node name="Weapon" type="Sprite2D" parent="." unique_id=1149850266]
+z_index = -1
+position = Vector2(536, 348.00003)
+rotation = 2.0693438
+texture = ExtResource("7_rcqid")
+
+[node name="SittingLog" type="Sprite2D" parent="." unique_id=807250648]
+position = Vector2(547, 345)
+texture = ExtResource("11_lgwnu")
+
+[node name="SittingQuill" type="AnimatedSprite2D" parent="." unique_id=1020261044]
+position = Vector2(546, 345)
+sprite_frames = SubResource("SpriteFrames_a8gd2")
+animation = &"breath"
+script = ExtResource("10_j7ex8")
+wait_min_time = 3.0
+wait_max_time = 6.0
+
+[node name="LongSittingLog" type="Sprite2D" parent="." unique_id=1087711826]
+position = Vector2(610, 345)
+texture = ExtResource("9_7b55j")
+
+[node name="Title" type="Node2D" parent="." unique_id=1658640679]
+position = Vector2(531, 290)
+scale = Vector2(0.8, 0.8)
+
+[node name="WordQuill" type="Sprite2D" parent="Title" unique_id=490598058]
+position = Vector2(-31.24997, -14.999985)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_1ajci")
+
+[node name="WordTreason" type="Sprite2D" parent="Title" unique_id=141973430]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(4, 10)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_7b55j")
+
+[node name="WordCommits" type="Sprite2D" parent="Title" unique_id=2072329563]
+position = Vector2(-9.000001, -3)
+rotation = -0.13898213
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("8_5pajh")
+
+[node name="Buttons" type="VBoxContainer" parent="." unique_id=1865174431]
+offset_left = 502.0
+offset_top = 318.0
+offset_right = 821.0
+offset_bottom = 610.0
+scale = Vector2(0.1, 0.1)
+theme_override_constants/separation = 12
+
+[node name="Continue" parent="Buttons" unique_id=2033494471 instance=ExtResource("9_j7ex8")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+text = "CONTINUE"
+alignment = 1
+
+[node name="NewGame" parent="Buttons" unique_id=1858546581 instance=ExtResource("9_j7ex8")]
+layout_mode = 2
+size_flags_vertical = 4
+text = "NEW GAME"
+alignment = 1
+
+[node name="StartOver" parent="Buttons" unique_id=41090496 instance=ExtResource("9_j7ex8")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+text = "START OVER"
+alignment = 1
+
+[node name="Settings" parent="Buttons" unique_id=1866803297 instance=ExtResource("9_j7ex8")]
+layout_mode = 2
+size_flags_vertical = 4
+text = "SETTINGS"
+alignment = 1
+
+[node name="Spacer" type="Panel" parent="Buttons" unique_id=655890479]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Quit" parent="Buttons" unique_id=80329472 instance=ExtResource("9_j7ex8")]
+layout_mode = 2
+size_flags_vertical = 4
+text = "QUIT"
+alignment = 1
+
+[node name="TheListener" type="Sprite2D" parent="." unique_id=1108368065]
+position = Vector2(603, 345)
+texture = ExtResource("14_1ajci")
+hframes = 2
+frame = 1
+
+[node name="TheListener2" type="Sprite2D" parent="." unique_id=173447765]
+position = Vector2(617, 345)
+texture = ExtResource("14_1ajci")
+hframes = 2
+
+[node name="Quill\'sSword" type="Sprite2D" parent="TheListener2" unique_id=1723531472]
+modulate = Color(0.17945549, 6.545782e-06, 0.80894643, 1)
+z_index = -1
+position = Vector2(4, -1)
+rotation = -3.1274009
+texture = ExtResource("16_5pajh")

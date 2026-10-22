@@ -29,6 +29,9 @@ func get_direction_lock_held() -> bool:
 func get_up_input() -> bool:
 	return Input.is_action_just_pressed("look_up")
 
+func get_select_input() -> bool:
+	return Input.is_action_just_pressed("select")
+
 func get_up_input_held() -> bool:
 	return Input.is_action_pressed("look_up")
 

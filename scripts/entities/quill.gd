@@ -112,6 +112,22 @@ func set_state() -> void:
 	elif !is_on_floor() and velocity.y >= 0:
 		state = States.FALL
 
+func state_animations() -> void:
+	if state in [States.IDLE,States.RUN,States.DRIFT]: #State-based animations
+		animation_component.handle_move_animation(input_horizontal, velocity.x)
+	elif state in [States.JUMP,States.FALL]: #If falling or jumping
+		animation_component.handle_jump_animation(jump_component.is_going_up, gravity_component.is_falling)
+	elif state in [States.SLIDE,States.BALL]:
+		animation_component.handle_animation(States.keys()[state].to_lower())
+	elif state == States.WALL:
+		camera.add_trauma(0.02)
+		animation_component.handle_animation("wall")
+	elif state == States.REST:
+		animation_component.handle_rest_animation()
+	elif state == States.DEAD:
+		animation_component.handle_horizontal_flip(velocity.x,false)
+		animation_component.handle_dead_animation(!is_on_floor(), velocity.y < 0.0)
+
 func _physics_process(delta: float) -> void:
 	previous_state = state
 	set_state()
@@ -141,20 +157,8 @@ func _physics_process(delta: float) -> void:
 	
 	if state in [States.IDLE,States.RUN,States.DRIFT]: #State-based animations
 		ball_state_timer.stop()
-		animation_component.handle_move_animation(input_horizontal, velocity.x)
-	elif state in [States.JUMP,States.FALL]: #If falling or jumping
-		animation_component.handle_jump_animation(jump_component.is_going_up, gravity_component.is_falling)
-	elif state in [States.SLIDE,States.BALL]:
-		animation_component.handle_animation(States.keys()[state].to_lower())
-	elif state == States.WALL:
-		camera.add_trauma(0.02)
-		animation_component.handle_animation("wall")
-	elif state == States.REST:
-		animation_component.handle_rest_animation()
-	elif state == States.DEAD:
-		animation_component.handle_horizontal_flip(velocity.x,false)
-		animation_component.handle_dead_animation(!is_on_floor(), velocity.y < 0.0)
 	
+	state_animations()
 	move_and_slide()
 
 #endregion

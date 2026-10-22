@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://dt45lqcpc34ol" path="res://scenes/components/boss_attacks_component.tscn" id="3_7nme4"]
 [ext_resource type="Texture2D" uid="uid://be6w7kwtgrcwk" path="res://assets/visuals/garrison/garrison_stance_change.png" id="3_gc0r6"]
 [ext_resource type="Script" uid="uid://bh2ferfd88n2q" path="res://scripts/boss_attacks/charge.gd" id="4_xkop7"]
+[ext_resource type="PackedScene" uid="uid://dowvkres1w357" path="res://scenes/components/weapon_auto_trigger_component.tscn" id="6_jcl7q"]
+[ext_resource type="PackedScene" uid="uid://dnxj761xnjuvc" path="res://scenes/components/weapon_component.tscn" id="7_3yxwx"]
+[ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="7_xb3mw"]
+[ext_resource type="PackedScene" uid="uid://ddnaujh8g10oe" path="res://scenes/components/tracker_component.tscn" id="8_jcl7q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7nme4"]
 atlas = ExtResource("2_gc0r6")
@@ -156,8 +160,156 @@ animations = [{
 radius = 9.0
 height = 22.0
 
-[node name="garrison" unique_id=729534692 instance=ExtResource("1_ixwsv")]
+[sub_resource type="Animation" id="Animation_xkop7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Axe:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Axe:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attackbox/SlashBox1:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attackbox/SlashBox3:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attackbox/SlashBox2:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_uq322"]
+resource_name = "slash"
+length = 2.4000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Axe:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.67, 1.04, 1.2666667, 1.5, 2.4),
+"transitions": PackedFloat32Array(0.5, 2, 2, -2, -2, 0.5),
+"update": 0,
+"values": [Vector2(0, 4), Vector2(4, -2), Vector2(4, -2), Vector2(-10, 8), Vector2(-10, 8), Vector2(0, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Axe:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.67, 1.04, 1.2666667, 1.6666666, 2.4),
+"transitions": PackedFloat32Array(0.5, 2, 2, -2, -2, 0.5),
+"update": 0,
+"values": [0.0, 1.3089969, 1.3089969, -2.6179938779914944, -2.6179938779914944, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attackbox/SlashBox1:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1163464, 1.2302592),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attackbox/SlashBox3:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.2388027, 1.7514106),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attackbox/SlashBox2:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.1903898, 1.2701287),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_awfev"]
+_data = {
+&"RESET": SubResource("Animation_xkop7"),
+&"slash": SubResource("Animation_uq322")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
+size = Vector2(20, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcl7q"]
+size = Vector2(22, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3mw"]
+size = Vector2(20, 10.5)
+
+[node name="garrison" unique_id=729534692 node_paths=PackedStringArray("tracker_component", "animation_component", "weapon_auto_trigger_component") instance=ExtResource("1_ixwsv")]
 script = ExtResource("2_1k52w")
+tracker_component = NodePath("Components/TrackerComponent")
+animation_component = NodePath("Components/AnimationComponent")
+weapon_auto_trigger_component = NodePath("Components/WeaponAutoTriggerComponent")
+
+[node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=1130167078]
+knockback_multiplier = 0.75
 
 [node name="BossAttacksComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="3" unique_id=1476208345 instance=ExtResource("3_7nme4")]
 
@@ -165,22 +317,80 @@ script = ExtResource("2_1k52w")
 script = ExtResource("4_xkop7")
 metadata/_custom_type_script = "uid://kfwtje4u6s4i"
 
+[node name="WeaponAutoTriggerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=1227028261 node_paths=PackedStringArray("target_weapon_component", "raycasts_to_trigger") instance=ExtResource("6_jcl7q")]
+target_weapon_component = NodePath("../WeaponComponent")
+raycasts_to_trigger = {
+NodePath("../../Raycasts/Slash1"): "slash",
+NodePath("../../Raycasts/Slash2"): "slash",
+NodePath("../../Raycasts/Slash3"): "slash"
+}
+
+[node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="5" unique_id=222523302 node_paths=PackedStringArray("sprites", "nodes_to_flip") instance=ExtResource("7_xb3mw")]
+sprites = [NodePath("../../Visuals/Sprite")]
+nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Raycasts")]
+
+[node name="WeaponComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="6" unique_id=1035590107 node_paths=PackedStringArray("character_body", "attack_box", "anim_player") instance=ExtResource("7_3yxwx")]
+damage = 20.0
+knockback = Vector2(150, -25)
+character_body = NodePath("../..")
+attack_box = NodePath("../../Attackbox")
+anim_player = NodePath("../../AxeAnims")
+
+[node name="TrackerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="7" unique_id=1220211303 node_paths=PackedStringArray("tracker") instance=ExtResource("8_jcl7q")]
+tracker = NodePath("../..")
+
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
 sprite_frames = SubResource("SpriteFrames_7icqn")
-animation = &"tread_ground"
 autoplay = "default"
-frame_progress = 0.836437
 
 [node name="Axe" type="Sprite2D" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="1" unique_id=720300293]
 z_index = 1
-position = Vector2(6, -2)
+position = Vector2(0, 4)
 texture = ExtResource("3_1k52w")
+offset = Vector2(5, -6)
 
-[node name="Collision" parent="." index="3" unique_id=832957629]
-visible = false
+[node name="Raycasts" type="Node2D" parent="." index="3" unique_id=241194660]
+
+[node name="Slash1" type="RayCast2D" parent="Raycasts" index="0" unique_id=381000712]
+target_position = Vector2(-35, 0)
+collision_mask = 2
+
+[node name="Slash2" type="RayCast2D" parent="Raycasts" index="1" unique_id=378278274]
+position = Vector2(0, 11)
+target_position = Vector2(-35, 0)
+collision_mask = 2
+
+[node name="Slash3" type="RayCast2D" parent="Raycasts" index="2" unique_id=1380873661]
+position = Vector2(0, 5)
+target_position = Vector2(-35, 0)
+collision_mask = 2
+
+[node name="Collision" parent="." index="4" unique_id=832957629]
 position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_e6bmv")
 
-[node name="HealthBar" parent="." index="4" unique_id=1492475502]
+[node name="HealthBar" parent="." index="5" unique_id=1492475502]
 offset_top = -12.0
 offset_bottom = -10.0
+
+[node name="AxeAnims" type="AnimationPlayer" parent="." index="6" unique_id=1240399547]
+libraries/ = SubResource("AnimationLibrary_awfev")
+
+[node name="Attackbox" type="Area2D" parent="." index="7" unique_id=760676850]
+collision_layer = 0
+collision_mask = 2
+
+[node name="SlashBox3" type="CollisionShape2D" parent="Attackbox" index="0" unique_id=1301372984]
+position = Vector2(-20, 11)
+shape = SubResource("RectangleShape2D_xrivr")
+disabled = true
+
+[node name="SlashBox2" type="CollisionShape2D" parent="Attackbox" index="1" unique_id=1433417218]
+position = Vector2(-14, -3)
+shape = SubResource("RectangleShape2D_jcl7q")
+disabled = true
+
+[node name="SlashBox1" type="CollisionShape2D" parent="Attackbox" index="2" unique_id=1160611786]
+position = Vector2(1, -9.75)
+shape = SubResource("RectangleShape2D_xb3mw")
+disabled = true

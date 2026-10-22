@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://doyih0op0kutt" path="res://scenes/black_parallax.tscn" id="1_iywne"]
 [ext_resource type="Script" uid="uid://dkrrrcjs4cu6b" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="Script" uid="uid://b1wymq1ew2p7q" path="res://scripts/shake_camera.gd" id="2_0tnpc"]
+[ext_resource type="AudioStream" uid="uid://fwutdcyku0ib" path="res://assets/audio/music/the_journey_begins.ogg" id="2_264po"]
 [ext_resource type="PackedScene" uid="uid://gyei4cxi4knh" path="res://scenes/entities/quill.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://da15iegxi8j68" path="res://scenes/UI/vitals_ui.tscn" id="4_ca42v"]
 [ext_resource type="PackedScene" uid="uid://dhwv4qkv6l8ce" path="res://scenes/entities/dummy.tscn" id="4_lbhrr"]
@@ -21,6 +22,12 @@
 
 [node name="game" type="Node2D" unique_id=667705833]
 script = ExtResource("1_p57ef")
+
+[node name="TheJourneyBegins" type="AudioStreamPlayer" parent="." unique_id=1079148262]
+stream = ExtResource("2_264po")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true
 
 [node name="ShakeCamera2D" type="Camera2D" parent="." unique_id=264833131 node_paths=PackedStringArray("target")]
 position = Vector2(526, -76)

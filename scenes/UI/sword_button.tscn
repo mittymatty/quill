@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://0482w5a4sgxx"]
+
+[ext_resource type="FontFile" uid="uid://cr2s3mcqbs0y1" path="res://assets/fonts/Porto_Buena.otf" id="1_lodji"]
+[ext_resource type="Script" uid="uid://bt8t0mpbm5ikl" path="res://scripts/UI/sword_button.gd" id="2_bts1h"]
+[ext_resource type="Texture2D" uid="uid://di2876s7d6lq1" path="res://assets/visuals/UI/pointer_sword.png" id="2_h06yv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mf7fl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d6l81"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a1wsg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i7p8e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sfthw"]
+
+[sub_resource type="Animation" id="Animation_h06yv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftPointerSword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-80, 30.5)]
+}
+
+[sub_resource type="Animation" id="Animation_2egi5"]
+resource_name = "point_at"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftPointerSword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Vector2(-65, 30.5), Vector2(-85, 30.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bshsf"]
+_data = {
+&"RESET": SubResource("Animation_h06yv"),
+&"point_at": SubResource("Animation_2egi5")
+}
+
+[node name="SwordButton" type="Button" unique_id=2033494471]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -426.0
+offset_bottom = -273.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_lodji")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mf7fl")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_d6l81")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_a1wsg")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_i7p8e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sfthw")
+text = "TEXT"
+alignment = 0
+script = ExtResource("2_bts1h")
+
+[node name="LeftPointerSword" type="Sprite2D" parent="." unique_id=1404826842]
+position = Vector2(-80, 30.5)
+scale = Vector2(4, 4)
+texture = ExtResource("2_h06yv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=281182444]
+libraries/ = SubResource("AnimationLibrary_bshsf")
+autoplay = &"point_at"
