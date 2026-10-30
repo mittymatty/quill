@@ -859,8 +859,6 @@ ground_decel_speed = 12.0
 tracker = NodePath("../..")
 drop_raycast = NodePath("../../Raycasts/DropDetector")
 start_tracking_distance = 125.0
-stop_tracking_distance = 10.0
-back_up_distance = 25.0
 
 [node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=222523302 node_paths=PackedStringArray("sprites", "nodes_to_flip") instance=ExtResource("5_mgyit")]
 sprites = [NodePath("../../Visuals/Sprite"), NodePath("../../Visuals/front_arm_animated"), NodePath("../../Visuals/back_arm_animated")]

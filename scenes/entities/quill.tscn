@@ -24,7 +24,9 @@
 [ext_resource type="AudioStream" uid="uid://cpi24holwev0a" path="res://assets/audio/voice/quill-grunt1.ogg" id="13_llq8p"]
 [ext_resource type="Texture2D" uid="uid://ml26gh050gwl" path="res://assets/visuals/quill/quill-dead-air-up.png" id="14_2kxv1"]
 [ext_resource type="Texture2D" uid="uid://dx8phy3h5aoa0" path="res://assets/visuals/quill/quill-idle.png" id="14_58m20"]
+[ext_resource type="Texture2D" uid="uid://ufx0aycwb0bm" path="res://assets/visuals/energy/slash3.png" id="15_savqt"]
 [ext_resource type="Texture2D" uid="uid://cx8rjajjksa8h" path="res://assets/visuals/weapons/quill's_shield.png" id="16_aeufi"]
+[ext_resource type="Texture2D" uid="uid://d1p3cgjp1gdrn" path="res://assets/visuals/energy/slash4.png" id="16_fn1x2"]
 [ext_resource type="Texture2D" uid="uid://dtg2k8c8ei83p" path="res://assets/visuals/weapons/quill's_sword_2.png" id="16_kxcj6"]
 [ext_resource type="Texture2D" uid="uid://dajmhco3ta2se" path="res://assets/visuals/quill/quill-wall.png" id="17_rhy1h"]
 [ext_resource type="AudioStream" uid="uid://dibchowmpkpiu" path="res://assets/audio/attacking/02-butter-knife-slash.ogg" id="17_uqne6"]
@@ -37,6 +39,7 @@
 [ext_resource type="AudioStream" uid="uid://bb2vjnop402r1" path="res://assets/audio/blocking/block_shatter.ogg" id="23_lbqce"]
 [ext_resource type="Texture2D" uid="uid://ciy06ktw60rjw" path="res://assets/visuals/quill/quill-slide.png" id="24_2vqar"]
 [ext_resource type="AudioStream" uid="uid://247up0iiaqaw" path="res://assets/audio/blocking/deflection_ping.ogg" id="27_svjdr"]
+[ext_resource type="Texture2D" uid="uid://dn4l63afggeym" path="res://assets/visuals/energy/slash2.png" id="38_k87wj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d3t4i"]
 atlas = ExtResource("11_58m20")
@@ -538,6 +541,66 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visuals/VFX/Slash1:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visuals/VFX/Slash3:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visuals/VFX/Slash4:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visuals/VFX/Slash4:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 8.000001)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Visuals/VFX/Slash4:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.4)]
+}
 
 [sub_resource type="Animation" id="Animation_aeufi"]
 resource_name = "aerial_sweep"
@@ -550,10 +613,10 @@ tracks/0/path = NodePath("Visuals/Sword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10213793, 0.15, 0.2, 0.325),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.10213793, 0.15, 0.2, 0.225, 0.325),
+"transitions": PackedFloat32Array(1, 2, 1, 1, 1, 1, 2),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(5, 4), Vector2(4, 10), Vector2(-6, 12), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(5, 3), Vector2(5, 3), Vector2(4, 8), Vector2(-5, 9), Vector2(-5, 9), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -562,10 +625,10 @@ tracks/1/path = NodePath("Visuals/Sword:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.10213793, 0.15, 0.2, 0.325),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.10213793, 0.15, 0.2, 0.225, 0.325),
+"transitions": PackedFloat32Array(1, 2, 1, 1, 1, 1, 2),
 "update": 0,
-"values": [0.0, 0.7853981633974483, 2.2689280275926285, 3.839724354387525, 6.283185307179586]
+"values": [0.0, 0.7853981633974483, 0.7853981633974483, 2.2689280275926285, 3.839724354387525, 3.839724354387525, 6.283185307179586]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -579,6 +642,42 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/VFX/Slash4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.11825928, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/VFX/Slash4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1280238, 0.20401634),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 10), Vector2(0, 14)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visuals/VFX/Slash4:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.125, 0.20401634),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.55, 0.55), Vector2(0.7, 0.7)]
+}
 
 [sub_resource type="Animation" id="Animation_kxcj6"]
 resource_name = "jab"
@@ -591,10 +690,10 @@ tracks/0/path = NodePath("Visuals/Sword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.125, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.125, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 0.5, 0.5, -2),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(10, -1.5), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(-2, 0), Vector2(10, -1.5), Vector2(10, -1.5), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -604,7 +703,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.215, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 2),
 "update": 0,
 "values": [0.0, 0.7853982, 0.7853982, 0.0]
 }
@@ -615,10 +714,22 @@ tracks/2/path = NodePath("Attackbox/jab:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.2),
+"times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/VFX/Slash1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.061449464, 0.12865981),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_5kcic"]
@@ -632,10 +743,10 @@ tracks/0/path = NodePath("Visuals/Sword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.29999998, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.094734594, 0.19999999, 0.2297954, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-2, -4), Vector2(8, 2), Vector2(2, 2), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(-2, -4), Vector2(-2, -4), Vector2(6, 2), Vector2(6, 2), Vector2(2, 2), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -644,10 +755,10 @@ tracks/1/path = NodePath("Visuals/Sword:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.29999998, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.094734594, 0.19999999, 0.2297954, 0.275, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -3.490658503988659, 1.2217304763960306, 1.7453292519943295, 0.0]
+"values": [0.0, -3.490658503988659, -3.490658503988659, 1.2217304763960306, 1.2217304763960306, 1.7453292519943295, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -672,6 +783,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/VFX/Slash3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.12368401, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uqne6"]
@@ -835,10 +958,33 @@ one_shot = true
 
 [node name="Visuals" type="Node2D" parent="." unique_id=2003763140]
 
+[node name="VFX" type="Node2D" parent="Visuals" unique_id=1275162692]
+z_index = -1
+
+[node name="Slash1" type="Sprite2D" parent="Visuals/VFX" unique_id=732051654]
+visible = false
+modulate = Color(1, 1, 1, 0.56078434)
+position = Vector2(7, 5)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("38_k87wj")
+
+[node name="Slash3" type="Sprite2D" parent="Visuals/VFX" unique_id=1891278222]
+visible = false
+modulate = Color(1, 1, 1, 0.56078434)
+position = Vector2(3, -3)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("15_savqt")
+
+[node name="Slash4" type="Sprite2D" parent="Visuals/VFX" unique_id=700663697]
+visible = false
+modulate = Color(1, 1, 1, 0.56078434)
+position = Vector2(0, 8.000001)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("16_fn1x2")
+
 [node name="Sprite" type="AnimatedSprite2D" parent="Visuals" unique_id=632265729]
 sprite_frames = SubResource("SpriteFrames_cgqta")
-animation = &"rest_loop"
-frame_progress = 0.13062024
+animation = &"idle"
 
 [node name="Sword" type="Sprite2D" parent="Visuals" unique_id=1298361440]
 z_index = 1

@@ -302,19 +302,21 @@ size = Vector2(22, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb3mw"]
 size = Vector2(20, 10.5)
 
-[node name="garrison" unique_id=729534692 node_paths=PackedStringArray("tracker_component", "animation_component", "weapon_auto_trigger_component") instance=ExtResource("1_ixwsv")]
+[node name="garrison" unique_id=729534692 node_paths=PackedStringArray("tracker_component", "animation_component", "weapon_auto_trigger_component", "boss_attacks_component") instance=ExtResource("1_ixwsv")]
 script = ExtResource("2_1k52w")
 tracker_component = NodePath("Components/TrackerComponent")
 animation_component = NodePath("Components/AnimationComponent")
 weapon_auto_trigger_component = NodePath("Components/WeaponAutoTriggerComponent")
+boss_attacks_component = NodePath("Components/BossAttacksComponent")
 
 [node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=1130167078]
 knockback_multiplier = 0.75
 
 [node name="BossAttacksComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="3" unique_id=1476208345 instance=ExtResource("3_7nme4")]
 
-[node name="BossAttack" type="Node" parent="Components/BossAttacksComponent" index="0" unique_id=711789804]
+[node name="BossAttack" type="Node" parent="Components/BossAttacksComponent" index="0" unique_id=711789804 node_paths=PackedStringArray("tracker_component")]
 script = ExtResource("4_xkop7")
+tracker_component = NodePath("../../TrackerComponent")
 metadata/_custom_type_script = "uid://kfwtje4u6s4i"
 
 [node name="WeaponAutoTriggerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=1227028261 node_paths=PackedStringArray("target_weapon_component", "raycasts_to_trigger") instance=ExtResource("6_jcl7q")]

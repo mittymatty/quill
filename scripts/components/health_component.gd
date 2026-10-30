@@ -67,7 +67,7 @@ func take_damage(damage: float, knockback: Vector2, from: Vector2) -> void:
 	elif shield_component: #If it gets this far, the shield is blocking
 		shield_component.take_hit(1,damage)
 		if shield_component.remaining_hits <= 0 and knockback != Vector2.ZERO:
-			body.velocity = knockback
+			body.velocity = knockback if !shield_component.get_is_deflecting() else knockback * 0.0
 			return
 	
 	body.velocity += knockback * knockback_multiplier

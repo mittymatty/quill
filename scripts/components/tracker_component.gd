@@ -15,25 +15,24 @@ class_name TrackerComponent extends Node
 @export var below_elevation_difference: float = 20.0
 
 @export_subgroup("Optional Configuration")
-@export var back_up_distance: float = -1.0
-@export var back_up_tolerance_distance: float = 10.0
+@export var desired_distance: float = 0.0
 
 var movement_horizontal: float = 0.0
+var distance_from_target: float = 0.0
 
+var target_position: Vector2 = Vector2.ZERO
 var target_is_above: bool = false
 var target_is_below: bool = false
 var is_backing_up: bool = false
-var is_waiting: bool = false
-
-var connection
 
 func _ready() -> void:
 	refresh_timer.timeout.connect(get_axis_to_target)
 	await get_tree().create_timer(0.0).timeout
 	change_target(tracker_target)
 
-func on_target_dead () -> void:
-	tracker_target = null
+func on_target_dead (what_died: Node2D) -> void:
+	if what_died == tracker_target:
+		tracker_target = null
 
 func change_target (new_target: Node2D) -> void:
 	if tracker_target != new_target:
@@ -41,27 +40,24 @@ func change_target (new_target: Node2D) -> void:
 	
 	if tracker_target and "health_component" in tracker_target:
 		var HC: HealthComponent = tracker_target.health_component
-		connection = HC.died.connect(on_target_dead)
+		HC.died.connect(on_target_dead.bind(new_target))
 
 func get_axis_to_target () -> void:
-	movement_horizontal = 0.0
-	if !tracker_target: return
+	if !tracker_target:
+		movement_horizontal = 0.0
+		return
 	
-	var target_x: float = tracker_target.global_position.x
 	var self_x: float = tracker.global_position.x
-	var target_y: float = tracker_target.global_position.y
 	var self_y: float = tracker.global_position.y
-	
-	var distance: float = tracker.global_position.distance_to(tracker_target.global_position)
-	
-	target_is_above = target_y <= self_y - above_elevation_difference
-	target_is_below = target_y >= self_y + below_elevation_difference
+	target_position = tracker_target.global_position
+	target_position.x += desired_distance * (-1.0 if target_position.x > self_x else 1.0)
+
+	distance_from_target = tracker.global_position.distance_to(target_position)
+	is_backing_up = distance_from_target < desired_distance if desired_distance > 0.0 else false
+	target_is_above = target_position.y <= self_y - above_elevation_difference
+	target_is_below = target_position.y >= self_y + below_elevation_difference
 	
 	if drop_raycast and !drop_raycast.is_colliding(): return
-	if distance > start_tracking_distance or distance < stop_tracking_distance: return
+	if distance_from_target > start_tracking_distance or distance_from_target < stop_tracking_distance: return
 	
-	is_backing_up = back_up_distance >= 0.0 and distance < back_up_distance
-	is_waiting = is_backing_up and distance > back_up_distance and distance < back_up_distance + back_up_tolerance_distance
-	#if is_backing_up:
-		#print(distance < back_up_distance + back_up_tolerance_distance)
-	movement_horizontal = (1.0 if target_x > self_x else -1.0) * (1.0 if !is_backing_up else -1.0) * (1.0 if !is_waiting else 0.0)
+	movement_horizontal = (1.0 if target_position.x > self_x else -1.0)

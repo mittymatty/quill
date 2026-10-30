@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="DialogKeysResource" format=3 uid="uid://cikgmyjaamc5f"]
+
+[ext_resource type="Script" uid="uid://e3hm2fpmp0q1" path="res://scripts/resource_classes/dialog_keys_resource.gd" id="1_8316t"]
+
+[sub_resource type="Resource" id="Resource_m13ew"]
+script = ExtResource("1_8316t")
+dialog = "Wow... maybe one day I'll get to see it myself!"
+metadata/_custom_type_script = "uid://e3hm2fpmp0q1"
+
+[sub_resource type="Resource" id="Resource_kg5d2"]
+script = ExtResource("1_8316t")
+dialog = "Oh... maybe I'll just stay here in the city, where it's safe..."
+metadata/_custom_type_script = "uid://e3hm2fpmp0q1"
+
+[sub_resource type="Resource" id="Resource_texqb"]
+script = ExtResource("1_8316t")
+dialog = "What's it like in the Outside?"
+choices = Dictionary[String, ExtResource("1_8316t")]({
+"It's beautiful.": SubResource("Resource_m13ew"),
+"It's brutal.": SubResource("Resource_kg5d2")
+})
+metadata/_custom_type_script = "uid://e3hm2fpmp0q1"
+
+[resource]
+script = ExtResource("1_8316t")
+dialog = "All you gladiators come from distant lands, right?"
+next_dialog_key = SubResource("Resource_texqb")
+metadata/_custom_type_script = "uid://e3hm2fpmp0q1"

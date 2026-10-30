@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bsa763ga8obln"]
+
+[ext_resource type="FontFile" uid="uid://cr2s3mcqbs0y1" path="res://assets/fonts/Porto_Buena.otf" id="1_e6rnd"]
+[ext_resource type="Texture2D" uid="uid://cvrq6t0s7e34i" path="res://assets/visuals/UI/speech_bubble_9patch.png" id="2_y6mk6"]
+
+[sub_resource type="Theme" id="Theme_b1lj4"]
+default_font = ExtResource("1_e6rnd")
+
+[node name="ChatBubble" type="Label" unique_id=729760010]
+offset_right = 1.0
+offset_bottom = 16.0
+size_flags_horizontal = 4
+theme = SubResource("Theme_b1lj4")
+theme_override_colors/font_color = Color(0.029506557, 0.029506557, 0.029506557, 1)
+text = "Hello!"
+vertical_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1001056938]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -4.5
+offset_right = 14.0
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_y6mk6")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16

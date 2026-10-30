@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Quill"
-run/main_scene="uid://i6kst5rysq8k"
+run/main_scene="uid://b5v1xwqoidprj"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="uid://dhnc0cgcvffax"
 

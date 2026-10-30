@@ -7,7 +7,7 @@ extends Control
 
 var dialog_choice_template = preload("res://scenes/UI/dialog_choice.tscn")
 
-var quick_char_duration: float = 0.05
+var quick_char_duration: float = 0.04
 var long_char_duration: float = 0.5
 var long_chars: Array[String] = [".","!","?",",",";",":","-"]
 

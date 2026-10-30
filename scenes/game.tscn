@@ -108,8 +108,9 @@ player = NodePath("../quill")
 position = Vector2(-124, 85)
 player = NodePath("../quill")
 
-[node name="garrison" parent="world" unique_id=62077163 instance=ExtResource("18_ssvqc")]
+[node name="garrison" parent="world" unique_id=62077163 node_paths=PackedStringArray("player") instance=ExtResource("18_ssvqc")]
 position = Vector2(231, 90)
+player = NodePath("../quill")
 
 [node name="FirePit" parent="world" unique_id=1058423868 instance=ExtResource("18_264po")]
 position = Vector2(-55, 96)

@@ -30,11 +30,8 @@ var input_horizontal: float = 0.0 #Set each _physics_process
 
 #region vitals
 
-func add_camera_trauma(damage_taken: float) -> void:
-	camera.add_trauma(clampf(damage_taken,0.0,100.0)/40)
-
 func on_damaged (damage_taken: float) -> void:
-	add_camera_trauma(damage_taken)
+	camera.add_trauma(clampf(damage_taken,0.0,100.0)/40)
 	HitstopManager.hitstop(damage_taken * 0.005, 0.1)
 
 func on_killed () -> void:
