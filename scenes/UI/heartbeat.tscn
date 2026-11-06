@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" uid="uid://uxk4d2qfjh" path="res://scripts/UI/heartbeat_v2.gd" id="1_aa34i"]
 
-[node name="Pulse" type="Line2D" unique_id=2016338696]
+[node name="Heartbeat" type="Line2D" unique_id=2016338696]
 round_precision = 2
 script = ExtResource("1_aa34i")

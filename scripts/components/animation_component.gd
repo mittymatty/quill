@@ -8,7 +8,7 @@ class_name AnimationComponent extends Node
 @export var can_drift: bool = false
 @export var affect_child_Z_index: bool = false
 
-func handle_horizontal_flip(move_direction: float, direction_locked: bool) -> void:
+func handle_horizontal_flip(move_direction: float = 0.0, direction_locked: bool = false) -> void:
 	if is_zero_approx(move_direction) or direction_locked: return
 	
 	for child : Node2D in nodes_to_flip:
@@ -25,7 +25,6 @@ func get_current_anim() -> String:
 	return sprites.front().animation
 
 func handle_move_animation(move_direction: float, velocity_x: float) -> void:
-	
 	if !is_zero_approx(move_direction):
 		play_anim_on_all_sprites("run")
 	elif !is_zero_approx(velocity_x) and can_drift:

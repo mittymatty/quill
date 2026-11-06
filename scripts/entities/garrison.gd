@@ -16,7 +16,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	weapon_auto_trigger_component.scan_and_fire_attacks()
 	gravity_component.handle_gravity(self,delta)
-	if !boss_attacks_component.is_attacking:
-		movement_component.handle_horizontal_movement(self,tracker_component.movement_horizontal)
 	boss_attacks_component.handle_boss_attacks(self,delta)
+	if !boss_attacks_component.is_attacking:
+		#animation_component.handle_horizontal_flip(tracker_component.movement_horizontal,false)
+		movement_component.handle_horizontal_movement(self,0.0)
 	move_and_slide()

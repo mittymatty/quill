@@ -13,7 +13,7 @@ config_version=5
 config/name="Quill"
 run/main_scene="uid://b5v1xwqoidprj"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="uid://dhnc0cgcvffax"
+config/icon="uid://d0am3tg2w5rlc"
 
 [autoload]
 

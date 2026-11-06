@@ -2,17 +2,20 @@ extends Control
 
 @export var player: Quill
 
-@onready var health_bar: HealthBar = $MarginContainer/VBoxContainer/HealthBar
-@onready var energy_bar: EnergyBar = $MarginContainer/VBoxContainer/EnergyBar
-@onready var bpm_label: Label = $MarginContainer/VBoxContainer/HBoxContainer/BPM
-@onready var heartbeat: Heartbeat = $MarginContainer/VBoxContainer/HBoxContainer/Pulse
-@onready var exertion_label: Label = $MarginContainer/VBoxContainer/Exertion
-@onready var exertion_refresh_rate: Timer = $ExertionRefreshRate
-@onready var heartbeat_sound: AudioStreamPlayer = $HeartbeatSound
+@export var health_bar: HealthBar
+@export var energy_bar: EnergyBar
+@export var heartbeat: Heartbeat
 
 @onready var energy_component: EnergyComponent = player.energy_component
 @onready var health_component: HealthComponent = player.health_component
 @onready var heart_component: HeartComponent = player.heart_component
+
+@onready var bpm_label: Label = $MarginContainer/VBoxContainer/HBoxContainer/BPM
+@onready var exertion_label: Label = $MarginContainer/VBoxContainer/Exertion
+@onready var fps_label: Label = $MarginContainer/FPS
+
+@onready var exertion_refresh_rate: Timer = $ExertionRefreshRate
+@onready var heartbeat_sound: AudioStreamPlayer = $HeartbeatSound
 
 @onready var max_bpm: float = heart_component.max_bpm
 @onready var rest_bpm: float = heart_component.resting_bpm
@@ -49,6 +52,9 @@ func update_bpm () -> void:
 func set_pulse_dead () -> void:
 	heartbeat.set_dead(true)
 	update_bpm()
+
+func _process(_delta: float) -> void:
+	fps_label.text = "FPS: " + str(Engine.get_frames_per_second())
 
 func _ready() -> void:
 	health_bar.body = player

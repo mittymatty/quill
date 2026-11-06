@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://gyei4cxi4knh"]
 
-[ext_resource type="Script" uid="uid://cnh10ptl6bij0" path="res://scripts/entities/quill.gd" id="1_mtoyt"]
+[ext_resource type="Script" uid="uid://mukg3suvr0rd" path="res://scripts/entities/quill_v2.gd" id="1_muswh"]
 [ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="4_34b6c"]
 [ext_resource type="PackedScene" uid="uid://bmfvsuo8g21cg" path="res://scenes/components/input_component.tscn" id="5_iaavo"]
 [ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="5_yh003"]
@@ -661,7 +661,7 @@ tracks/4/path = NodePath("Visuals/VFX/Slash4:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.1280238, 0.20401634),
+"times": PackedFloat32Array(0.1, 0.20401634),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 10), Vector2(0, 14)]
@@ -673,7 +673,7 @@ tracks/5/path = NodePath("Visuals/VFX/Slash4:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.125, 0.20401634),
+"times": PackedFloat32Array(0.0969762, 0.20401634),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0.55, 0.55), Vector2(0.7, 0.7)]
@@ -866,24 +866,24 @@ _data = {
 &"raise": SubResource("Animation_0upei")
 }
 
-[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("input_component", "movement_component", "animation_component", "jump_component", "footsteps_component", "weapon_component", "health_component", "energy_component", "heart_component", "shield_component", "slide_component", "ball_state_timer", "gravity_component")]
+[node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("movement_component", "input_component", "gravity_component", "animation_component", "advanced_jump_component", "footsteps_component", "weapon_component", "health_component", "shield_component", "energy_component", "slide_component", "heart_component", "ball_state_timer")]
 z_index = 2
 collision_layer = 10
 collision_mask = 9
-script = ExtResource("1_mtoyt")
-input_component = NodePath("Components/InputComponent")
+script = ExtResource("1_muswh")
 movement_component = NodePath("Components/MovementComponent")
+input_component = NodePath("Components/InputComponent")
+gravity_component = NodePath("Components/GravityComponent")
 animation_component = NodePath("Components/AnimationComponent")
-jump_component = NodePath("Components/AdvancedJumpComponent")
+advanced_jump_component = NodePath("Components/AdvancedJumpComponent")
 footsteps_component = NodePath("Components/FootstepsComponent")
 weapon_component = NodePath("Components/WeaponComponent")
 health_component = NodePath("Components/HealthComponent")
-energy_component = NodePath("Components/EnergyComponent")
-heart_component = NodePath("Components/HeartComponent")
 shield_component = NodePath("Components/ShieldComponent")
+energy_component = NodePath("Components/EnergyComponent")
 slide_component = NodePath("Components/SlideComponent")
+heart_component = NodePath("Components/HeartComponent")
 ball_state_timer = NodePath("Timers/BallStateTimer")
-gravity_component = NodePath("Components/GravityComponent")
 
 [node name="Components" type="Node" parent="." unique_id=332795451]
 
@@ -908,9 +908,10 @@ affect_child_Z_index = true
 jump_sound = NodePath("../../Sounds/Jump")
 land_sound = NodePath("../../Sounds/Land")
 jump_velocity = -275.0
-wall_jump_velocity = -175.0
-wall_jump_pushback = 215.0
+wall_jump_velocity = -180.0
+wall_jump_pushback = 230.0
 jump_release_multiplier = 0.5
+coyote_walking_enabled = false
 
 [node name="FootstepsComponent" parent="Components" unique_id=499613779 node_paths=PackedStringArray("footsteps_audio", "sprite") instance=ExtResource("7_3yhwj")]
 footsteps_audio = NodePath("../../Sounds/Footsteps")
@@ -1071,5 +1072,8 @@ libraries/ = SubResource("AnimationLibrary_uqne6")
 
 [node name="ShieldAnimPlayer" type="AnimationPlayer" parent="." unique_id=2047458557]
 libraries/ = SubResource("AnimationLibrary_lbqce")
+
+[connection signal="attack_attempted" from="Components/WeaponComponent" to="." method="_on_weapon_component_attack_attempted"]
+[connection signal="attack_success" from="Components/WeaponComponent" to="." method="_on_weapon_component_attack_success"]
 
 [editable path="Components/ShieldComponent"]

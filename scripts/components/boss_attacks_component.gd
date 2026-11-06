@@ -32,17 +32,16 @@ func wait_cooldown () -> void:
 	await get_tree().create_timer(attack_cooldown).timeout
 	in_cooldown = false
 
-func on_attack_ended (which_attack: BossAttack) -> void:
-	if which_attack == current_attack:
-		current_attack = null
+func on_attack_ended (_which_attack: BossAttack) -> void:
+	#print(which_attack.name)
+	current_attack = null
 	wait_cooldown()
 
 func handle_boss_attacks (boss: Enemy, delta: float) -> void: # Call in physics process
 	is_attacking = current_attack != null
 	if current_attack:
 		current_attack.handle_attack(boss,delta)
-	else:
-		wait_cooldown()
+	elif !in_cooldown:
 		current_attack = decide_next_attack()
 		current_attack.begin_attack(boss)
 

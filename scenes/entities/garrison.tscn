@@ -233,10 +233,10 @@ tracks/0/path = NodePath("Visuals/Axe:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.67, 1.04, 1.2666667, 1.5, 2.4),
+"times": PackedFloat32Array(0, 0.67, 1.0666667, 1.2666667, 1.5, 2.4),
 "transitions": PackedFloat32Array(0.5, 2, 2, -2, -2, 0.5),
 "update": 0,
-"values": [Vector2(0, 4), Vector2(4, -2), Vector2(4, -2), Vector2(-10, 8), Vector2(-10, 8), Vector2(0, 4)]
+"values": [Vector2(0, 4), Vector2(-4, -2), Vector2(-4, -2), Vector2(10, 8), Vector2(10, 8), Vector2(0, 4)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -245,10 +245,10 @@ tracks/1/path = NodePath("Visuals/Axe:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.67, 1.04, 1.2666667, 1.6666666, 2.4),
+"times": PackedFloat32Array(0, 0.67, 1, 1.2666667, 1.6666666, 2.4),
 "transitions": PackedFloat32Array(0.5, 2, 2, -2, -2, 0.5),
 "update": 0,
-"values": [0.0, 1.3089969, 1.3089969, -2.6179938779914944, -2.6179938779914944, 0.0]
+"values": [0.0, -1.3089969389957472, -1.3089969389957472, 2.6179938779914944, 2.6179938779914944, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -314,9 +314,11 @@ knockback_multiplier = 0.75
 
 [node name="BossAttacksComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="3" unique_id=1476208345 instance=ExtResource("3_7nme4")]
 
-[node name="BossAttack" type="Node" parent="Components/BossAttacksComponent" index="0" unique_id=711789804 node_paths=PackedStringArray("tracker_component")]
+[node name="Charge" type="Node" parent="Components/BossAttacksComponent" index="0" unique_id=711789804 node_paths=PackedStringArray("charge_stop", "tracker_component", "animation_component")]
 script = ExtResource("4_xkop7")
+charge_stop = NodePath("../../../Raycasts/ChargeStop")
 tracker_component = NodePath("../../TrackerComponent")
+animation_component = NodePath("../../AnimationComponent")
 metadata/_custom_type_script = "uid://kfwtje4u6s4i"
 
 [node name="WeaponAutoTriggerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=1227028261 node_paths=PackedStringArray("target_weapon_component", "raycasts_to_trigger") instance=ExtResource("6_jcl7q")]
@@ -340,32 +342,39 @@ anim_player = NodePath("../../AxeAnims")
 
 [node name="TrackerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="7" unique_id=1220211303 node_paths=PackedStringArray("tracker") instance=ExtResource("8_jcl7q")]
 tracker = NodePath("../..")
+start_tracking_distance = 800.0
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
 sprite_frames = SubResource("SpriteFrames_7icqn")
 autoplay = "default"
+flip_h = true
 
 [node name="Axe" type="Sprite2D" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="1" unique_id=720300293]
 z_index = 1
 position = Vector2(0, 4)
 texture = ExtResource("3_1k52w")
-offset = Vector2(5, -6)
+offset = Vector2(-5, -6)
+flip_h = true
 
 [node name="Raycasts" type="Node2D" parent="." index="3" unique_id=241194660]
 
 [node name="Slash1" type="RayCast2D" parent="Raycasts" index="0" unique_id=381000712]
-target_position = Vector2(-35, 0)
+target_position = Vector2(35, 0)
 collision_mask = 2
 
 [node name="Slash2" type="RayCast2D" parent="Raycasts" index="1" unique_id=378278274]
 position = Vector2(0, 11)
-target_position = Vector2(-35, 0)
+target_position = Vector2(35, 0)
 collision_mask = 2
 
 [node name="Slash3" type="RayCast2D" parent="Raycasts" index="2" unique_id=1380873661]
 position = Vector2(0, 5)
-target_position = Vector2(-35, 0)
+target_position = Vector2(35, 0)
 collision_mask = 2
+
+[node name="ChargeStop" type="RayCast2D" parent="Raycasts" index="3" unique_id=257947935]
+position = Vector2(1, 8)
+target_position = Vector2(10, 0)
 
 [node name="Collision" parent="." index="4" unique_id=832957629]
 position = Vector2(0, 5)
@@ -383,16 +392,16 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="SlashBox3" type="CollisionShape2D" parent="Attackbox" index="0" unique_id=1301372984]
-position = Vector2(-20, 11)
+position = Vector2(20, 11)
 shape = SubResource("RectangleShape2D_xrivr")
 disabled = true
 
 [node name="SlashBox2" type="CollisionShape2D" parent="Attackbox" index="1" unique_id=1433417218]
-position = Vector2(-14, -3)
+position = Vector2(14, -3)
 shape = SubResource("RectangleShape2D_jcl7q")
 disabled = true
 
 [node name="SlashBox1" type="CollisionShape2D" parent="Attackbox" index="2" unique_id=1160611786]
-position = Vector2(1, -9.75)
+position = Vector2(-1, -9.75)
 shape = SubResource("RectangleShape2D_xb3mw")
 disabled = true

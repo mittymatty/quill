@@ -1,5 +1,5 @@
-class_name Quill extends Entity
-
+extends Entity
+#class_name Quill 
 enum States {IDLE,REST,RUN,SLIDE,DRIFT,JUMP,FALL,WALL,BALL,DEAD}
 var state: States = States.IDLE
 var previous_state: States = States.IDLE

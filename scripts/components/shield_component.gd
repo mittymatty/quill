@@ -10,6 +10,8 @@ class_name ShieldComponent extends Node
 @export var cooldown_timer: Timer
 @export var deflect_timer: Timer
 @export var deflect_delayer: Timer
+
+@export_subgroup("Optional Nodes")
 @export var raise_sound: AudioStreamPlayer2D
 @export var deflect_sound: AudioStreamPlayer2D
 @export var block_sound: AudioStreamPlayer2D
@@ -43,7 +45,8 @@ func begin_block() -> void:
 	raised.emit()
 	deflect_delayer.start()
 	remaining_hits = max_hits_blocked
-	raise_sound.play()
+	if raise_sound:
+		raise_sound.play()
 
 func end_block() -> void: #For the player to trigger
 	if !has_deflected:
@@ -69,13 +72,15 @@ func get_is_deflecting() -> bool:
 
 func break_block() -> void: #For taking damage when blocking, or running out of blocks
 	end_block()
-	block_break_sound.play()
+	if block_break_sound:
+		block_break_sound.play()
 
 func take_hit(hits: int, prevented_damage: float) -> void:
 	if get_is_deflecting():
 		has_deflected = true
 		deflected.emit(prevented_damage)
-		deflect_sound.play()
+		if deflect_sound:
+			deflect_sound.play()
 		return
 	
 	has_deflected = false
@@ -83,6 +88,7 @@ func take_hit(hits: int, prevented_damage: float) -> void:
 	blocked.emit(prevented_damage)
 	
 	if remaining_hits > 0:
-		block_sound.play()
+		if block_sound:
+			block_sound.play()
 	else:
 		break_block()
