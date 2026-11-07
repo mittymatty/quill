@@ -48,6 +48,11 @@ func handle_drainage (delta: float) -> void: #Called on physics process
 func get_exertion_percent () -> int:
 	return int(floor((exertion/max_exertion)*100.0))
 
+func apply_exertion_impulse (affect_by: int, step_delay: float = 0.025) -> void:
+	for i: int in range(1,affect_by):
+		affect_exertion(1)
+		await get_tree().create_timer(step_delay).timeout
+
 func affect_exertion (affect_by: float) -> void:
 	exertion = clampf(exertion + affect_by, 0.0, max_exertion)
 	exertion_changed.emit()

@@ -43,7 +43,7 @@ func change_target (new_target: Node2D) -> void:
 		HC.died.connect(on_target_dead.bind(new_target))
 
 func get_axis_to_target () -> void:
-	if !tracker_target:
+	if !tracker_target or drop_raycast and !drop_raycast.is_colliding():
 		movement_horizontal = 0.0
 		return
 	
@@ -57,7 +57,6 @@ func get_axis_to_target () -> void:
 	target_is_above = target_position.y <= self_y - above_elevation_difference
 	target_is_below = target_position.y >= self_y + below_elevation_difference
 	
-	if drop_raycast and !drop_raycast.is_colliding(): return
 	if distance_from_target > start_tracking_distance or distance_from_target < stop_tracking_distance: return
 	
 	movement_horizontal = (1.0 if target_position.x > self_x else -1.0)

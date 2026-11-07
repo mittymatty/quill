@@ -77,7 +77,6 @@ waveform_width_px = 35.0
 pixels_per_beat = 80.0
 
 [node name="Exertion" type="Label" parent="MarginContainer/VBoxContainer" unique_id=679859112]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0

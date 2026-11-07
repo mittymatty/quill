@@ -8,9 +8,12 @@ var previous_velocity: Vector2 = Vector2.ZERO
 var slide_velocity: Vector2 = Vector2.ZERO
 var has_stopped: bool = false
 
+signal slide_begun
+
 func begin_slide () -> void:
 	var impact_velo: Vector2 = previous_velocity
 	is_sliding = true
+	slide_begun.emit()
 	slide_velocity.x = impact_velo.y * (1.0 if previous_velocity.x > 0 else -1.0)
 
 func slide (body: CharacterBody2D,delta: float) -> void:

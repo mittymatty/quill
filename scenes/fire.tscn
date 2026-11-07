@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bs8hmr4fp8h5v"]
 
 [ext_resource type="AudioStream" uid="uid://bgf2ak1wryms1" path="res://assets/audio/campfire_subtle.ogg" id="1_10wrr"]
-[ext_resource type="Material" uid="uid://5j5uacg21b38" path="res://resources/smoke.tres" id="1_52nqi"]
+[ext_resource type="Material" uid="uid://5j5uacg21b38" path="res://resources/particles/smoke.tres" id="1_52nqi"]
 [ext_resource type="Texture2D" uid="uid://cml0fn583rh7a" path="res://assets/visuals/fire.png" id="1_g5mbl"]
 [ext_resource type="Texture2D" uid="uid://cd77pbpb3xr60" path="res://assets/visuals/logs.png" id="1_rach5"]
 [ext_resource type="Texture2D" uid="uid://b2bere5u2jeq0" path="res://assets/visuals/point_light_96x.png" id="2_xqmqg"]
-[ext_resource type="Material" uid="uid://dtdpm4mhpewp6" path="res://resources/flames.tres" id="4_4l61p"]
-[ext_resource type="Material" uid="uid://dlklbwjhfgr50" path="res://resources/sparks.tres" id="4_txieb"]
+[ext_resource type="Material" uid="uid://dtdpm4mhpewp6" path="res://resources/particles/flames.tres" id="4_4l61p"]
+[ext_resource type="Material" uid="uid://dlklbwjhfgr50" path="res://resources/particles/sparks.tres" id="4_txieb"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_10wrr"]
 polygon = PackedVector2Array(-12, 4, 24, 4, 18, 6, -6, 6)

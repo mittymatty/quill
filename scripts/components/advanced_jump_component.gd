@@ -1,11 +1,13 @@
 class_name AdvancedJumpComponent extends Node
 
 @export_subgroup("Nodes")
-@export var jump_sound: AudioStreamPlayer2D
-@export var land_sound: AudioStreamPlayer2D
 @export var jump_buffer_timer: Timer
 @export var coyote_timer: Timer
 @export var wall_coyote_timer: Timer
+
+@export_subgroup("Optional Nodes")
+@export var jump_sound: AudioStreamPlayer2D
+@export var land_sound: AudioStreamPlayer2D
 
 @export_subgroup("Configuration")
 @export var jump_velocity: float = -350.0
@@ -17,6 +19,9 @@ class_name AdvancedJumpComponent extends Node
 var is_going_up: bool = false
 var is_jumping: bool = false
 var last_frame_on_floor: bool = false
+
+signal jumped
+signal landed
 
 func has_just_stepped_off_ledge(body: CharacterBody2D) -> bool:
 	return !body.is_on_floor() and last_frame_on_floor and !is_jumping
@@ -35,8 +40,8 @@ func jump(body: CharacterBody2D) -> void:
 	is_jumping = true
 	jump_buffer_timer.stop()
 	coyote_timer.stop()
-	
-	if jump_sound != null:
+	jumped.emit()
+	if jump_sound:
 		jump_sound.play()
 
 func wall_jump(body: CharacterBody2D,h_input_axis: float) -> void:
@@ -46,7 +51,9 @@ func wall_jump(body: CharacterBody2D,h_input_axis: float) -> void:
 func handle_jump(body: CharacterBody2D, want_to_jump: bool, jump_held: bool, jump_released: bool,h_input_axis: float) -> void:
 	if has_just_landed(body):
 		is_jumping = false
-		land_sound.play()
+		landed.emit()
+		if land_sound:
+			land_sound.play()
 	
 	if is_allowed_to_wall_jump(body,h_input_axis):
 		wall_coyote_timer.start()
