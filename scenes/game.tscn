@@ -31,14 +31,14 @@ volume_db = -10.0
 autoplay = true
 parameters/looping = true
 
-[node name="ShakeCamera2D" type="Camera2D" parent="." unique_id=264833131 node_paths=PackedStringArray("target")]
+[node name="ShakeCamera2D" type="Camera2D" parent="." unique_id=264833131 node_paths=PackedStringArray("targets")]
 position = Vector2(526, -76)
 offset = Vector2(0, -14)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 script = ExtResource("2_0tnpc")
-target = NodePath("../world/quill")
+targets = [NodePath("../world/quill")]
 decay = 1.0
 metadata/_custom_type_script = "uid://b1wymq1ew2p7q"
 

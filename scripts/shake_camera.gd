@@ -1,7 +1,7 @@
 class_name ShakeCamera2D extends Camera2D
 
 @export_subgroup("Nodes")
-@export var target: Node2D
+@export var targets: Array[Node2D]
 
 @export_subgroup("Shake Configuration")
 @export var decay: float = 0.5  # How quickly the shaking stops [0, 1].
@@ -16,9 +16,9 @@ var trauma_power: int = 2  # Trauma exponent. Use [2, 3].
 
 func _ready():
 	randomize()
-	if target and position_smoothing_enabled: # Prevents the initial speedy camera pan
+	if targets.front() and position_smoothing_enabled: # Prevents the initial speedy camera pan
 		position_smoothing_enabled = false
-		global_position = target.global_position
+		global_position = targets.front().global_position
 		await get_tree().create_timer(0.1).timeout
 		position_smoothing_enabled = true
 
@@ -26,8 +26,8 @@ func add_trauma(amount):
 	trauma = min(trauma + amount, 1.0)
 
 func _process(delta):
-	if target:
-		global_position = target.global_position
+	if targets.front():
+		global_position = targets.front().global_position
 		offset = base_offset + trauma_offset
 	if trauma:
 		trauma = max(trauma - decay * delta, 0)

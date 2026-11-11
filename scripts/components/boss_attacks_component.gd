@@ -1,15 +1,16 @@
 class_name BossAttacksComponent extends Node
 
 enum CYCLE_MODES {CYCLE, RANDOM}
+
 @export_subgroup("Nodes")
 @export var boss: CharacterBody2D
+
 @export_subgroup("Configuration")
 @export var attack_cycle_mode: CYCLE_MODES = CYCLE_MODES.CYCLE
 @export var attacks: Dictionary[BossAttack,Timer] # Attack, cooldown
 
 var in_cooldown: bool = false
 var is_attacking: bool = false
-var is_dead: bool = false
 
 var current_attack: BossAttack
 var previous_attack: BossAttack
@@ -34,14 +35,9 @@ func on_attack_finished (which_attack: BossAttack) -> void:
 	set_attack_if_able(null,which_attack == current_attack) #If the attack that timed out is the current one, clear attack
 
 func scan_and_switch_attacks () -> void:
-	if is_dead: # Dead
-		set_attack_if_able(null,true)
-		return
+	if is_attacking: return
 	
-	#if is_attacking: return
-	print(attacks.size())
 	for attack: BossAttack in attacks:
-		print(attack.name)
 		var cooldown_timer: Timer = attacks.get(attack)
 		set_attack_if_able(attack,cooldown_timer.is_stopped())
 #endregion

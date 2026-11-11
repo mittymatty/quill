@@ -24,14 +24,14 @@ player = NodePath("../../quill")
 [node name="ToolUI" parent="UI" unique_id=2134205157 node_paths=PackedStringArray("player") instance=ExtResource("3_41jku")]
 player = NodePath("../../quill")
 
-[node name="ShakeCamera2D" type="Camera2D" parent="." unique_id=1480534813 node_paths=PackedStringArray("target")]
+[node name="ShakeCamera2D" type="Camera2D" parent="." unique_id=1480534813 node_paths=PackedStringArray("targets")]
 position = Vector2(526, -76)
 offset = Vector2(0, -14)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 script = ExtResource("1_olpmc")
-target = NodePath("../quill")
+targets = [NodePath("../quill")]
 decay = 0.95
 max_trauma_offset = Vector2(2, 2)
 max_roll = 0.2
