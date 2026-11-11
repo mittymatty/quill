@@ -16,6 +16,13 @@ input_component = NodePath("Components/InputComponent")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." index="0" unique_id=289575979]
 
+[node name="DialogTriggerArea" type="Area2D" parent="." index="1" unique_id=1871787629]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTriggerArea" index="0" unique_id=439147639]
+position = Vector2(0, -1.5)
+
 [node name="DialogComponent" parent="Components" parent_id_path=PackedInt32Array(1217021385) index="1" unique_id=876192846 node_paths=PackedStringArray("dialog_trigger_area") instance=ExtResource("2_qrw7a")]
 dialog_trigger_area = NodePath("../../DialogTriggerArea")
 
@@ -26,10 +33,3 @@ nodes_to_flip = [NodePath("../../Visuals")]
 tracker = NodePath("../..")
 
 [node name="InputComponent" parent="Components" parent_id_path=PackedInt32Array(1217021385) index="4" unique_id=2036460052 instance=ExtResource("6_0iv8l")]
-
-[node name="DialogTriggerArea" type="Area2D" parent="." index="4" unique_id=1871787629]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTriggerArea" index="0" unique_id=439147639]
-position = Vector2(0, -1.5)

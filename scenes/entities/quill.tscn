@@ -22,8 +22,11 @@
 [ext_resource type="AudioStream" uid="uid://dibchowmpkpiu" path="res://assets/audio/attacking/02-butter-knife-slash.ogg" id="17_uqne6"]
 [ext_resource type="Material" uid="uid://bxkpomv5f18h3" path="res://resources/particles/dirt_burst.tres" id="17_utrdm"]
 [ext_resource type="Texture2D" uid="uid://bmhfgh1ch5wkq" path="res://assets/visuals/quill/quill-sheet.png" id="18_8iyjr"]
+[ext_resource type="Material" uid="uid://dokl00looje4s" path="res://resources/particles/landing_dirt.tres" id="18_ghw75"]
+[ext_resource type="Material" uid="uid://cpm7uyle3pk4n" path="res://resources/particles/block_sparks.tres" id="19_2kxv1"]
 [ext_resource type="AudioStream" uid="uid://bvaq1pu5yku0m" path="res://assets/audio/footsteps/03-footstep.ogg" id="20_8bs1s"]
 [ext_resource type="AudioStream" uid="uid://w6bhjp5v3qs3" path="res://assets/audio/footsteps/01-footstep.ogg" id="20_8iyjr"]
+[ext_resource type="Material" uid="uid://sngcj1p5kjn0" path="res://resources/particles/deflect_sparks.tres" id="20_kcrdj"]
 [ext_resource type="AudioStream" uid="uid://u0lbqwtxl3dd" path="res://assets/audio/blocking/block-02.ogg" id="21_0upei"]
 [ext_resource type="AudioStream" uid="uid://de4vys184d5sl" path="res://assets/audio/footsteps/02-footstep.ogg" id="21_7y5df"]
 [ext_resource type="AudioStream" uid="uid://dikrkgc1yd8cx" path="res://assets/audio/blocking/block-03.ogg" id="22_lbqce"]
@@ -32,70 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://dn4l63afggeym" path="res://assets/visuals/energy/slash2.png" id="38_k87wj"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xrivr"]
-polygon = PackedVector2Array(-2, -3, 3, -3, 3, 1, 2, 8, -1, 8, -2, 1, -2, -3)
-
-[sub_resource type="Curve" id="Curve_muswh"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.71621627, 0.8651686), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_fn1x2"]
-curve = SubResource("Curve_muswh")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fn1x2"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(2, 1, 1)
-angle_min = -199.4
-angle_max = 155.1
-direction = Vector3(0, -1, 0)
-initial_velocity_min = 15.0
-initial_velocity_max = 40.0
-radial_velocity_min = -10.750022
-radial_velocity_max = 29.999977
-gravity = Vector3(0, 98, 0)
-radial_accel_min = -18.280003
-radial_accel_max = -7.520002
-scale_max = 1.5
-color = Color(0.5686275, 0.46666667, 0.60784316, 1)
-alpha_curve = SubResource("CurveTexture_fn1x2")
-turbulence_enabled = true
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_utrdm"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(1, 2, 1)
-angle_min = -199.4
-angle_max = 155.1
-direction = Vector3(0, -1, 0)
-spread = 90.0
-initial_velocity_min = 15.0
-initial_velocity_max = 40.0
-radial_velocity_min = -10.750022
-radial_velocity_max = 29.999977
-gravity = Vector3(0, 98, 0)
-radial_accel_min = -18.280003
-radial_accel_max = -7.520002
-scale_min = 0.5
-color = Color(0.9843137, 0.80784315, 0, 1)
-alpha_curve = SubResource("CurveTexture_fn1x2")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_muswh"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(1, 2, 1)
-angle_min = -199.4
-angle_max = 155.1
-direction = Vector3(0, -1, 0)
-spread = 90.0
-initial_velocity_min = 15.0
-initial_velocity_max = 40.0
-radial_velocity_min = -10.750022
-radial_velocity_max = 29.999977
-gravity = Vector3(0, 0, 0)
-radial_accel_min = -18.280003
-radial_accel_max = -7.520002
-scale_min = 0.5
-alpha_curve = SubResource("CurveTexture_fn1x2")
+polygon = PackedVector2Array(-2, -3, 0, -3, 0, 3, 1, 8, -2, 8, -2, -3)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7y5df"]
 atlas = ExtResource("18_8iyjr")
@@ -935,8 +875,9 @@ _data = {
 
 [node name="quill" type="CharacterBody2D" unique_id=591547464 node_paths=PackedStringArray("movement_component", "input_component", "animation_component", "advanced_jump_component", "footsteps_component", "weapon_component", "health_component", "shield_component", "energy_component", "slide_component", "heart_component", "ball_state_timer", "slide_dirt", "run_dirt", "wall_dirt", "land_dirt", "block_sparks", "deflect_sparks", "gravity_component")]
 z_index = 2
-collision_layer = 10
+collision_layer = 2
 collision_mask = 9
+safe_margin = 0.16
 script = ExtResource("1_muswh")
 movement_component = NodePath("Components/MovementComponent")
 input_component = NodePath("Components/InputComponent")
@@ -1033,6 +974,7 @@ one_shot = true
 [node name="Visuals" type="Node2D" parent="." unique_id=2003763140]
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Visuals" unique_id=1207344192]
+visible = false
 occluder = SubResource("OccluderPolygon2D_xrivr")
 
 [node name="VFX" type="Node2D" parent="Visuals" unique_id=1275162692]
@@ -1096,15 +1038,15 @@ process_material = ExtResource("17_utrdm")
 z_index = 2
 position = Vector2(1, 8)
 emitting = false
-amount = 6
-lifetime = 0.55
+amount = 4
+lifetime = 0.5
 one_shot = true
 preprocess = 0.2
 speed_scale = 1.1
 explosiveness = 0.3
 randomness = 0.33
 fixed_fps = 15
-process_material = SubResource("ParticleProcessMaterial_fn1x2")
+process_material = ExtResource("18_ghw75")
 
 [node name="BlockSparks" type="GPUParticles2D" parent="Visuals/Particles" unique_id=28876438]
 z_index = 2
@@ -1117,7 +1059,7 @@ speed_scale = 2.0
 explosiveness = 0.3
 fixed_fps = 15
 trail_sections = 2
-process_material = SubResource("ParticleProcessMaterial_utrdm")
+process_material = ExtResource("19_2kxv1")
 
 [node name="DeflectSparks" type="GPUParticles2D" parent="Visuals/Particles" unique_id=832228913]
 z_index = 2
@@ -1128,12 +1070,11 @@ one_shot = true
 speed_scale = 2.0
 fixed_fps = 15
 trail_sections = 2
-process_material = SubResource("ParticleProcessMaterial_muswh")
+process_material = ExtResource("20_kcrdj")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Visuals" unique_id=632265729]
 sprite_frames = SubResource("SpriteFrames_cgqta")
-animation = &"wall"
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="Sword" type="Sprite2D" parent="Visuals" unique_id=1298361440]
 z_index = 1

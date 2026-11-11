@@ -147,7 +147,7 @@ script = ExtResource("1_jk1qb")
 input_component = NodePath("InputComponent")
 
 [node name="Title" type="Node2D" parent="." unique_id=1658640679]
-position = Vector2(531, 290)
+position = Vector2(531, 284)
 scale = Vector2(0.8, 0.8)
 
 [node name="WordQuill" type="Sprite2D" parent="Title" unique_id=490598058]
@@ -223,14 +223,13 @@ texture = ExtResource("9_7b55j")
 
 [node name="Buttons" type="VBoxContainer" parent="." unique_id=1865174431]
 offset_left = 502.0
-offset_top = 318.0
-offset_right = 821.0
-offset_bottom = 610.0
+offset_top = 311.0
+offset_right = 859.0
+offset_bottom = 666.0
 scale = Vector2(0.1, 0.1)
 theme_override_constants/separation = 12
 
 [node name="Continue" parent="Buttons" unique_id=2033494471 instance=ExtResource("9_j7ex8")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 4
 text = "CONTINUE"

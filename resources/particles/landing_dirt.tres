@@ -22,6 +22,6 @@ gravity = Vector3(0, 98, 0)
 radial_accel_min = -18.280003
 radial_accel_max = -7.520002
 scale_max = 1.5
-color = Color(0.5686275, 0.46666667, 0.60784316, 1)
+color = Color(0.41709498, 0.39855784, 0.57473075, 1)
 alpha_curve = SubResource("CurveTexture_fn1x2")
 turbulence_enabled = true

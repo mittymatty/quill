@@ -1,19 +1,11 @@
 extends Enemy
 
-@export var player: CharacterBody2D
-
 @export_subgroup("Nodes")
-@export var animation_component: AnimationComponent
-@export var tracker_component: TrackerComponent
 @export var jump_detector_component: JumpDetectorComponent
 @export var jump_component: JumpComponent
 @export var touch_damager_component: TouchDamagerComponent
 
 @export var visible_on_screen_enabler_2d: VisibleOnScreenEnabler2D
-
-func _ready() -> void:
-	super._ready()
-	tracker_component.tracker_target = player
 
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self,delta)

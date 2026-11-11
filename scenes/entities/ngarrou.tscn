@@ -3,11 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cu0m5demynbe2" path="res://scenes/entities/enemy_base.tscn" id="1_fcrjy"]
 [ext_resource type="Script" uid="uid://bbftmarsa6jok" path="res://scripts/entities/ngarrou.gd" id="2_5dfc5"]
 [ext_resource type="Texture2D" uid="uid://bwg84oucbhgl1" path="res://assets/visuals/ngarrou/ngarrou_body_idle.png" id="2_u6om4"]
-[ext_resource type="PackedScene" uid="uid://cy1034rgijxmi" path="res://scenes/components/movement_component.tscn" id="3_gkeh5"]
 [ext_resource type="Texture2D" uid="uid://vp2fd14tc83s" path="res://assets/visuals/ngarrou/ngarrou_arm1_idle.png" id="4_4so2t"]
-[ext_resource type="PackedScene" uid="uid://ddnaujh8g10oe" path="res://scenes/components/tracker_component.tscn" id="4_acj6a"]
 [ext_resource type="Texture2D" uid="uid://df1183jlg050k" path="res://assets/visuals/ngarrou/ngarrou_arm2_idle.png" id="5_5dfc5"]
-[ext_resource type="PackedScene" uid="uid://brjdkg4eghgpa" path="res://scenes/components/animation_component.tscn" id="5_mgyit"]
 [ext_resource type="PackedScene" uid="uid://dolv0ui3en5r3" path="res://scenes/components/jump_detector_component.tscn" id="6_k60bk"]
 [ext_resource type="PackedScene" uid="uid://cgou2ah3j44ta" path="res://scenes/components/jump_component.tscn" id="7_w4iam"]
 [ext_resource type="PackedScene" uid="uid://dnxj761xnjuvc" path="res://scenes/components/weapon_component.tscn" id="8_nhsre"]
@@ -836,42 +833,25 @@ _data = {
 &"upward_slash": SubResource("Animation_lk6cp")
 }
 
-[node name="ngarrou" unique_id=729534692 node_paths=PackedStringArray("tracker_component", "animation_component", "jump_detector_component", "jump_component", "weapon_auto_trigger_component") instance=ExtResource("1_fcrjy")]
+[node name="ngarrou" unique_id=729534692 node_paths=PackedStringArray("jump_detector_component", "jump_component", "weapon_auto_trigger_component") instance=ExtResource("1_fcrjy")]
 collision_layer = 12
 script = ExtResource("2_5dfc5")
-tracker_component = NodePath("Components/TrackerComponent")
-animation_component = NodePath("Components/AnimationComponent")
 jump_detector_component = NodePath("Components/JumpDetectorComponent")
 jump_component = NodePath("Components/JumpComponent")
 weapon_auto_trigger_component = NodePath("Components/WeaponTriggerComponent")
-queue_free_on_death = true
 
 [node name="HealthComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="0" unique_id=1130167078]
 max_health = 150.0
 knockback_multiplier = 0.5
 
-[node name="MovementComponent2" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=275666189 instance=ExtResource("3_gkeh5")]
-speed = 30.0
-ground_accel_speed = 3.0
-ground_decel_speed = 12.0
-
-[node name="TrackerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="3" unique_id=1220211303 node_paths=PackedStringArray("tracker", "drop_raycast") instance=ExtResource("4_acj6a")]
-tracker = NodePath("../..")
-drop_raycast = NodePath("../../Raycasts/DropDetector")
-start_tracking_distance = 125.0
-
-[node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=222523302 node_paths=PackedStringArray("sprites", "nodes_to_flip") instance=ExtResource("5_mgyit")]
-sprites = [NodePath("../../Visuals/Sprite"), NodePath("../../Visuals/front_arm_animated"), NodePath("../../Visuals/back_arm_animated")]
-nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Raycasts"), NodePath("../../AttackRaycasts"), NodePath("../../AttackBox")]
-
-[node name="JumpDetectorComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="5" unique_id=1174977127 node_paths=PackedStringArray("trigger_raycast", "disable_trigger_raycast") instance=ExtResource("6_k60bk")]
+[node name="JumpDetectorComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="2" unique_id=1174977127 node_paths=PackedStringArray("trigger_raycast", "disable_trigger_raycast") instance=ExtResource("6_k60bk")]
 trigger_raycast = NodePath("../../Raycasts/JumpTrigger")
 disable_trigger_raycast = NodePath("../../Raycasts/NullifyJumpTrigger")
 
-[node name="JumpComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="6" unique_id=466440326 instance=ExtResource("7_w4iam")]
+[node name="JumpComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="3" unique_id=466440326 instance=ExtResource("7_w4iam")]
 jump_velocity = -200.0
 
-[node name="WeaponComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="7" unique_id=1035590107 node_paths=PackedStringArray("character_body", "attack_box", "anim_player") instance=ExtResource("8_nhsre")]
+[node name="WeaponComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="4" unique_id=1035590107 node_paths=PackedStringArray("character_body", "attack_box", "anim_player") instance=ExtResource("8_nhsre")]
 damage = 25.0
 knockback = Vector2(200, -300)
 character_body = NodePath("../..")
@@ -881,7 +861,7 @@ anim_player = NodePath("../../FrontArmAttacks")
 [node name="AttackCooldownTimer" parent="Components/WeaponComponent" index="0" unique_id=1339807466]
 wait_time = 0.8
 
-[node name="WeaponTriggerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="8" unique_id=1227028261 node_paths=PackedStringArray("target_weapon_component", "raycasts_to_trigger") instance=ExtResource("9_7yy1d")]
+[node name="WeaponTriggerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="5" unique_id=1227028261 node_paths=PackedStringArray("target_weapon_component", "raycasts_to_trigger") instance=ExtResource("9_7yy1d")]
 target_weapon_component = NodePath("../WeaponComponent")
 attack_selection_behaviour = 1
 raycasts_to_trigger = {
@@ -892,9 +872,17 @@ NodePath("../../AttackRaycasts/JabTrigger1"): "jab",
 NodePath("../../AttackRaycasts/UpwardSlashTrigger2"): "upward_slash"
 }
 
-[node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="9" unique_id=275666189]
+[node name="MovementComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="6" unique_id=275666189]
+speed = 60.0
 ground_accel_speed = 3.0
 ground_decel_speed = 2.0
+
+[node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="7" unique_id=222523302 node_paths=PackedStringArray("nodes_to_flip")]
+nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../Raycasts"), NodePath("../../AttackRaycasts"), NodePath("../../AttackBox")]
+
+[node name="TrackerComponent" parent="Components" parent_id_path=PackedInt32Array(1001103590) index="8" unique_id=1220211303 node_paths=PackedStringArray("drop_raycast")]
+drop_raycast = NodePath("../../Raycasts/DropDetector")
+start_tracking_distance = 125.0
 
 [node name="Sprite" parent="Visuals" parent_id_path=PackedInt32Array(1477317777) index="0" unique_id=865435948]
 sprite_frames = SubResource("SpriteFrames_rgxoq")
@@ -967,7 +955,6 @@ disabled = true
 debug_color = Color(0.8646074, 0.0006014419, 0.86547065, 0.41960785)
 
 [node name="Raycasts" type="Node2D" parent="." index="5" unique_id=1166654145]
-visible = false
 
 [node name="DropDetector" type="RayCast2D" parent="Raycasts" index="0" unique_id=1304193120]
 position = Vector2(5, 7)

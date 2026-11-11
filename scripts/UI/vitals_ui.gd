@@ -25,7 +25,7 @@ var off_beat: bool = false
 func update_exertion () -> void:
 	if !exertion_refresh_rate.is_stopped(): return
 	exertion_refresh_rate.start()
-	exertion_label.text = "Exertion: " + str(energy_component.get_exertion_percent()) + "%"
+	exertion_label.text = "Exertion: " + str(roundf(energy_component.exertion * 10) / 10) #+ str(energy_component.get_exertion_percent()) + "%"
 
 func play_heartbeat_sound () -> void:
 	var bpm_diff: float = max_bpm - rest_bpm

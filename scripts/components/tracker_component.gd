@@ -30,6 +30,9 @@ func _ready() -> void:
 	await get_tree().create_timer(0.0).timeout
 	change_target(tracker_target)
 
+func get_movement_horizontal () -> float:
+	return movement_horizontal
+
 func on_target_dead (what_died: Node2D) -> void:
 	if what_died == tracker_target:
 		tracker_target = null

@@ -9,17 +9,17 @@ collision_layer = 0
 script = ExtResource("1_iljqi")
 gravity_component = NodePath("Components/GravityComponent")
 
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=623365970]
+
 [node name="Components" type="Node" parent="." unique_id=1217021385]
 
 [node name="GravityComponent" type="Node" parent="Components" unique_id=490926799]
 script = ExtResource("2_v6q1w")
 metadata/_custom_type_script = "uid://cwmqry4yemd5i"
 
-[node name="Visuals" type="Node2D" parent="." unique_id=812096161]
-
 [node name="Sounds" type="Node2D" parent="." unique_id=1877485222]
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=623365970]
+[node name="Visuals" type="Node2D" parent="." unique_id=812096161]
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1286117007]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Visuals" unique_id=1286117007]
 visible = false

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DialogDataResource" format=3 uid="uid://c88y82sksogl7"]
+
+[ext_resource type="Script" uid="uid://e3hm2fpmp0q1" path="res://scripts/resource_classes/dialog_keys_resource.gd" id="1_7uw0q"]
+[ext_resource type="Script" uid="uid://dyo5evh1vtojx" path="res://scripts/resource_classes/dialog_data_resource.gd" id="1_dc4t5"]
+
+[sub_resource type="Resource" id="Resource_30kmk"]
+script = ExtResource("1_7uw0q")
+dialog = "I would greatly appreciate if you could point that little sword of yours elsewhere?"
+metadata/_custom_type_script = "uid://e3hm2fpmp0q1"
+
+[sub_resource type="Resource" id="Resource_7uw0q"]
+script = ExtResource("1_7uw0q")
+dialog = "Greetings, small one."
+next_dialog_key = SubResource("Resource_30kmk")
+metadata/_custom_type_script = "uid://e3hm2fpmp0q1"
+
+[resource]
+script = ExtResource("1_dc4t5")
+character_name = "Rich Doe"
+initial_key = SubResource("Resource_7uw0q")
+metadata/_custom_type_script = "uid://dyo5evh1vtojx"

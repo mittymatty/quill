@@ -5,12 +5,13 @@ class_name ShakeCamera2D extends Camera2D
 
 @export_subgroup("Shake Configuration")
 @export var decay: float = 0.5  # How quickly the shaking stops [0, 1].
-@export var max_offset: Vector2 = Vector2(10.0,10.0)  # Maximum hor/ver shake in pixels.
+@export var max_trauma_offset: Vector2 = Vector2(10.0,10.0)  # Maximum hor/ver shake in pixels.
 @export var max_roll: float = 0.1  # Maximum rotation in radians (use sparingly).
-@export var trauma_offset: Vector2 = Vector2.ZERO
 
+var trauma_offset: Vector2 = Vector2.ZERO
 var trauma: float = 0.0  # Current shake strength.
 var trauma_power: int = 2  # Trauma exponent. Use [2, 3].
+
 @onready var base_offset: Vector2 = offset
 
 func _ready():
@@ -35,5 +36,5 @@ func _process(delta):
 func shake():
 	var amount = pow(trauma, trauma_power)
 	rotation = max_roll * amount * randi_range(-1, 1)
-	trauma_offset.x = max_offset.x * amount * randi_range(-1, 1)
-	trauma_offset.y = max_offset.y * amount * randi_range(-1, 1)
+	trauma_offset.x = max_trauma_offset.x * amount * randi_range(-1, 1)
+	trauma_offset.y = max_trauma_offset.y * amount * randi_range(-1, 1)

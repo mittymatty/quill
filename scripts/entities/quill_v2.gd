@@ -43,7 +43,6 @@ func set_state_if_able (new_state: States, can_switch: bool) -> void:
 	previous_state = state
 	state = new_state
 	on_state_changed(state)
-	#print(States.find_key(state))
 
 func scan_states () -> void:
 	if state in [States.DEAD]: return # Cannot automatically switch
@@ -69,10 +68,10 @@ func on_state_changed (new_state: States) -> void:
 	if state in [States.SLIDE]:
 		camera.add_trauma(0.075)
 	if state in [States.DEAD]:
+		set_collision_mask_value(4,false)
 		energy_component.set_dead()
 		wall_dirt.emitting = false
 	if state in [States.GROUND] and previous_state in [States.AIR]:
-		camera.add_trauma(0.02)
 		land_dirt.emitting = true # Is one-shot
 	
 	slide_dirt.emitting = state in [States.SLIDE]
@@ -116,18 +115,22 @@ func _on_advanced_jump_component_jumped() -> void:
 	energy_component.apply_exertion_impulse(4,0.0)
 
 func determine_exertion () -> float:
-	var is_h_input: bool = !is_zero_approx(input_component.get_input_horizontal())
-	if is_h_input and state in [States.GROUND,States.AIR]:
+	var h_input: float = input_component.get_input_horizontal()
+	var is_h_input: bool = !is_zero_approx(h_input)
+	
+	if is_h_input and state in [States.GROUND,States.AIR,States.SLIDE]:
 		return abs(velocity.x * 0.05) #100 is max speed, so returns 5.0 at full speed
+	elif !is_h_input and !is_zero_approx(velocity.x) and state in [States.GROUND]: #Drifting
+		return abs(velocity.x * 0.025)
 	return 0.0
 
 func heart (delta) -> void:
 	energy_component.set_exertion_target(determine_exertion())
 	energy_component.handle_drainage(delta)
 	heart_component.handle_heart(delta,energy_component.exertion)
-
 #endregion
 
+#region visuals
 func animate () -> void:
 	if state in [States.GROUND, States.AIR]: # Handle flip
 		animation_component.handle_horizontal_flip(input_component.get_input_horizontal(),shield_component.is_blocking)
@@ -146,7 +149,11 @@ func animate () -> void:
 	elif state in [States.DEAD]:
 		animation_component.handle_dead_animation(!is_on_floor(),velocity.y < 0.0)
 	
+	if state in [States.WALL,States.SLIDE]: # Camera shake
+		camera.add_trauma(0.015)
+	
 	run_dirt.emitting = state in [States.GROUND] and !is_zero_approx(velocity.x) # Handle particles
+#endregion
 
 func _physics_process(delta: float) -> void:
 	scan_states()
@@ -157,8 +164,6 @@ func _physics_process(delta: float) -> void:
 		slide_component.handle_slide(self,delta,input_component.get_down_input(),input_component.get_down_input_held())
 		weapon_component.handle_attack(input_component.get_attack_input(),get_attack_type())
 		shield_component.handle_block(input_component.get_block_input_held())
-	if state in [States.WALL,States.SLIDE]:
-		camera.add_trauma(0.015)
 	if state in [States.GROUND,States.AIR,States.WALL]:
 		movement_component.handle_horizontal_movement(self,input_component.get_input_horizontal())
 		advanced_jump_component.handle_jump(self,input_component.get_jump_input(),input_component.get_jump_input_held(),input_component.get_jump_input_released(),input_component.get_input_horizontal())

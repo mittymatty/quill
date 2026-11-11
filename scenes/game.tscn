@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://qmglmb5m41nq" path="res://assets/visuals/arch1.png" id="12_dinhu"]
 [ext_resource type="PackedScene" uid="uid://bs8hmr4fp8h5v" path="res://scenes/fire.tscn" id="18_264po"]
 [ext_resource type="PackedScene" uid="uid://cbe1nuyu0w1r4" path="res://scenes/entities/garrison.tscn" id="18_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://djnvj0vk22nj2" path="res://scenes/entities/rich_doe.tscn" id="20_1kice"]
+[ext_resource type="PackedScene" uid="uid://cobpcp123eoye" path="res://scenes/torch.tscn" id="21_5newe"]
 
 [node name="game" type="Node2D" unique_id=667705833]
 script = ExtResource("1_p57ef")
@@ -38,7 +40,6 @@ position_smoothing_speed = 7.0
 script = ExtResource("2_0tnpc")
 target = NodePath("../world/quill")
 decay = 1.0
-max_offset = Vector2(12, 8)
 metadata/_custom_type_script = "uid://b1wymq1ew2p7q"
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=603099669]
@@ -54,9 +55,13 @@ player = NodePath("../../world/quill")
 
 [node name="world" type="Node2D" parent="." unique_id=411618213]
 
+[node name="doe" parent="world" unique_id=132341453 node_paths=PackedStringArray("player") instance=ExtResource("20_1kice")]
+position = Vector2(280, 64)
+player = NodePath("../quill")
+
 [node name="Arch1" type="Sprite2D" parent="world" unique_id=2047901447]
 z_index = -5
-position = Vector2(381, 50)
+position = Vector2(311, 48)
 texture = ExtResource("12_dinhu")
 
 [node name="Tent" type="Sprite2D" parent="world" unique_id=53202463]
@@ -90,31 +95,40 @@ position = Vector2(638, 43)
 collision_mask = 5
 
 [node name="dummy2" parent="world" unique_id=1740850468 instance=ExtResource("4_lbhrr")]
-position = Vector2(309, 58)
+position = Vector2(404, 81)
 collision_mask = 5
 
-[node name="ken_wolf" parent="world" unique_id=1416112845 node_paths=PackedStringArray("player") instance=ExtResource("5_iywne")]
+[node name="ken_wolf" parent="world" unique_id=1416112845 node_paths=PackedStringArray("target") instance=ExtResource("5_iywne")]
 position = Vector2(-325, -12)
-player = NodePath("../quill")
+target = NodePath("../quill")
+queue_free_on_death = false
 
 [node name="dummy4" parent="world" unique_id=1003567764 instance=ExtResource("7_u5sy4")]
 position = Vector2(-157, 80)
 
-[node name="ngarrou" parent="world" unique_id=1177152942 node_paths=PackedStringArray("player") instance=ExtResource("8_gee14")]
+[node name="ngarrou" parent="world" unique_id=1177152942 node_paths=PackedStringArray("target") instance=ExtResource("8_gee14")]
 position = Vector2(494, 69)
-player = NodePath("../quill")
+target = NodePath("../quill")
 
 [node name="dr_sashiya" parent="world" unique_id=1811359124 node_paths=PackedStringArray("player") instance=ExtResource("10_vtaks")]
 position = Vector2(-124, 85)
 player = NodePath("../quill")
 
-[node name="garrison" parent="world" unique_id=62077163 node_paths=PackedStringArray("player") instance=ExtResource("18_ssvqc")]
+[node name="garrison" parent="world" unique_id=62077163 node_paths=PackedStringArray("possible_attacks", "target") instance=ExtResource("18_ssvqc")]
 position = Vector2(37, 88)
-player = NodePath("../quill")
+possible_attacks = {
+1: NodePath("ChargeCooldown")
+}
+target = NodePath("../quill")
 
 [node name="FirePit" parent="world" unique_id=1058423868 instance=ExtResource("18_264po")]
 position = Vector2(-55, 96)
 
+[node name="Torch" parent="world" unique_id=111614848 instance=ExtResource("21_5newe")]
+position = Vector2(287, 48)
+
+[node name="Torch2" parent="world" unique_id=152298961 instance=ExtResource("21_5newe")]
+position = Vector2(336, 48)
+
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1225240510]
-visible = false
 color = Color(0.73300546, 0.7330054, 0.7330054, 1)

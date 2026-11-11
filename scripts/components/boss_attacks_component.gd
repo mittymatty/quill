@@ -1,50 +1,61 @@
 class_name BossAttacksComponent extends Node
 
 enum CYCLE_MODES {CYCLE, RANDOM}
+@export_subgroup("Nodes")
+@export var boss: CharacterBody2D
 @export_subgroup("Configuration")
 @export var attack_cycle_mode: CYCLE_MODES = CYCLE_MODES.CYCLE
-@export var attack_cooldown: float = 5.0
+@export var attacks: Dictionary[BossAttack,Timer] # Attack, cooldown
 
 var in_cooldown: bool = false
 var is_attacking: bool = false
+var is_dead: bool = false
 
 var current_attack: BossAttack
-var attacks: Array[BossAttack]
+var previous_attack: BossAttack
 
-func _ready() -> void:
-	for child: Node in get_children():
-		if child is BossAttack:
-			attacks.append(child)
-			child.attack_ended.connect(on_attack_ended.bind(child))
+#region switching
+func set_attack_if_able (attack_to_set: BossAttack, can_switch: bool):
+	if attack_to_set == current_attack or !can_switch: return
+	previous_attack = current_attack
+	current_attack = attack_to_set
+	is_attacking = true if current_attack else false
+	on_attack_changed(attack_to_set)
 
-func decide_next_attack () -> BossAttack:
-	var current_attack_num: int = attacks.find(current_attack)
+func on_attack_changed (new_attack : BossAttack) -> void:
+	if previous_attack:
+		var cooldown_timer: Timer = attacks.get(previous_attack) # Cooldown of previous attack
+		cooldown_timer.start()
 	
-	if attack_cycle_mode in [CYCLE_MODES.CYCLE]:
-		return attacks[current_attack_num + 1] if attacks.size() < current_attack_num else attacks.front()
-	elif attack_cycle_mode in [CYCLE_MODES.RANDOM]:
-		return attacks.pick_random()
-	else:
-		return attacks.pick_random()
+	if new_attack:
+		new_attack.attack_begun(boss)
 
-func wait_cooldown () -> void:
-	in_cooldown = true
-	await get_tree().create_timer(attack_cooldown).timeout
-	in_cooldown = false
+func on_attack_finished (which_attack: BossAttack) -> void:
+	set_attack_if_able(null,which_attack == current_attack) #If the attack that timed out is the current one, clear attack
 
-func on_attack_ended (_which_attack: BossAttack) -> void:
-	#print(which_attack.name)
-	current_attack = null
-	wait_cooldown()
-
-func handle_boss_attacks (boss: Enemy, delta: float) -> void: # Call in physics process
-	is_attacking = current_attack != null
-	if current_attack:
-		current_attack.handle_attack(boss,delta)
-	elif !in_cooldown:
-		current_attack = decide_next_attack()
-		current_attack.begin_attack(boss)
+func scan_and_switch_attacks () -> void:
+	if is_dead: # Dead
+		set_attack_if_able(null,true)
+		return
+	
+	#if is_attacking: return
+	print(attacks.size())
+	for attack: BossAttack in attacks:
+		print(attack.name)
+		var cooldown_timer: Timer = attacks.get(attack)
+		set_attack_if_able(attack,cooldown_timer.is_stopped())
+#endregion
 
 func set_attack_cycle_mode (new_cycle_mode: CYCLE_MODES) -> void:
 	if attack_cycle_mode != new_cycle_mode:
 		attack_cycle_mode = new_cycle_mode
+
+func handle_attacks (delta: float) -> void: # Call on physics process
+	scan_and_switch_attacks()
+	if !is_attacking: return
+	current_attack.handle_attack(boss,delta)
+
+func _ready() -> void:
+	for attack: BossAttack in attacks:
+		attack.boss_attacks_component = self
+		attack.attack_ended.connect(on_attack_finished.bind(attack))

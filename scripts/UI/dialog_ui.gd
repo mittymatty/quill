@@ -8,7 +8,7 @@ extends Control
 var dialog_choice_template = preload("res://scenes/UI/dialog_choice.tscn")
 
 var quick_char_duration: float = 0.04
-var long_char_duration: float = 0.5
+var long_char_duration: float = 0.25
 var long_chars: Array[String] = [".","!","?",",",";",":","-"]
 
 func make_dialog_choices (choices: Array[String]) -> void:

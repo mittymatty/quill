@@ -4,6 +4,12 @@
 [ext_resource type="Resource" uid="uid://byxshxl87lteq" path="res://resources/dialogs/dr_sashiya/dr_sashiya_1.tres" id="2_2brny"]
 [ext_resource type="Texture2D" uid="uid://cg0mymbk3f2v6" path="res://assets/visuals/dr_sashiya.png" id="2_kv0go"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv0go"]
+size = Vector2(25, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlge3"]
+size = Vector2(6, 17)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2brny"]
 atlas = ExtResource("2_kv0go")
 region = Rect2(0, 0, 16, 20)
@@ -54,16 +60,18 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv0go"]
-size = Vector2(35, 23)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlge3"]
-size = Vector2(6, 17)
-
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2brny"]
 polygon = PackedVector2Array(-3, -9, 4, -9, 3, 8, 3, 8, 3, 8, -3, 4, -3, 4)
 
 [node name="dr_sashiya" unique_id=1811359124 instance=ExtResource("1_kv0go")]
+
+[node name="CollisionShape2D" parent="DialogTriggerArea" parent_id_path=PackedInt32Array(1871787629) index="0" unique_id=439147639]
+position = Vector2(6.5, 0.75)
+shape = SubResource("RectangleShape2D_kv0go")
+
+[node name="Collision" parent="." index="2" unique_id=623365970]
+position = Vector2(-1, 2.5)
+shape = SubResource("RectangleShape2D_jlge3")
 
 [node name="DialogComponent" parent="Components" parent_id_path=PackedInt32Array(1217021385) index="1" unique_id=876192846]
 dialog_data = ExtResource("2_2brny")
@@ -75,21 +83,10 @@ nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../DialogTriggerArea")]
 start_tracking_distance = 25.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Visuals" parent_id_path=PackedInt32Array(812096161) index="0" unique_id=149213830]
+position = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_2brny")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="DialogTriggerArea" parent="." index="4" unique_id=1871787629]
-visible = false
-
-[node name="CollisionShape2D" parent="DialogTriggerArea" index="0" unique_id=439147639]
-position = Vector2(11.5, -1)
-shape = SubResource("RectangleShape2D_kv0go")
-
-[node name="Collision" parent="." index="5" unique_id=623365970]
-visible = false
-position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_jlge3")
-
-[node name="LightOccluder2D" parent="." index="6" unique_id=1286117007]
+[node name="LightOccluder2D" parent="Visuals" parent_id_path=PackedInt32Array(812096161) index="1" unique_id=1286117007]
 occluder = SubResource("OccluderPolygon2D_2brny")

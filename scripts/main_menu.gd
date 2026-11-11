@@ -5,7 +5,8 @@ var sway_speed : float = 0.02
 @onready var buttons_container: VBoxContainer = $Buttons
 
 @export var input_component: InputComponent
-const GAME: PackedScene = preload("uid://i6kst5rysq8k")
+const GAME: PackedScene = preload("uid://28ih68n8ro3a")
+const TEST_GAME: PackedScene = preload("uid://i6kst5rysq8k")
 
 var selectable_buttons: Array[SwordButton]
 var selected_button: int = 0
@@ -16,8 +17,10 @@ func on_button_pressed () -> void:
 	
 	if pressed_button.name == "Quit":
 		quit_game()
-	elif pressed_button.name == "NewGame":
+	elif pressed_button.name == "Continue":
 		temp_launch_game()
+	elif pressed_button.name == "NewGame":
+		temp_launch_arena()
 	elif pressed_button.name == "Settings":
 		open_settings()
 
@@ -68,6 +71,9 @@ func _process(_delta: float) -> void:
 
 func temp_launch_game () -> void:
 	get_tree().call_deferred("change_scene_to_packed",GAME)
+
+func temp_launch_arena () -> void:
+	get_tree().call_deferred("change_scene_to_packed",TEST_GAME)
 
 func open_settings () -> void:
 	pass

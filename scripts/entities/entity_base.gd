@@ -1,6 +1,6 @@
 class_name Entity extends CharacterBody2D
 
-@export_subgroup("Entity Nodes")
+@export_subgroup("Nodes")
 @export var gravity_component: GravityComponent
 
 func _physics_process(delta: float) -> void:

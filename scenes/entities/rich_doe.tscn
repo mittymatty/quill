@@ -1,0 +1,161 @@
+[gd_scene format=3 uid="uid://djnvj0vk22nj2"]
+
+[ext_resource type="PackedScene" uid="uid://g4bu5mxq4d57" path="res://scenes/entities/dialog_entity.tscn" id="1_3jbl2"]
+[ext_resource type="Resource" uid="uid://c88y82sksogl7" path="res://resources/dialogs/cityfolk/rich_doe_1.tres" id="2_07hfo"]
+[ext_resource type="Texture2D" uid="uid://dhagpvqfcmm7c" path="res://assets/visuals/doe_sheet_1.png" id="2_l3fyr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jbl2"]
+size = Vector2(27, 25)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3jbl2"]
+radius = 3.0
+height = 26.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3jbl2"]
+polygon = PackedVector2Array(-1, -9, 2, -9, 1, 16, -1, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipc2l"]
+atlas = ExtResource("2_l3fyr")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf8qs"]
+atlas = ExtResource("2_l3fyr")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dofkk"]
+atlas = ExtResource("2_l3fyr")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etiuo"]
+atlas = ExtResource("2_l3fyr")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mubs4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipc2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf8qs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dofkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etiuo")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.5
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g40uc"]
+atlas = ExtResource("2_l3fyr")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nlv3"]
+atlas = ExtResource("2_l3fyr")
+region = Rect2(32, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyiuk"]
+atlas = ExtResource("2_l3fyr")
+region = Rect2(48, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncksm"]
+atlas = ExtResource("2_l3fyr")
+region = Rect2(64, 32, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6wt6l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g40uc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nlv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyiuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncksm")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.5
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jbl2"]
+atlas = ExtResource("2_l3fyr")
+region = Rect2(16, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3fyr"]
+atlas = ExtResource("2_l3fyr")
+region = Rect2(32, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xtr5"]
+atlas = ExtResource("2_l3fyr")
+region = Rect2(48, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3vlc"]
+atlas = ExtResource("2_l3fyr")
+region = Rect2(64, 64, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ue3n5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jbl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3fyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xtr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3vlc")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.5
+}]
+
+[node name="rich_doe" unique_id=1811359124 instance=ExtResource("1_3jbl2")]
+
+[node name="CollisionShape2D" parent="DialogTriggerArea" parent_id_path=PackedInt32Array(1871787629) index="0" unique_id=439147639]
+position = Vector2(8.5, 3.5)
+shape = SubResource("RectangleShape2D_3jbl2")
+
+[node name="Collision" parent="." index="2" unique_id=623365970]
+position = Vector2(-1, 3)
+shape = SubResource("CapsuleShape2D_3jbl2")
+
+[node name="DialogComponent" parent="Components" parent_id_path=PackedInt32Array(1217021385) index="1" unique_id=876192846]
+dialog_data = ExtResource("2_07hfo")
+
+[node name="AnimationComponent" parent="Components" parent_id_path=PackedInt32Array(1217021385) index="2" unique_id=222523302 node_paths=PackedStringArray("nodes_to_flip")]
+nodes_to_flip = [NodePath("../../Visuals"), NodePath("../../DialogTriggerArea")]
+
+[node name="LightOccluder2D" parent="Visuals" parent_id_path=PackedInt32Array(812096161) index="0" unique_id=1286117007]
+position = Vector2(-2, 0)
+occluder = SubResource("OccluderPolygon2D_3jbl2")
+
+[node name="Body" type="AnimatedSprite2D" parent="Visuals" parent_id_path=PackedInt32Array(812096161) index="1" unique_id=558915261]
+sprite_frames = SubResource("SpriteFrames_mubs4")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.66004574
+
+[node name="Arms" type="AnimatedSprite2D" parent="Visuals" parent_id_path=PackedInt32Array(812096161) index="2" unique_id=430031716]
+sprite_frames = SubResource("SpriteFrames_6wt6l")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.5571547
+
+[node name="Clothes" type="AnimatedSprite2D" parent="Visuals" parent_id_path=PackedInt32Array(812096161) index="3" unique_id=187924634]
+sprite_frames = SubResource("SpriteFrames_ue3n5")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.6625291

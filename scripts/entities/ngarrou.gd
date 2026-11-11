@@ -3,21 +3,14 @@ extends Enemy
 enum BOSS_STATES {MOBILE,IMMOBILE,CHARGE,ATTACK}
 enum BOSS_MOOD {AGGRO,CAUTIOUS}
 
-@export var player: CharacterBody2D
-
 @export_subgroup("Nodes")
-@export var tracker_component: TrackerComponent
-@export var animation_component: AnimationComponent
 @export var jump_detector_component: JumpDetectorComponent
 @export var jump_component: JumpComponent
 @export var weapon_auto_trigger_component: WeaponAutoTriggerComponent
 
-func _ready() -> void:
-	super._ready()
-	tracker_component.tracker_target = player
-
 func _physics_process(delta: float) -> void:
-	super._physics_process(delta) #Just gravity
+	scan_states()
+	gravity_component.handle_gravity(self,delta)
 	movement_component.handle_horizontal_movement(self,tracker_component.movement_horizontal)
 	animation_component.handle_horizontal_flip(tracker_component.movement_horizontal,tracker_component.is_backing_up)
 	animation_component.handle_move_animation(tracker_component.movement_horizontal,velocity.x)
